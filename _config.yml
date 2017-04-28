@@ -4,10 +4,10 @@ markdown:	kramdown
 permalink:	/blog/:title
 
 # Setup
-title:            Thinny
-tagline:          'blog'
-description:      'My personal blog.'
-url:              http://camporez.github.io
+title:            missuteki
+tagline:          'missuteki, make mistakes'
+description:      'Engrish for "mistake" and japanese for "three awesome". This is a blog of my artwork done in triplicate. '
+url:              http://missuteki.com
 baseurl:          
 commentsystem:    google
 disqus:           example
@@ -24,19 +24,11 @@ cover:            /assets/images/cover.jpg
 
 social:
   - icon:         twitter
-    url:          https://twitter.com/iancamporez
+    url:          https://twitter.com/missuteki
     desc:         Follow me on twitter
 
-  - icon:         github
-    url:          https://github.com/camporez
-    desc:         Fork me on github
-
-  - icon:         googleplus-alt
-    url:          https://google.com/+IanCamporezBrunelli
-    desc:         Add me on google+
-
   - icon:         feed
-    url:          http://camporez.github.io/atom.xml
+    url:          http://missuteki.com/atom.xml
     desc:         Subscribe to my feed
 
 menu:
@@ -47,15 +39,15 @@ menu:
     url:          /about
 
 copyright:
-  author:         Camporez
-  url:            http://camporez.github.io
+  author:         missuteki
+  url:            http://missuteki.com
   type_title:     Some rights reserved
   type_url:       http://creativecommons.org/licenses/by-nc/2.5
 
 parallax:         false
 
 # Google Analytics (add the UA Code, e.g.: UA-xxxxxxxx-1)
-google_analytics:  
+google_analytics:  UA-98291737-1
 
 # Default Theme Color for Chrome on Android Lollipop (Use RGB ColorCode without `#`, e.g.: `db5945`)
 theme_color:       7E9576
