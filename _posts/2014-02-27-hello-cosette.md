@@ -7,6 +7,7 @@ image:
 video: false
 comments: true
 theme_color: 302F2D
+published: false
 ---
 
 # Thinny 2.1, codename "[Cosette](http://lesmiserables.wikia.com/wiki/Cosette)"
