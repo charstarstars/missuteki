@@ -11,5 +11,4 @@ philosophy to my own creative endeavors. Thus, `missuteki` was born.
 
 Missuteki has two additional meanings: It's a Engrish version of the word "mistake" making it a mistake spelling or pronunciation. Also
 `mi` is the prefix for "three" in Japanese it can also mean look or see while
-`suteki` is "beautiful" or "cool" in Japanese. Together it's tripley beautiful or looks cool.
-
+`suteki` is "beautiful" or "cool" in Japanese. Together it's tripley beautiful or looks cool.　三素敵!　見素敵!
