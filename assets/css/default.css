@@ -329,12 +329,15 @@ pre code {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	width: 100%;
-	max-width: 700px;
 }
 
 .site-top li {
 	display: inline-block;
+}
+
+.site-top {
+	width: 100%;
+	max-width: 700px;
 }
 
 .social-links {
