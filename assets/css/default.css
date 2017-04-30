@@ -315,12 +315,11 @@ pre code {
 }
 
 .clean {
-	color: #eee;
-	background-color: #888;
+	color: #333;
 }
 
 .clean a {
-	color: #eee;
+	color: #333;
 }
 
 .dark, .dark a {
