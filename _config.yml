@@ -41,8 +41,8 @@ menu:
 copyright:
   author:         missuteki
   url:            http://missuteki.com
-  type_title:     Some rights reserved
-  type_url:       http://creativecommons.org/licenses/by-nc/2.5
+  type_title:     Theme based on Thinny
+  type_url:       https://github.com/camporez/Thinny
 
 parallax:         false
 
