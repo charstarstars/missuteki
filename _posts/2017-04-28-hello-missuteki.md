@@ -2,6 +2,7 @@
 layout: post
 title: "hello missuteki"
 quote: "Let's make mistakes."
+image: false
 video: false
 comments: true
 theme_color: 302F2D

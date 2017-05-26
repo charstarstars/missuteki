@@ -59,6 +59,10 @@ header, footer {
 	display: none;
 }
 
+.post-list-item-info {
+	padding: 0;
+}
+
 .pagination, #post-list {
 	width: 700px;
 	left: 50%;

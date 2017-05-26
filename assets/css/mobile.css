@@ -60,15 +60,8 @@ h2 {
 	color: #b5b5b5;
 }
 
-.pagination, #post-list {
-	width: 90%;
-	padding: 0px 5%;
-	left: 0px;
-	margin-left: 0px;
-}
-
 .pagination {
-	padding-top: 30px;
+	padding-top: 30px 15px 0 15px;
 }
 
 .older-posts, .newer-posts {

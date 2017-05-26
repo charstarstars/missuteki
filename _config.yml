@@ -9,8 +9,8 @@ tagline:          'missuteki, make mistakes'
 description:      'Engrish for "mistake" and japanese for "three awesome". This is a blog of my artwork done in triplicate. '
 url:              http://missuteki.com
 baseurl:          
-commentsystem:    google
-disqus:           example
+commentsystem:    disqus
+disqus:           missuteki
 
 author:
   name:           Ariel Liu
@@ -44,10 +44,13 @@ copyright:
   type_title:     Theme based on Thinny
   type_url:       https://github.com/camporez/Thinny
 
-parallax:         false
+parallax:         true
 
 # Google Analytics (add the UA Code, e.g.: UA-xxxxxxxx-1)
 google_analytics:  UA-98291737-1
 
 # Default Theme Color for Chrome on Android Lollipop (Use RGB ColorCode without `#`, e.g.: `db5945`)
 theme_color:       7E9576
+
+# Gems
+gems: [jekyll-paginate]
