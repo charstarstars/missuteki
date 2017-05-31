@@ -24,6 +24,10 @@ cover:
 hero:             /assets/images/missuteki-logo.png
 
 social:
+  - icon:         instagram
+    url:          https://www.instagram.com/missuteki/
+    desc:         Follow me on instagram
+    
   - icon:         twitter
     url:          https://twitter.com/missuteki
     desc:         Follow me on twitter
