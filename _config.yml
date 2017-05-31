@@ -19,8 +19,9 @@ author:
 paginate:         5
 
 # Custom vars
-icon:             /assets/images/missuteki-logo.png
-cover:            
+icon:             /assets/images/icon.png
+cover:
+hero:             /assets/images/missuteki-logo.png
 
 social:
   - icon:         twitter
