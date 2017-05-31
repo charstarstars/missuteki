@@ -6,6 +6,7 @@ image: false
 video: false
 comments: true
 theme_color: 302F2D
+article: true
 ---
 
 I've always been scared about making mistakes. I think a lot of us are, and with good reason! 

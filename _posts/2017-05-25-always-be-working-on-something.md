@@ -10,6 +10,7 @@ theme_color: 302F2D
 san: /media/2017-05-25-always-be-working-on-something/donut-05-bnw.png
 ni: /media/2017-05-25-always-be-working-on-something/bamboo-grove-bnw.jpg
 ichi: /media/2017-05-25-always-be-working-on-something/disease-bnw.jpg
+article: true
 ---
 
 There was a student in my ScriptEd class who would immediately respond “I don't know” when we cold-called him. It was frustrating because we felt like in independent coding sessions, he *did* demonstrate that he understood the material. 

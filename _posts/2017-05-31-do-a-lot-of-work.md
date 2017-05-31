@@ -7,9 +7,11 @@ image:
 video: false
 comments: true
 theme_color: 302F2D
+article: true
 ichi: /media/2017-05-31-do-a-lot-of-work/pottery-set.jpg
 ni: /media/2017-05-31-do-a-lot-of-work/teapots.jpg
 san: /media/2017-05-31-do-a-lot-of-work/urns.jpg
+article: true
 ---
 
 > The ceramics teacher announced on opening day that he was dividing the class into two groups. All those on the left side of the studio, he said, would be graded solely on the quantity of work they produced, all those on the right solely on its quality...[come] grading time and a curious fact emerged: **the works of highest quality were all produced by the group being graded for quantity**. It seems that while the "quantity" group was busily churning out piles of work—and learning from their mistakes—the "quality" group had sat theorizing about perfection, and in the end had little more to show for their efforts than grandiose theories and a pile of dead clay.
