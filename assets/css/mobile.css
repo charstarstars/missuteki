@@ -91,3 +91,7 @@ table {
 	display: block;
 	overflow: auto;
 }
+
+/* email signup */
+#mc_embed_signup .button { display: none; }
+#mc_embed_signup input.email { width: 200px; }
