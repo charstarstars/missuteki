@@ -27,6 +27,10 @@ social:
   - icon:         instagram
     url:          https://www.instagram.com/missuteki/
     desc:         Follow me on instagram
+
+  - icon:         facebook
+    url:          https://www.facebook.com/missuteki/
+    desc:         Like me on facebook
     
   - icon:         twitter
     url:          https://twitter.com/missuteki
