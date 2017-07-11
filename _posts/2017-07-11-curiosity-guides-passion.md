@@ -28,15 +28,13 @@ In [The Crossroads of Should and Must](https://www.amazon.com/The-Crossroads-Sho
 
 ## Let your curiosity guide you
 
-When I quit my job, I told my coworkers that “I’ve taken it upon myself to start living by the words of Howard Thurman, ‘Don’t ask what the world needs. Ask what makes you come alive, and go do it. Because what the world needs is people who have come alive.’” I knew I needed to pursue *something* in order to make it work. 
-
 > “It is, in fact, nothing short of a miracle that the modern methods of instruction have not yet entirely strangled the holy curious of inquiry. It is a very grave mistake to think that the enjoyment of seeing and searching can be promoted by means of coercion and a sense of duty.” — Albert Einstein
 
 In many ways, I can see how formal education not only crushed my natural curiosity, but replaced it with middle-class mindset. Addressing the passion problem for me is about figuring out my life purpose and using it to reconnect with and develop my curiosity again.
 
 ## Curiosity makes us come alive
 
-When I quit my job, I told my coworkers that “I’ve taken it upon myself to start living by the words of Howard Thurman, ‘Don’t ask what the world needs. Ask what makes you come alive, and go do it. Because what the world needs is people who have come alive.’” So what makes people come alive? I'm not sure, but I know that curiosity is what fuels it. Foster your curiosity to find your coming alive.
+When I quit my job, I told my coworkers that “I’ve taken it upon myself to start living by the words of Howard Thurman, ‘Don’t ask what the world needs. Ask what makes you come alive, and go do it. So what makes people come alive? I'm not sure, but I know that curiosity is what fuels it. Foster your curiosity to find your coming alive.
 
 
 ![](/media/2017-07-11-curiosity-guides-passion/bagels.jpg)
