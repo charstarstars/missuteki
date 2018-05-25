@@ -14,4 +14,7 @@ artwork:
 publish_date: 2018-05-26 15:00:00 +0000
 quote: Your mind comes up with ways to avoid doing the work
 cover: ''
+related_posts:
+- _posts/2017-07-11-curiosity-guides-passion.md
+tags: []
 ---
