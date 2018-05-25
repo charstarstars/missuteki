@@ -1,0 +1,36 @@
+---
+hide_body: false
+is_partial: false
+fields:
+- type: text
+  name: title
+  label: Title
+  config:
+    required: true
+- type: textarea
+  name: quote
+  label: Quote
+  description: Quote, snippet, or subtitle
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+- type: file
+  label: Cover
+  name: cover
+  description: Hero image
+- type: image_gallery
+  name: preview
+  label: Preview
+  description: Three thumbnail images for the front page
+- type: image_gallery
+  name: artwork
+  label: Artwork
+  description: Three or more artwork pieces for the end of the article
+- type: datetime
+  name: publish_date
+  label: publish_date
+  description: When to publish the post
+  config:
+    required: false
