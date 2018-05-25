@@ -34,3 +34,5 @@ fields:
   description: When to publish the post
   config:
     required: false
+pages:
+- _posts/avoidance.md
