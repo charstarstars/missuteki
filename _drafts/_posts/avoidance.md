@@ -13,7 +13,7 @@ artwork:
 - "/media/IMG_20180510_212005.jpg"
 publish_date: 2018-05-26 15:00:00 +0000
 quote: Your mind comes up with ways to avoid doing the work
-cover: ''
+cover: "/media/avoidance-cover-2.jpg"
 related_posts:
 - _posts/2017-07-11-curiosity-guides-passion.md
 tags: []
