@@ -34,5 +34,17 @@ fields:
   description: When to publish the post
   config:
     required: false
+- type: list
+  default: []
+  label: Related Posts
+  name: related_posts
+  config:
+    use_select: true
+    source:
+      type: pages
+      section: posts
+- type: tag_list
+  name: tags
+  label: Tags
 pages:
 - _posts/avoidance.md
