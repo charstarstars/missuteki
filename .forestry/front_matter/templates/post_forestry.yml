@@ -28,12 +28,6 @@ fields:
   name: artwork
   label: Artwork
   description: Three or more artwork pieces for the end of the article
-- type: datetime
-  name: publish_date
-  label: publish_date
-  description: When to publish the post
-  config:
-    required: false
 - type: list
   default: []
   label: Related Posts
