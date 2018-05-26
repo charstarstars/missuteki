@@ -46,6 +46,7 @@ fields:
   hidden: true
   default: post_forestry
 pages:
+- _posts/cardamom.md
 - _posts/perseverance.md
 - _posts/slow-and-steady.md
 - _posts/style.md
