@@ -46,4 +46,5 @@ fields:
   hidden: true
   default: post_forestry
 pages:
+- _posts/drawing-is-about-correction.md
 - _posts/avoidance.md
