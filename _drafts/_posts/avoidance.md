@@ -13,7 +13,7 @@ artwork:
 - "/media/IMG_20180510_212005.jpg"
 publish_date: 2018-05-26 15:00:00 +0000
 quote: Your mind comes up with ways to avoid doing the work
-cover: "/media/avoidance-cover-2.jpg"
+cover: "/media/avoidance-cover.jpg"
 related_posts:
 - _posts/2017-05-31-do-a-lot-of-work.md
 tags:
@@ -51,3 +51,5 @@ I finally decided to consult the assistant teacher.  I told her I was having suc
 > Your mind will come up with ways to avoid doing the work.
 
 There are so many things I realize that I avoid when I go back and think about those words. I settle for answers that deserve deeper questioning. Deeper questioning requires the difficult work of asking myself why I'm in this relationship, why I'm staying at this job, why I don't like someone. Oftentimes questioning myself is difficult because it forces me to admit the unsavory qualities of myself that I don't like to acknowledge. Needless dependence, selfish financial gain, or jealousy are all unattractive to me; I wouldn't like to think of myself as someone weak, selfish, or unjust. 
+
+During the retreat, my mind would wander off and entertain itself with clever ideas or creative pursuits. It was so productive! All in an effort to avoid examining myself for fear of what I would find.
