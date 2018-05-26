@@ -46,6 +46,7 @@ fields:
   hidden: true
   default: post_forestry
 pages:
+- _posts/follow-through.md
 - _posts/movement.md
 - _posts/cardamom.md
 - _posts/perseverance.md
