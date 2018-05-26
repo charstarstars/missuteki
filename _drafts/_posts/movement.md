@@ -9,3 +9,4 @@ preview: []
 artwork: []
 tags: []
 ---
+Follow your hand, follow momentum, follow through
