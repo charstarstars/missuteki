@@ -46,8 +46,8 @@ fields:
   hidden: true
   default: post_forestry
 pages:
+- _posts/slow-and-steady.md
 - _posts/style.md
-- _posts/what-s-the-hurry.md
 - _posts/truth.md
 - _posts/drawing-is-about-correction.md
 - _posts/2018-05-26-avoidance.md
