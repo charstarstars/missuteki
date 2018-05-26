@@ -12,9 +12,11 @@ artwork:
 - "/media/IMG_20180510_211121.jpg"
 - "/media/IMG_20180510_212005.jpg"
 publish_date: 2018-05-26 15:00:00 +0000
-quote: ''
+quote: Deeper questioning requires the difficult work of admitting the unsavory qualities
+  of myself that I don't like to acknowledge
 cover: "/media/avoidance-cover.jpg"
 related_posts:
+- _posts/truth.md
 - _posts/2017-05-31-do-a-lot-of-work.md
 tags:
 - meditation
@@ -41,15 +43,18 @@ On the first few days of my [10-day silent meditation retreat](https://www.dhamm
 | 9:00-9:30 pm | Question time in the hall |
 | 9:30 pm | Retire to your own room--Lights out |
 
-  
-Every time there was the option to meditate in my room, I meditated in the hall to force myself to do the work. 
+Every time there was the option to meditate in my room, I meditated in the hall to force myself to do the work.
 
-I would get so irritated though. I was trying my best to abide by the given instructions, but how come everyone around me couldn't follow the instructions? Every five minutes someone would shift around in their seat cushion, or stand up and leave or cough or scratch.  Every action was so crisply heard in the meditation hall, and I wanted so badly to ask if others were bothered by the constant interruptions in their concentration. Didn’t the instructor say to try to be as still as possible? I thought I could handle it and just be able to focus on my own practice, but after 20 hours of meditation in 3 days, the abrupt noises chafing at my sanity finally wore me away. I would just get pissed off that I would keep getting interrupted.   
-  
-I finally decided to consult the assistant teacher.  I told her I was having such a hard time concentrating on meditating when there were so many interruptions around me. She said something that I still think about a lot one year later: 
+I would get so irritated though. I was trying my best to abide by the given instructions, but how come everyone around me couldn't follow the instructions? Every five minutes someone would shift around in their seat cushion, or stand up and leave or cough or scratch.  I could hear every movement so crisply in the meditation hall, and I wanted so badly to ask if others were bothered by the constant interruptions. Didn’t the instructor say to try to be as still as possible? I thought I could handle it; I thought I would be able to focus on my own practice, but after 20 hours of meditation in 3 days, the abrupt noises chafing at my sanity finally wore me away. I would just get pissed off that I couldn't meditate!
+
+I finally decided to consult the assistant teacher.  I told her I was having such a hard time concentrating on meditating when there were so many interruptions around me. She said something that I still think about a lot one year later:
 
 > Your mind will come up with ways to avoid doing the work.
 
-There are so many things I realize that I avoid when I go back and think about those words. I settle for answers that deserve deeper questioning. Deeper questioning requires the difficult work of asking myself why I'm in this relationship, why I'm staying at this job, why I don't like someone. Oftentimes questioning myself is difficult because it forces me to admit the unsavory qualities of myself that I don't like to acknowledge. Needless dependence, selfish financial gain, or jealousy are all unattractive to me; I wouldn't like to think of myself as someone weak, selfish, or unjust. 
+There are so many things I realize that I avoid when I go back and think about those words. My mind silently accepts simple conclusions. I settle for answers that deserve deeper questioning. Deeper questioning requires the difficult work of asking myself why I'm in this relationship, why I'm staying at this job, why I don't like someone. Oftentimes questioning myself is difficult because it forces me to admit the unsavory qualities of myself that I don't like to acknowledge. Needless dependence, selfish financial gain, or jealousy are all unattractive to me; I wouldn't like to think of myself as someone weak, selfish, or unjust.
 
-During the retreat, my mind would wander off and entertain itself with clever ideas or creative pursuits. It was so productive! All in an effort to avoid examining myself for fear of what I would find.
+Yet the work of finding truth, finding yourself, and acknowledging it, is there. It needs to be done, and biasing toward action is the way to do it. 
+
+During the retreat, my mind would wander off and entertain itself with clever ideas or creative pursuits. It was so productive! All in an effort to avoid examining myself for fear of what I would find. Procrastination only delays what inevitably needs to be done. This blog is no different. It's been nearly a year since I last wrote anything for this blog. 
+
+After months of avoidance, I'm ready to do the work. I'm ready to uncover the shameful sides of my thoughts, behaviors, and artistic creations.
