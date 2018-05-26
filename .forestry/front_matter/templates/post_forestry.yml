@@ -46,6 +46,7 @@ fields:
   hidden: true
   default: post_forestry
 pages:
+- _posts/consistency.md
 - _posts/correction.md
 - _posts/attitude.md
 - _posts/follow-through.md
