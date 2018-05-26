@@ -1,5 +1,5 @@
 ---
-title: Avoidance
+title: Your mind comes up with ways to avoid doing the work
 date: 2018-05-25 20:39:37 +0000
 preview:
 - "/media/bibi1thumb-1.jpg"
@@ -12,7 +12,7 @@ artwork:
 - "/media/IMG_20180510_211121.jpg"
 - "/media/IMG_20180510_212005.jpg"
 publish_date: 2018-05-26 15:00:00 +0000
-quote: Your mind comes up with ways to avoid doing the work
+quote: ''
 cover: "/media/avoidance-cover.jpg"
 related_posts:
 - _posts/2017-05-31-do-a-lot-of-work.md
