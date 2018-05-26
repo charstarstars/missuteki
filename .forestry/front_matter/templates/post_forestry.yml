@@ -46,7 +46,7 @@ fields:
   hidden: true
   default: post_forestry
 pages:
-- _posts/find-your-style-through-putting-in-the-work.md
+- _posts/style.md
 - _posts/what-s-the-hurry.md
 - _posts/truth.md
 - _posts/drawing-is-about-correction.md
