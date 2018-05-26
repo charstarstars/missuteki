@@ -2,16 +2,32 @@
 	{% capture canonical %}{{ site.url }}{{ site.baseurl }}{% if site.permalink contains '.html' %}{{ page.url }}{% elsif site.permalink contains category_dir %}{{ '/' | page.url | remove:'index.html' | '/' }}{% else %}{{ page.url | remove:'index.html' | '/' }}{% endif %}{% endcapture %}
 	<link href="//gmpg.org/xfn/11" rel="profile">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	{% if page.article %}
+	
 	<link rel="canonical" href="{{ canonical }}" />
-	<meta name="description" content="{% if page.quote %}{{ page.quote }}{% else %}{{ page.content | strip_html | truncatewords: 20 }}{% endif %}" />
-	<meta property="og:description" content="{% if page.quote %}{{ page.quote }}{% else %}{{ page.content | strip_html | truncatewords: 20 }}{% endif %}" />
-	<meta itemprop="image" content="{% if page.image.url %}{{ site.url }}{{ site.baseurl }}{{ page.image.url }}{% else %}{{ site.url }}{{ site.baseurl }}{{ site.icon }}{% endif %}" />
-	<meta property="og:image" content="{% if page.image.url %}{{ site.url }}{{ site.baseurl }}{{ page.image.url }}{% else %}{{ site.url }}{{ site.baseurl }}{{ site.icon }}{% endif %}" />
-	<meta property="og:title" content="{{ page.title }}" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="{{ canonical }}" />
 	<meta property="og:site_name" content="{{ site.title }}" />
+	<meta property="og:title" content="{{ page.title }}" />
+	
+	{% if page.quote %}
+	  <meta name="description" content="{% if page.quote %}{{ page.quote }}{% else %}{{ page.content | strip_html | truncatewords: 20 }}{% endif %}" />
+	  <meta property="og:description" content="{% if page.quote %}{{ page.quote }}{% else %}{{ page.content | strip_html | truncatewords: 20 }}{% endif %}" />
+	{% else %}
+	  <meta content="{{ site.description }}" property="og:description">
+	{% endif %}
+	{% if page.preview %}
+	  <meta property="og:type" content="article" />
+	{% endif %}
+	{% if page.cover %}
+	  <meta content="{{ site.url }}{{ site.baseurl }}{{ page.cover }}" property="og:image">
+	  <meta content="{{ site.url }}{{ site.baseurl }}{{ page.cover }}" itemprop="image">
+	{% else %}
+	  <meta content="{{ site.url }}{{ site.baseurl }}{{ site.icon }}" property="og:image">
+	  <meta content="{{ site.url }}{{ site.baseurl }}{{ site.icon }}" itemprop="image">
+	{% endif %}
+	
+	{% if page.tags %}
+	  {% for tag in page.tags %}
+	  <meta content="{{ tag }}" property="article:tag">
+	  {% endfor %}
 	{% endif %}
 	<title>{% if page.title == "Home" %}{{ site.title }} &middot; {{ site.tagline }}{% else %}{{ page.title }} &middot; {{ site.title }}{% endif %}</title>
 	<meta name="mobile-web-app-capable" content="yes">
