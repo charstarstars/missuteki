@@ -4,7 +4,8 @@ related_posts:
 - _posts/2017-05-25-always-be-working-on-something.md
 layout: post_forestry
 date: 2018-06-06 06:29:57 +0000
-quote: ''
+quote: Art is one part of noticing what you notice, and one part of expressing what
+  you notice.
 cover: "/media/still-life-hero.jpg"
 preview:
 - "/media/Artboard 3-2"
