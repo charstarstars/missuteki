@@ -46,7 +46,7 @@ fields:
   hidden: true
   default: post_forestry
 pages:
-- _posts/art-is-life-distilled.md
+- _posts/2018-06-06-art-is-life-distilled.md
 - _posts/consistency.md
 - _posts/correction.md
 - _posts/attitude.md
