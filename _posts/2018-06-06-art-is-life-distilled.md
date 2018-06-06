@@ -8,9 +8,9 @@ quote: Art is one part of noticing what you notice, and one part of expressing w
   you notice.
 cover: "/media/still-life-hero.jpg"
 preview:
-- "/media/Artboard 3-2"
-- "/media/Artboard 2-2"
-- "/media/Artboard 1-2"
+- "/media/life-3.jpg"
+- "/media/life-2.jpg"
+- "/media/life-1.jpg"
 artwork:
 - "/media/Artboard 3-2"
 - "/media/Artboard 2-2"
