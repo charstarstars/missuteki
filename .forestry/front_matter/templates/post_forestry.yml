@@ -1,4 +1,5 @@
 ---
+label: post_forestry
 hide_body: false
 is_partial: false
 fields:
@@ -46,16 +47,16 @@ fields:
   hidden: true
   default: post_forestry
 pages:
-- _posts/know-thyself.md
-- _posts/correction.md
-- _posts/attitude.md
-- _posts/consistency.md
-- _posts/style.md
-- _posts/slow-and-steady.md
-- _posts/2018-06-06-art-is-life-distilled.md
 - _posts/truth.md
+- _posts/style.md
+- _posts/consistency.md
+- _posts/know-thyself.md
 - _posts/2018-05-26-avoidance.md
-- _posts/movement.md
-- _posts/cardamom.md
-- _posts/perseverance.md
 - _posts/follow-through.md
+- _posts/2018-06-06-art-is-life-distilled.md
+- _posts/perseverance.md
+- _posts/cardamom.md
+- _posts/movement.md
+- _posts/slow-and-steady.md
+- _posts/attitude.md
+- _posts/correction.md
