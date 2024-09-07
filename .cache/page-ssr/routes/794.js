@@ -1,0 +1,5989 @@
+"use strict";
+exports.id = 794;
+exports.ids = [794];
+exports.modules = {
+
+/***/ 5198:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  Z: () => (/* binding */ Icon)
+});
+
+;// CONCATENATED MODULE: ./node_modules/@carbon/icon-helpers/es/index.js
+function _defineProperty(e, r, t) {
+  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+    value: t,
+    enumerable: !0,
+    configurable: !0,
+    writable: !0
+  }) : e[r] = t, e;
+}
+function ownKeys(e, r) {
+  var t = Object.keys(e);
+  if (Object.getOwnPropertySymbols) {
+    var o = Object.getOwnPropertySymbols(e);
+    r && (o = o.filter(function (r) {
+      return Object.getOwnPropertyDescriptor(e, r).enumerable;
+    })), t.push.apply(t, o);
+  }
+  return t;
+}
+function _objectSpread2(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2 ? ownKeys(Object(t), !0).forEach(function (r) {
+      _defineProperty(e, r, t[r]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {
+      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+    });
+  }
+  return e;
+}
+function _objectWithoutProperties(e, t) {
+  if (null == e) return {};
+  var o,
+    r,
+    i = _objectWithoutPropertiesLoose(e, t);
+  if (Object.getOwnPropertySymbols) {
+    var n = Object.getOwnPropertySymbols(e);
+    for (r = 0; r < n.length; r++) o = n[r], t.indexOf(o) >= 0 || {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]);
+  }
+  return i;
+}
+function _objectWithoutPropertiesLoose(r, e) {
+  if (null == r) return {};
+  var t = {};
+  for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
+    if (e.indexOf(n) >= 0) continue;
+    t[n] = r[n];
+  }
+  return t;
+}
+function _toPrimitive(t, r) {
+  if ("object" != typeof t || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != typeof i) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r ? String : Number)(t);
+}
+function _toPropertyKey(t) {
+  var i = _toPrimitive(t, "string");
+  return "symbol" == typeof i ? i : i + "";
+}
+
+var _excluded = ["width", "height", "viewBox"],
+  _excluded2 = ["tabindex"];
+/**
+ * Copyright IBM Corp. 2018, 2024
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var defaultAttributes = {
+  // Reference:
+  // https://github.com/IBM/carbon-components-react/issues/1392
+  // https://github.com/PolymerElements/iron-iconset-svg/pull/47
+  // `focusable` is a string attribute which is why we do not use a boolean here
+  focusable: 'false',
+  preserveAspectRatio: 'xMidYMid meet'
+};
+
+/**
+ * Get supplementary HTML attributes for a given <svg> element based on existing
+ * attributes.
+ */
+function getAttributes() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    width = _ref.width,
+    height = _ref.height,
+    _ref$viewBox = _ref.viewBox,
+    viewBox = _ref$viewBox === void 0 ? "0 0 ".concat(width, " ").concat(height) : _ref$viewBox,
+    attributes = _objectWithoutProperties(_ref, _excluded);
+  var tabindex = attributes.tabindex,
+    rest = _objectWithoutProperties(attributes, _excluded2);
+  var iconAttributes = _objectSpread2(_objectSpread2(_objectSpread2({}, defaultAttributes), rest), {}, {
+    width: width,
+    height: height,
+    viewBox: viewBox
+  });
+
+  // TODO: attributes.title assumes that the consumer will implement <title> and
+  // correctly set `aria-labelledby`.
+  if (iconAttributes['aria-label'] || iconAttributes['aria-labelledby'] || iconAttributes.title) {
+    iconAttributes.role = 'img';
+
+    // Reference:
+    // https://allyjs.io/tutorials/focusing-in-svg.html
+    if (tabindex !== undefined && tabindex !== null) {
+      iconAttributes.focusable = 'true';
+      iconAttributes.tabindex = tabindex;
+    }
+  } else {
+    iconAttributes['aria-hidden'] = true;
+  }
+  return iconAttributes;
+}
+
+/**
+ * Copyright IBM Corp. 2018, 2024
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/**
+ * Convert an icon descriptor to a String
+ */
+function es_toString(descriptor) {
+  var _descriptor$elem = descriptor.elem,
+    elem = _descriptor$elem === void 0 ? 'svg' : _descriptor$elem,
+    _descriptor$attrs = descriptor.attrs,
+    attrs = _descriptor$attrs === void 0 ? {} : _descriptor$attrs,
+    _descriptor$content = descriptor.content,
+    content = _descriptor$content === void 0 ? [] : _descriptor$content;
+  var children = content.map(es_toString).join('');
+  if (elem !== 'svg') {
+    return "<".concat(elem, " ").concat(formatAttributes(attrs), ">").concat(children, "</").concat(elem, ">");
+  }
+  return "<".concat(elem, " ").concat(formatAttributes(getAttributes(attrs)), ">").concat(children, "</").concat(elem, ">");
+}
+function formatAttributes(attrs) {
+  return Object.keys(attrs).reduce(function (acc, key, index) {
+    var attribute = "".concat(key, "=\"").concat(attrs[key], "\"");
+    if (index === 0) {
+      return attribute;
+    }
+    return acc + ' ' + attribute;
+  }, '');
+}
+
+/**
+ * Copyright IBM Corp. 2018, 2024
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/**
+ * Convert an icon descriptor to a DOM node.
+ */
+function toSVG(descriptor) {
+  var _descriptor$elem = descriptor.elem,
+    elem = _descriptor$elem === void 0 ? 'svg' : _descriptor$elem,
+    _descriptor$attrs = descriptor.attrs,
+    attrs = _descriptor$attrs === void 0 ? {} : _descriptor$attrs,
+    _descriptor$content = descriptor.content,
+    content = _descriptor$content === void 0 ? [] : _descriptor$content;
+  var node = document.createElementNS('http://www.w3.org/2000/svg', elem);
+  var attributes = elem !== 'svg' ? attrs : getAttributes(attrs);
+  Object.keys(attributes).forEach(function (key) {
+    node.setAttribute(key, attrs[key]);
+  });
+  for (var i = 0; i < content.length; i++) {
+    node.appendChild(toSVG(content[i]));
+  }
+  return node;
+}
+
+
+
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+var prop_types = __webpack_require__(5697);
+var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
+// EXTERNAL MODULE: external "/Users/arielliu/missuteki-art/missuteki/node_modules/react/index.js"
+var index_js_ = __webpack_require__(6779);
+var index_js_default = /*#__PURE__*/__webpack_require__.n(index_js_);
+;// CONCATENATED MODULE: ./node_modules/@carbon/icons-react/es/Icon.js
+/**
+ * Copyright IBM Corp. 2016, 2023
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * Code generated by @carbon/icon-build-helpers. DO NOT EDIT.
+ */
+
+
+
+
+/**
+ * Copyright IBM Corp. 2019, 2023
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+const Icon = /*#__PURE__*/index_js_default().forwardRef(function Icon(_ref, ref) {
+  let {
+    className,
+    children,
+    tabIndex,
+    xmlns = 'http://www.w3.org/2000/svg',
+    preserveAspectRatio = 'xMidYMid meet',
+    ...rest
+  } = _ref;
+  const {
+    tabindex,
+    ...attrs
+  } = getAttributes({
+    ...rest,
+    tabindex: tabIndex
+  });
+  const props = attrs;
+  if (className) {
+    props.className = className;
+  }
+  if (tabindex !== undefined && tabindex !== null) {
+    if (typeof tabindex === 'number') {
+      props.tabIndex = tabindex;
+    } else {
+      props.tabIndex = Number(tabIndex);
+    }
+  }
+  if (ref) {
+    props.ref = ref;
+  }
+  if (xmlns) {
+    props.xmlns = xmlns;
+  }
+  if (preserveAspectRatio) {
+    props.preserveAspectRatio = preserveAspectRatio;
+  }
+  return /*#__PURE__*/index_js_default().createElement('svg', props, children);
+});
+Icon.displayName = 'Icon';
+Icon.propTypes = {
+  'aria-hidden': prop_types_default().oneOfType([(prop_types_default()).bool, prop_types_default().oneOf(['true', 'false'])]),
+  'aria-label': (prop_types_default()).string,
+  'aria-labelledby': (prop_types_default()).string,
+  children: (prop_types_default()).node,
+  className: (prop_types_default()).string,
+  height: prop_types_default().oneOfType([(prop_types_default()).number, (prop_types_default()).string]),
+  preserveAspectRatio: (prop_types_default()).string,
+  tabIndex: prop_types_default().oneOfType([(prop_types_default()).number, (prop_types_default()).string]),
+  viewBox: (prop_types_default()).string,
+  width: prop_types_default().oneOfType([(prop_types_default()).number, (prop_types_default()).string]),
+  xmlns: (prop_types_default()).string
+};
+
+
+
+
+/***/ }),
+
+/***/ 2411:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   l3: () => (/* binding */ Blog)
+/* harmony export */ });
+/* unused harmony exports AssetView, Asterisk, Async, At, Attachment, AudioConsole, AugmentedReality, Automatic, Autoscaling, Awake, Badge, BaggageClaim, Bar, Barcode, BareMetalServer, BareMetalServer_01, BareMetalServer_02, Basketball, BastionHost, Bat, BatchJob, BatchJobStep, BatteryCharging, BatteryEmpty, BatteryFull, BatteryHalf, BatteryLow, BatteryQuarter, Bee, BeeBat, Beta, Bicycle, Binding_01, Binding_02, Binoculars, BlockStorage, BlockStorageAlt, Blockchain, Bluetooth, BluetoothOff, Book, Bookmark, BookmarkAdd, BookmarkFilled, Boolean, Boot, BootVolume, BootVolumeAlt, BorderBottom, BorderFull, BorderLeft, BorderNone, BorderRight, BorderTop, Bot, BottlesContainer, Bottles_01, Bottles_01Dash, Bottles_02, Bottles_02Dash, BottomPanelClose, BottomPanelCloseFilled, BottomPanelOpen, BottomPanelOpenFilled, Box, BoxExtraLarge, BoxLarge, BoxMedium, BoxPlot, BoxSmall, Branch, BreakingChange, BrightnessContrast, BringForward, BringToFront, BuildTool, Building, BuildingInsights_1, BuildingInsights_2, BuildingInsights_3, Bullhorn, Buoy, Bus, BusinessProcesses, ButtonCentered, ButtonFlushLeft, CabinCare, CabinCareAlert, CabinCareAlt, Cad, Cafe, Calculation, CalculationAlt, Calculator, CalculatorCheck, Calendar, CalendarAdd, CalendarAddAlt, CalendarHeatMap, CalendarSettings, CalendarTools, Calibrate, Calls, CallsAll, CallsIncoming, Camera, CameraAction, Campsite, Car, CarFront, Carbon, CarbonAccounting, CarbonForAem, CarbonForIbmDotcom, CarbonForIbmProduct, CarbonForMobile, CarbonForSalesforce, CarbonUiBuilder, CaretDown, QBarrier, QBlochSphere, WatsonHealthAutoScroll, WatsonHealthBrushFreehand, WatsonHealthBrushPolygon */
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6779);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Icon_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5198);
+/**
+ * Copyright IBM Corp. 2016, 2023
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * Code generated by @carbon/icon-build-helpers. DO NOT EDIT.
+ */
+
+
+
+
+
+
+var _circle, _path, _path2, _path3, _path4, _path5, _path6, _path7, _path8, _path9, _path10, _circle2, _path11, _path12, _path13, _path14, _path15, _path16, _path17, _path18, _path19, _path20, _path21, _path22, _path23, _path24, _path25, _path26, _path27, _path28, _path29, _path30, _path31, _path32, _path33, _path34, _path35, _path36, _circle3, _path37, _path38, _path39, _path40, _path41, _circle4, _path42, _circle5, _path43, _circle6, _path44, _path45, _circle7, _path46, _path47, _circle8, _path48, _circle9, _path49, _path50, _path51, _path52, _path53, _path54, _path55, _path56, _path57, _path58, _path59, _path60, _path61, _path62, _path63, _path64, _path65, _path66, _path67, _path68, _path69, _circle10, _circle11, _path70, _path71, _path72, _path73, _path74, _path75, _path76, _path77, _path78, _path79, _path80, _path81, _path82, _circle12, _path83, _path84, _path85, _path86, _path87, _path88, _path89, _path90, _path91, _path92, _path93, _path94, _circle13, _path95, _path96, _path97, _path98, _path99, _path100, _path101, _path102, _path103, _path104, _path105, _path106, _path107, _path108, _path109, _path110, _path111, _path112, _path113, _path114, _path115, _path116, _path117, _path118, _path119, _path120, _path121, _path122, _path123, _path124, _path125, _path126, _path127, _path128, _path129, _path130, _path131, _path132, _path133, _path134, _path135, _path136, _path137, _path138, _path139, _path140, _path141, _path142, _path143, _path144, _path145, _path146, _path147, _path148, _path149, _path150, _path151, _path152, _path153, _path154, _path155, _path156, _path157, _path158, _path159, _path160, _path161, _path162, _path163, _path164, _path165, _path166, _path167, _path168, _path169, _path170, _path171, _path172, _path173, _path174, _path175, _path176, _path177, _path178, _path179, _path180, _path181, _path182, _path183, _path184, _path185, _path186, _path187, _path188, _path189, _path190, _path191, _path192, _path193, _path194, _path195, _path196, _path197, _path198, _path199, _path200, _path201, _path202, _path203, _path204, _path205, _path206, _path207, _path208, _path209, _path210, _path211, _path212, _path213, _path214, _path215, _path216, _path217, _path218, _path219, _path220, _rect, _path221, _path222, _path223, _path224, _path225, _path226, _path227, _path228, _path229, _path230, _path231, _path232, _switch, _switch2, _path233, _path234, _path235, _path236, _path237, _path238, _path239, _path240, _path241, _path242, _path243, _path244, _path245, _path246, _circle14, _path247, _path248, _path249, _path250, _path251, _path252, _path253, _circle15, _circle16, _path254, _path255, _circle17, _path256, _path257, _path258, _circle18, _circle19, _circle20, _circle21, _circle22, _circle23, _circle24, _circle25, _path259, _path260, _circle26, _circle27, _path261, _path262, _path263, _path264, _circle28, _path265, _path266, _path267, _path268, _path269;
+const AssetView = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function AssetView(_ref, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle || (_circle = /*#__PURE__*/React.createElement("circle", {
+    cx: "22",
+    cy: "24",
+    r: "2"
+  })), _path || (_path = /*#__PURE__*/React.createElement("path", {
+    d: "M29.7769 23.4785A8.64 8.64 0 0022 18a8.64 8.64 0 00-7.7769 5.4785L14 24l.2231.5215A8.64 8.64 0 0022 30a8.64 8.64 0 007.7769-5.4785L30 24zM22 28a4 4 0 114-4A4.0045 4.0045 0 0122 28zM12 24a4 4 0 112.981-6.667l-1.49 1.334A2 2 0 1012 22z"
+  })), _path2 || (_path2 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,2a3.86,3.86,0,0,0-1.85.48L7.76,10.96A9.99,9.99,0,0,0,12,30V28a8,8,0,1,1,5.63-13.68l1.4-1.4a10.0059,10.0059,0,0,0-5.39-2.77l8.38-4.34c0,.06-.02.12-.02.19a3.9989,3.9989,0,0,0,4,4c.06,0,.12-.02.19-.02L23.07,16h2.24l4.25-8.21A3.9727,3.9727,0,0,0,26,2Zm0,6a2,2,0,1,1,2-2A2.0058,2.0058,0,0,1,26,8Z"
+  })), children);
+})));
+if (false) {}
+const Asterisk = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Asterisk(_ref2, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref2;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path3 || (_path3 = /*#__PURE__*/React.createElement("path", {
+    d: "M28.316 13.949L27.684 12.051 17 15.612 17 4 15 4 15 15.612 4.316 12.051 3.684 13.949 14.368 17.51 7.2 27.066 8.8 28.267 16 18.667 23.2 28.267 24.8 27.066 17.632 17.51 28.316 13.949z"
+  })), children);
+})));
+if (false) {}
+const Async = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Async(_ref3, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref3;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path4 || (_path4 = /*#__PURE__*/React.createElement("path", {
+    d: "m23.2156,4h2.7844v-2h-7v6h2v-2.9038c4.2354,1.9346,7,6.1523,7,10.9038,0,6.6167-5.3833,12-12,12v2c7.7197,0,14-6.2803,14-14,0-5.0088-2.6318-9.5122-6.7844-12Z"
+  })), _path5 || (_path5 = /*#__PURE__*/React.createElement("path", {
+    d: "M16 20c-.8284 0-1.5.6716-1.5 1.5s.6716 1.5 1.5 1.5 1.5-.6716 1.5-1.5-.6716-1.5-1.5-1.5h0zM15 9H17V18H15z"
+  })), _path6 || (_path6 = /*#__PURE__*/React.createElement("path", {
+    d: "m16,4v-2C8.2803,2,2,8.2803,2,16c0,4.9766,2.6074,9.4937,6.7842,12h-2.7842v2h7v-6h-2v2.9033c-4.2634-1.9556-7-6.186-7-10.9033,0-6.6167,5.3833-12,12-12Z"
+  })), children);
+})));
+if (false) {}
+const At = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function At(_ref4, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref4;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path7 || (_path7 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,3A12.92,12.92,0,0,0,3,16v1A13,13,0,0,0,16,30h7V28H16A11,11,0,0,1,5,17V16A10.94,10.94,0,0,1,16,5,10.64,10.64,0,0,1,27,16c0,3.59-1.4,5-3.66,5C21.76,21,21,19.71,21,18V10H19v1.94A3.84,3.84,0,0,0,15.5,10,5.48,5.48,0,0,0,10,15.44v2.12A5.48,5.48,0,0,0,15.5,23a4.28,4.28,0,0,0,4-2.46A4.35,4.35,0,0,0,23.41,23C26.48,23,29,21,29,16A12.72,12.72,0,0,0,16,3Zm3,14.56a3.5,3.5,0,0,1-7,0V15.44a3.5,3.5,0,0,1,7,0Z"
+  })), children);
+})));
+if (false) {}
+const Attachment = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Attachment(_ref5, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref5;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path8 || (_path8 = /*#__PURE__*/React.createElement("path", {
+    d: "M28.1,18.9L13.1,3.9c-2.5-2.6-6.6-2.6-9.2-0.1S1.3,10.5,3.9,13c0,0,0.1,0.1,0.1,0.1L6.8,16l1.4-1.4l-2.9-2.9 C3.6,10,3.6,7.1,5.3,5.4s4.6-1.8,6.3-0.1c0,0,0,0,0.1,0.1l14.9,14.9c1.8,1.7,1.8,4.6,0.1,6.3c-1.7,1.8-4.6,1.8-6.3,0.1 c0,0,0,0-0.1-0.1l-7.4-7.4c-1-1-0.9-2.6,0-3.5c1-0.9,2.5-0.9,3.5,0l4.1,4.1l1.4-1.4c0,0-4.2-4.2-4.2-4.2c-1.8-1.7-4.6-1.6-6.3,0.2 c-1.6,1.7-1.6,4.4,0,6.2l7.5,7.5c2.5,2.6,6.6,2.6,9.2,0.1S30.7,21.5,28.1,18.9C28.1,19,28.1,18.9,28.1,18.9L28.1,18.9z"
+  })), children);
+})));
+if (false) {}
+const AudioConsole = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function AudioConsole(_ref6, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref6;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path9 || (_path9 = /*#__PURE__*/React.createElement("path", {
+    d: "M28 14H27V2H25V14H24a2.0019 2.0019 0 00-2 2v2a2.0023 2.0023 0 002 2h1V30h2V20h1a2.0027 2.0027 0 002-2V16A2.0023 2.0023 0 0028 14zm0 4H24V16h4zM18 6H17V2H15V6H14a2.0019 2.0019 0 00-2 2v2a2.0019 2.0019 0 002 2h1V30h2V12h1a2.002 2.002 0 002-2V8A2.002 2.002 0 0018 6zm0 4H14V8h4zM8 20H7V2H5V20H4a2.0023 2.0023 0 00-2 2v2a2.0023 2.0023 0 002 2H5v4H7V26H8a2.0023 2.0023 0 002-2V22A2.0023 2.0023 0 008 20zm0 4H4V22H8z",
+    transform: "translate(0 .005)"
+  })), children);
+})));
+if (false) {}
+const AugmentedReality = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function AugmentedReality(_ref7, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref7;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path10 || (_path10 = /*#__PURE__*/React.createElement("path", {
+    d: "M27.4473,9.1055l-6-3a1.0008,1.0008,0,0,0-.8946,0l-6,3A1,1,0,0,0,14,10v7a1,1,0,0,0,.5527.8945l6,3a1.001,1.001,0,0,0,.8946,0l6-3A1,1,0,0,0,28,17V10A1,1,0,0,0,27.4473,9.1055ZM21,8.1182,24.7637,10,21,11.8818,17.2363,10Zm-5,3.5,4,2v4.7636l-4-2Zm6,6.7636V13.6182l4-2v4.7636Z"
+  })), _circle2 || (_circle2 = /*#__PURE__*/React.createElement("circle", {
+    cx: "13.5",
+    cy: "24.5",
+    r: "1.5"
+  })), _path11 || (_path11 = /*#__PURE__*/React.createElement("path", {
+    d: "M20,30H7a2.0023,2.0023,0,0,1-2-2V4A2.0023,2.0023,0,0,1,7,2H20V4H7V28H20V24h2v4A2.0023,2.0023,0,0,1,20,30Z"
+  })), children);
+})));
+if (false) {}
+const WatsonHealthAutoScroll = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function WatsonHealthAutoScroll(_ref8, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref8;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path12 || (_path12 = /*#__PURE__*/React.createElement("path", {
+    d: "M12 16a4 4 0 104-4A4 4 0 0012 16zm6 0a2 2 0 11-2-2A2 2 0 0118 16zM16 27.17L10.4 21.58 9 23 16 30 23 23 21.59 21.59 16 27.17zM16 4.83L21.58 10.4 23 9 16 2 9 9 10.41 10.41 16 4.83z"
+  })), children);
+})));
+if (false) {}
+const Automatic = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Automatic(_ref9, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref9;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path13 || (_path13 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 16H22a2.002 2.002 0 00-2 2V30h2V25h4v5h2V18A2.002 2.002 0 0026 16zm-4 7V18h4v5zM16 27a10.9862 10.9862 0 01-9.2156-5H12V20H4v8H6V24.3149A13.0239 13.0239 0 0016 29zM20 10h5.2155A10.9973 10.9973 0 005 16H3A13.0048 13.0048 0 0126 7.6849V4h2v8H20z"
+  })), children);
+})));
+if (false) {}
+const Autoscaling = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Autoscaling(_ref10, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref10;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path14 || (_path14 = /*#__PURE__*/React.createElement("path", {
+    d: "M22,28H12V26H22V10H6V20H4V10A2.0021,2.0021,0,0,1,6,8H22a2.0021,2.0021,0,0,1,2,2V26A2.0021,2.0021,0,0,1,22,28Z"
+  })), _path15 || (_path15 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,22H26V20h2V4H12V6H10V4a2.0021,2.0021,0,0,1,2-2H28a2.0021,2.0021,0,0,1,2,2V20A2.0021,2.0021,0,0,1,28,22Z"
+  })), _path16 || (_path16 = /*#__PURE__*/React.createElement("path", {
+    d: "M10 14L10 16 14.586 16 3 27.586 4.414 29 16 17.414 16 22 18 22 18 14 10 14z"
+  })), children);
+})));
+if (false) {}
+const Awake = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Awake(_ref11, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref11;
+  if (size === 16 || size === "16" || size === "16px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 16 16",
+      fill: "currentColor",
+      ...rest
+    }, _path17 || (_path17 = /*#__PURE__*/React.createElement("path", {
+      d: "M7.5 1H8.5V3.5H7.5z"
+    })), _path18 || (_path18 = /*#__PURE__*/React.createElement("path", {
+      d: "M10.8 3.4H13.3V4.4H10.8z",
+      transform: "rotate(-45.001 12.074 3.922)"
+    })), _path19 || (_path19 = /*#__PURE__*/React.createElement("path", {
+      d: "M12.5 7.5H15V8.5H12.5z"
+    })), _path20 || (_path20 = /*#__PURE__*/React.createElement("path", {
+      d: "M11.6 10.8H12.6V13.3H11.6z",
+      transform: "rotate(-45.001 12.077 12.075)"
+    })), _path21 || (_path21 = /*#__PURE__*/React.createElement("path", {
+      d: "M7.5 12.5H8.5V15H7.5z"
+    })), _path22 || (_path22 = /*#__PURE__*/React.createElement("path", {
+      d: "M2.7 11.6H5.2V12.6H2.7z",
+      transform: "rotate(-45.001 3.929 12.078)"
+    })), _path23 || (_path23 = /*#__PURE__*/React.createElement("path", {
+      d: "M1 7.5H3.5V8.5H1z"
+    })), _path24 || (_path24 = /*#__PURE__*/React.createElement("path", {
+      d: "M3.4 2.7H4.4V5.2H3.4z",
+      transform: "rotate(-45.001 3.926 3.925)"
+    })), _path25 || (_path25 = /*#__PURE__*/React.createElement("path", {
+      d: "M8,6c1.1,0,2,0.9,2,2s-0.9,2-2,2S6,9.1,6,8S6.9,6,8,6 M8,5C6.3,5,5,6.3,5,8s1.3,3,3,3s3-1.3,3-3S9.7,5,8,5z"
+    })), children);
+  }
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path26 || (_path26 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 2H17V6.96H15z"
+  })), _path27 || (_path27 = /*#__PURE__*/React.createElement("path", {
+    d: "M21.67 6.85H26.630000000000003V8.85H21.67z",
+    transform: "rotate(-45 24.142 7.85)"
+  })), _path28 || (_path28 = /*#__PURE__*/React.createElement("path", {
+    d: "M25.04 15H30V17H25.04z"
+  })), _path29 || (_path29 = /*#__PURE__*/React.createElement("path", {
+    d: "M23.15 21.67H25.15V26.630000000000003H23.15z",
+    transform: "rotate(-45 24.152 24.146)"
+  })), _path30 || (_path30 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 25.04H17V30H15z"
+  })), _path31 || (_path31 = /*#__PURE__*/React.createElement("path", {
+    d: "M5.37 23.15H10.33V25.15H5.37z",
+    transform: "rotate(-45 7.86 24.144)"
+  })), _path32 || (_path32 = /*#__PURE__*/React.createElement("path", {
+    d: "M2 15H6.96V17H2z"
+  })), _path33 || (_path33 = /*#__PURE__*/React.createElement("path", {
+    d: "M6.85 5.37H8.85V10.33H6.85z",
+    transform: "rotate(-45 7.85 7.848)"
+  })), _path34 || (_path34 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,12a4,4,0,1,1-4,4,4,4,0,0,1,4-4m0-2a6,6,0,1,0,6,6,6,6,0,0,0-6-6Z"
+  })), children);
+})));
+if (false) {}
+const Badge = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Badge(_ref12, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref12;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path35 || (_path35 = /*#__PURE__*/React.createElement("path", {
+    d: "M23 2L24.593 5 28 5.414 25.5 7.667 26 11 23 9.125 20 11 20.5 7.667 18 5.414 21.5 5 23 2z"
+  })), _path36 || (_path36 = /*#__PURE__*/React.createElement("path", {
+    d: "M22.7168,13.249l-1.9375-.498A6.9942,6.9942,0,1,1,15.7505,4.22l.499-1.9365A8.99,8.99,0,0,0,8,17.689V30l6-4,6,4V17.7078A8.9627,8.9627,0,0,0,22.7168,13.249ZM18,26.2627l-4-2.6665-4,2.6665V19.05a8.9238,8.9238,0,0,0,8,.0062Z"
+  })), children);
+})));
+if (false) {}
+const BaggageClaim = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BaggageClaim(_ref13, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref13;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle3 || (_circle3 = /*#__PURE__*/React.createElement("circle", {
+    cx: "6",
+    cy: "26",
+    r: "2"
+  })), _path37 || (_path37 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,18H25V16a2.0023,2.0023,0,0,0-2-2H19a2.0023,2.0023,0,0,0-2,2v2H14a2.0023,2.0023,0,0,0-2,2v8a2.0023,2.0023,0,0,0,2,2H28a2.0023,2.0023,0,0,0,2-2V20A2.0023,2.0023,0,0,0,28,18Zm-9-2h4v2H19Zm9,12H14V20H28Z"
+  })), _path38 || (_path38 = /*#__PURE__*/React.createElement("path", {
+    d: "M10,6h4v6h2V6h4v6h2V6h4v6h2V6.0049A2.0047,2.0047,0,0,0,25.9951,4H4.0049A2.0047,2.0047,0,0,0,2,6.0049v13.99A2.0047,2.0047,0,0,0,4.0049,22H10ZM8,20H4V6H8Z"
+  })), children);
+})));
+if (false) {}
+const Bar = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bar(_ref14, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref14;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path39 || (_path39 = /*#__PURE__*/React.createElement("path", {
+    d: "M25,11H15a1,1,0,0,0-1,1v4a6.0046,6.0046,0,0,0,5,5.91V28H16v2h8V28H21V21.91A6.0046,6.0046,0,0,0,26,16V12A1,1,0,0,0,25,11Zm-1,5a4,4,0,0,1-8,0V13h8Z"
+  })), _path40 || (_path40 = /*#__PURE__*/React.createElement("path", {
+    d: "M15,1H10A1,1,0,0,0,9,2V9.3706A6.09,6.09,0,0,0,6,15V29a1,1,0,0,0,1,1h5V28H8V15c0-3.1875,2.231-4.02,2.3164-4.0513L11,10.7207V3h3V8h2V2A1,1,0,0,0,15,1Z"
+  })), children);
+})));
+if (false) {}
+const Barcode = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Barcode(_ref15, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref15;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path41 || (_path41 = /*#__PURE__*/React.createElement("path", {
+    d: "M2 6H4V28H2zM12 6H14V26H12zM6 6H10V26H6zM16 6H20V26H16zM22 6H26V26H22zM28 6H30V28H28z"
+  })), children);
+})));
+if (false) {}
+const BareMetalServer = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BareMetalServer(_ref16, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref16;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle4 || (_circle4 = /*#__PURE__*/React.createElement("circle", {
+    cx: "9",
+    cy: "6",
+    r: "1"
+  })), _path42 || (_path42 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,10H6A2.0021,2.0021,0,0,1,4,8V4A2.0021,2.0021,0,0,1,6,2H26a2.0021,2.0021,0,0,1,2,2V8A2.0021,2.0021,0,0,1,26,10ZM6,4V8H26V4Z"
+  })), _circle5 || (_circle5 = /*#__PURE__*/React.createElement("circle", {
+    cx: "9",
+    cy: "16",
+    r: "1"
+  })), _path43 || (_path43 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,20H6a2.0021,2.0021,0,0,1-2-2V14a2.0021,2.0021,0,0,1,2-2H26a2.0021,2.0021,0,0,1,2,2v4A2.0021,2.0021,0,0,1,26,20ZM6,14v4H26V14Z"
+  })), _circle6 || (_circle6 = /*#__PURE__*/React.createElement("circle", {
+    cx: "9",
+    cy: "26",
+    r: "1"
+  })), _path44 || (_path44 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,30H6a2.0021,2.0021,0,0,1-2-2V24a2.0021,2.0021,0,0,1,2-2H26a2.0021,2.0021,0,0,1,2,2v4A2.0021,2.0021,0,0,1,26,30ZM6,24v4H26V24Z"
+  })), children);
+})));
+if (false) {}
+const BareMetalServer_01 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BareMetalServer_01(_ref17, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref17;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path45 || (_path45 = /*#__PURE__*/React.createElement("path", {
+    d: "M17 28L17 22 15 22 15 28 5 28 5 30 27 30 27 28 17 28z"
+  })), _circle7 || (_circle7 = /*#__PURE__*/React.createElement("circle", {
+    cx: "9",
+    cy: "16",
+    r: "1"
+  })), _path46 || (_path46 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,20H6a2.0023,2.0023,0,0,1-2-2V14a2.0023,2.0023,0,0,1,2-2H26a2.0023,2.0023,0,0,1,2,2v4A2.0023,2.0023,0,0,1,26,20ZM6,14v4H26V14Z"
+  })), children);
+})));
+if (false) {}
+const BareMetalServer_02 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BareMetalServer_02(_ref18, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref18;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path47 || (_path47 = /*#__PURE__*/React.createElement("path", {
+    d: "M17 28L17 22 15 22 15 28 5 28 5 30 27 30 27 28 17 28z"
+  })), _circle8 || (_circle8 = /*#__PURE__*/React.createElement("circle", {
+    cx: "9",
+    cy: "16",
+    r: "1"
+  })), _path48 || (_path48 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,20H6a2.0023,2.0023,0,0,1-2-2V14a2.0023,2.0023,0,0,1,2-2H26a2.0023,2.0023,0,0,1,2,2v4A2.0023,2.0023,0,0,1,26,20ZM6,14v4H26V14Z"
+  })), _circle9 || (_circle9 = /*#__PURE__*/React.createElement("circle", {
+    cx: "9",
+    cy: "6",
+    r: "1"
+  })), _path49 || (_path49 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,10H6A2.0023,2.0023,0,0,1,4,8V4A2.0023,2.0023,0,0,1,6,2H26a2.0023,2.0023,0,0,1,2,2V8A2.0023,2.0023,0,0,1,26,10ZM6,4V8H26V4Z"
+  })), children);
+})));
+if (false) {}
+const QBarrier = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function QBarrier(_ref19, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref19;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path50 || (_path50 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 5H17V9H15zM15 11H17V15H15zM15 17H17V21H15zM15 23H17V27H15z"
+  })), children);
+})));
+if (false) {}
+const Basketball = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Basketball(_ref20, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref20;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path51 || (_path51 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2ZM27.9492,15H22.041a14.4088,14.4088,0,0,1,2.7383-7.1533A11.9392,11.9392,0,0,1,27.9492,15ZM17,15V4.0508a11.9181,11.9181,0,0,1,6.2874,2.4375A16.2646,16.2646,0,0,0,20.04,15Zm-2,0H11.96A16.2646,16.2646,0,0,0,8.7126,6.4883,11.9181,11.9181,0,0,1,15,4.0508Zm0,2V27.9492a11.9181,11.9181,0,0,1-6.2874-2.4375A16.2646,16.2646,0,0,0,11.96,17Zm2,0h3.04a16.2646,16.2646,0,0,0,3.2476,8.5117A11.9181,11.9181,0,0,1,17,27.9492ZM7.2207,7.8467A14.4088,14.4088,0,0,1,9.959,15H4.0508A11.9392,11.9392,0,0,1,7.2207,7.8467ZM4.0508,17H9.959a14.4088,14.4088,0,0,1-2.7383,7.1533A11.9392,11.9392,0,0,1,4.0508,17Zm20.7285,7.1533A14.4088,14.4088,0,0,1,22.041,17h5.9082A11.9392,11.9392,0,0,1,24.7793,24.1533Z"
+  })), children);
+})));
+if (false) {}
+const BastionHost = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BastionHost(_ref21, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref21;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path52 || (_path52 = /*#__PURE__*/React.createElement("path", {
+    d: "M27.5273,2.709A1.9955,1.9955,0,0,0,26,2H23.3091a1.5,1.5,0,0,0-1.3419.8294L21.3818,4H20V3.5A1.5,1.5,0,0,0,18.5,2h-5A1.5,1.5,0,0,0,12,3.5V4H10.6182l-.585-1.17A1.5017,1.5017,0,0,0,8.69,2H6A2,2,0,0,0,4.0283,4.333L4.7324,8.5A3,3,0,0,0,7.69,11H8V23a3.0033,3.0033,0,0,0-3,3v4H27V26a3.0033,3.0033,0,0,0-3-3V11h.31a3,3,0,0,0,2.9579-2.5l.7041-4.167A1.994,1.994,0,0,0,27.5273,2.709ZM25,26v2H7V26a1.0009,1.0009,0,0,1,1-1H24A1.0009,1.0009,0,0,1,25,26Zm-3-3H10V11H22ZM25.2959,8.167A.9976.9976,0,0,1,24.31,9H7.69a.9976.9976,0,0,1-.9863-.8335L6,4H8.3818l1,2H14V4h4V6h4.6172l1.001-2H26Z"
+  })), children);
+})));
+if (false) {}
+const Bat = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bat(_ref22, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref22;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path53 || (_path53 = /*#__PURE__*/React.createElement("path", {
+    d: "M31.9093,6.584A1,1,0,0,0,31,6c-4.7683,0-8.2607.8887-11,2.8438V3H18V6H14V3H12V8.8438C9.2608,6.8887,5.7684,6,1,6A1,1,0,0,0,.2437,7.6543C1.9454,9.6221,3,11.7041,3,16a1,1,0,0,0,1,1c2.7678,0,6,1.31,6,5a1.004,1.004,0,0,0,.9341.998C11.35,23.0273,15,23.3872,15,27a1,1,0,0,0,2,0c0-3.6128,3.65-3.9727,4.0622-4.002A1,1,0,0,0,22,22c0-3.69,3.2321-5,6-5a1,1,0,0,0,1-1c0-4.2959,1.0547-6.3779,2.7564-8.3457A1,1,0,0,0,31.9093,6.584Zm-4.893,8.46c-3.3857.3081-6.5534,2.229-6.97,6.0786A6.552,6.552,0,0,0,16,23.6094a6.552,6.552,0,0,0-4.0461-2.4864c-.4168-3.85-3.5845-5.7705-6.97-6.0786a13.2017,13.2017,0,0,0-1.9387-6.98c4.1318.2724,7.0327,1.4277,9.248,3.6425A1,1,0,0,0,14,11V8h4v3a1,1,0,0,0,1.707.707c2.2153-2.2148,5.1162-3.37,9.248-3.6425A13.2017,13.2017,0,0,0,27.0163,15.0444Z"
+  })), children);
+})));
+if (false) {}
+const BatchJob = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BatchJob(_ref23, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref23;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path54 || (_path54 = /*#__PURE__*/React.createElement("path", {
+    d: "M32 26v-2h-2.1011c-.1299-.6372-.3843-1.2285-.7319-1.7529l1.4897-1.4897-1.4141-1.4141-1.4897 1.4897c-.5244-.3477-1.1157-.6021-1.7529-.7319v-2.1011h-2v2.1011c-.6372.1299-1.2285.3843-1.7529.7319l-1.4897-1.4897-1.4141 1.4141 1.4897 1.4897c-.3477.5244-.6021 1.1157-.7319 1.7529h-2.1011v2h2.1011c.1299.6372.3843 1.2285.7319 1.7529l-1.4897 1.4897 1.4141 1.4141 1.4897-1.4897c.5244.3477 1.1157.6021 1.7529.7319v2.1011h2v-2.1011c.6372-.1299 1.2285-.3843 1.7529-.7319l1.4897 1.4897 1.4141-1.4141-1.4897-1.4897c.3477-.5244.6021-1.1157.7319-1.7529h2.1011zm-7 2c-1.6543 0-3-1.3457-3-3s1.3457-3 3-3 3 1.3457 3 3-1.3457 3-3 3zM20 17H12c-1.1046 0-2-.8954-2-2V4c0-1.1046.8954-2 2-2h8c1.1046 0 2 .8954 2 2V15c0 1.1046-.8954 2-2 2zm-8-2h8V4H12V15z"
+  })), _path55 || (_path55 = /*#__PURE__*/React.createElement("path", {
+    d: "M17,21H8c-1.1046,0-2-.8954-2-2V7h2v12h9v2Z"
+  })), _path56 || (_path56 = /*#__PURE__*/React.createElement("path", {
+    d: "M13,25H4c-1.1028,0-2-.8972-2-2V11h2v12H13v2Z"
+  })), children);
+})));
+if (false) {}
+const BatchJobStep = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BatchJobStep(_ref24, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref24;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path57 || (_path57 = /*#__PURE__*/React.createElement("path", {
+    d: "M24 20L24 24 20 24 20 28 16 28 16 30 22 30 22 26 26 26 26 22 30 22 30 20 24 20zM8 4h8v6c0 1.1025.8972 2 2 2h6v4h2v-6c0-.2651-.1055-.5195-.293-.707l-7-7c-.1875-.1875-.4419-.293-.707-.293H8c-1.1028 0-2 .8975-2 2V28c0 1.1025.8972 2 2 2h4v-2h-4V4zm15.5857 6h-5.5857V4.4141l5.5857 5.5859z"
+  })), children);
+})));
+if (false) {}
+const BatteryCharging = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BatteryCharging(_ref25, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref25;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path58 || (_path58 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 11H26V10a2 2 0 00-2-2H20v2h4v3h3v6H24v3H19v2h5a2 2 0 002-2V21h1a2 2 0 002-2V13A2 2 0 0027 11zM11 22H6V10h6V8H6a2 2 0 00-2 2V22a2 2 0 002 2h5z"
+  })), _path59 || (_path59 = /*#__PURE__*/React.createElement("path", {
+    d: "M14.81 23.58L13.19 22.42 17.06 17 9.37 17 16.22 8.38 17.78 9.62 13.51 15 20.94 15 14.81 23.58z"
+  })), children);
+})));
+if (false) {}
+const BatteryEmpty = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BatteryEmpty(_ref26, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref26;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path60 || (_path60 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,24H6a2.0023,2.0023,0,0,1-2-2V10A2.002,2.002,0,0,1,6,8H24a2.0023,2.0023,0,0,1,2,2v1h1a2.0023,2.0023,0,0,1,2,2v6a2.0027,2.0027,0,0,1-2,2H26v1A2.0027,2.0027,0,0,1,24,24ZM6,10V22H24V19h3V13H24V10Z"
+  })), children);
+})));
+if (false) {}
+const BatteryFull = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BatteryFull(_ref27, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref27;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path61 || (_path61 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,24H6a2,2,0,0,1-2-2V10A2,2,0,0,1,6,8H24a2,2,0,0,1,2,2v1h1a2,2,0,0,1,2,2v6a2,2,0,0,1-2,2H26v1A2,2,0,0,1,24,24ZM6,10V22H24V19h3V13H24V10Z"
+  })), _path62 || (_path62 = /*#__PURE__*/React.createElement("path", {
+    d: "M11 9H19V23H11z",
+    transform: "rotate(90 15 16)"
+  })), children);
+})));
+if (false) {}
+const BatteryHalf = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BatteryHalf(_ref28, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref28;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path63 || (_path63 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,24H6a2,2,0,0,1-2-2V10A2,2,0,0,1,6,8H24a2,2,0,0,1,2,2v1h1a2,2,0,0,1,2,2v6a2,2,0,0,1-2,2H26v1A2,2,0,0,1,24,24ZM6,10V22H24V19h3V13H24V10Z"
+  })), _path64 || (_path64 = /*#__PURE__*/React.createElement("path", {
+    d: "M8 12H16V20H8z",
+    transform: "rotate(90 12 16)"
+  })), children);
+})));
+if (false) {}
+const BatteryLow = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BatteryLow(_ref29, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref29;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path65 || (_path65 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,24H6a2.0023,2.0023,0,0,1-2-2V10A2.002,2.002,0,0,1,6,8H24a2.0023,2.0023,0,0,1,2,2v1h1a2.0023,2.0023,0,0,1,2,2v6a2.0027,2.0027,0,0,1-2,2H26v1A2.0027,2.0027,0,0,1,24,24ZM6,10V22H24V19h3V13H24V10Z"
+  })), _path66 || (_path66 = /*#__PURE__*/React.createElement("path", {
+    d: "M5 15H13V17H5z",
+    transform: "rotate(90 9 16)"
+  })), children);
+})));
+if (false) {}
+const BatteryQuarter = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BatteryQuarter(_ref30, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref30;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path67 || (_path67 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,24H6a2.0023,2.0023,0,0,1-2-2V10A2.002,2.002,0,0,1,6,8H24a2.0023,2.0023,0,0,1,2,2v1h1a2.0023,2.0023,0,0,1,2,2v6a2.0027,2.0027,0,0,1-2,2H26v1A2.0027,2.0027,0,0,1,24,24ZM6,10V22H24V19h3V13H24V10Z"
+  })), _path68 || (_path68 = /*#__PURE__*/React.createElement("path", {
+    d: "M6 14H14V18H6z",
+    transform: "rotate(90 10 16)"
+  })), children);
+})));
+if (false) {}
+const Bee = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bee(_ref31, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref31;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path69 || (_path69 = /*#__PURE__*/React.createElement("path", {
+    d: "M16 10a6 6 0 00-6 6v8a6 6 0 0012 0V16A6 6 0 0016 10zm-4.25 7.87h8.5v4.25h-8.5zM16 28.25A4.27 4.27 0 0111.75 24v-.13h8.5V24A4.27 4.27 0 0116 28.25zm4.25-12.13h-8.5V16a4.25 4.25 0 018.5 0zM30.66 19.21L24 13v9.1a4 4 0 008 0A3.83 3.83 0 0030.66 19.21zM28 24.35a2.25 2.25 0 01-2.25-2.25V17l3.72 3.47h0A2.05 2.05 0 0130.2 22 2.25 2.25 0 0128 24.35zM0 22.1a4 4 0 008 0V13L1.34 19.21A3.88 3.88 0 000 22.1zm2.48-1.56h0L6.25 17v5.1a2.25 2.25 0 01-4.5 0A2.05 2.05 0 012.48 20.54zM15 5.5A3.5 3.5 0 1011.5 9 3.5 3.5 0 0015 5.5zm-5.25 0A1.75 1.75 0 1111.5 7.25 1.77 1.77 0 019.75 5.5zM20.5 2A3.5 3.5 0 1024 5.5 3.5 3.5 0 0020.5 2zm0 5.25A1.75 1.75 0 1122.25 5.5 1.77 1.77 0 0120.5 7.25z"
+  })), children);
+})));
+if (false) {}
+const BeeBat = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BeeBat(_ref32, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref32;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle10 || (_circle10 = /*#__PURE__*/React.createElement("circle", {
+    cx: "13",
+    cy: "8",
+    r: "2"
+  })), _circle11 || (_circle11 = /*#__PURE__*/React.createElement("circle", {
+    cx: "19",
+    cy: "8",
+    r: "2"
+  })), _path70 || (_path70 = /*#__PURE__*/React.createElement("path", {
+    d: "M31.8083,8.665A.8745.8745,0,0,0,31,8.125H29c-4.21,0-7.721,2.002-9.1648,4.9014a4.8186,4.8186,0,0,0-7.67,0C10.721,10.127,7.21,8.125,3,8.125H1A.8749.8749,0,0,0,.3816,9.6191L.4834,9.72A5.3885,5.3885,0,0,1,2.1612,15.751.8751.8751,0,0,0,3,16.875a2.8966,2.8966,0,0,1,2.1587.7266c.9783.9814.9714,2.8872.9668,4.1479l0,.25A.875.875,0,0,0,7,22.875h4.125V23a4.875,4.875,0,0,0,9.75,0v-.125H25A.875.875,0,0,0,25.875,22l0-.25c-.0046-1.2607-.0115-3.1665.9668-4.1479A2.8966,2.8966,0,0,1,29,16.875a.8751.8751,0,0,0,.8388-1.124,5.3883,5.3883,0,0,1,1.6765-6.0293l.1033-.103A.875.875,0,0,0,31.8083,8.665ZM16,12.875A3.1286,3.1286,0,0,1,19.125,16v.125h-6.25V16A3.1286,3.1286,0,0,1,16,12.875Zm-3.125,5h6.25v3.25h-6.25Zm-5.0007,3.25c-.0178-1.459-.1839-3.4619-1.4761-4.7588a4.1876,4.1876,0,0,0-2.31-1.1518A6.657,6.657,0,0,0,2.9524,9.875H3c4.5562,0,8.125,2.69,8.125,6.125v5.125ZM19.125,23a3.125,3.125,0,0,1-6.25,0v-.125h6.25Zm8.7868-7.7856a4.1876,4.1876,0,0,0-2.31,1.1518c-1.2922,1.2969-1.4583,3.3-1.4761,4.7588H20.875V16c0-3.4346,3.5688-6.125,8.125-6.125h.0481A6.6561,6.6561,0,0,0,27.9118,15.2144Z"
+  })), children);
+})));
+if (false) {}
+const Beta = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Beta(_ref33, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref33;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path71 || (_path71 = /*#__PURE__*/React.createElement("path", {
+    d: "M20.7168,13.7705A5.9174,5.9174,0,0,0,23,9c0-3.5327-2.8784-6-7-6a6.627,6.627,0,0,0-7,7V31h2V25.1206a8.1261,8.1261,0,0,0,6,2.48A7.3833,7.3833,0,0,0,24.6528,20,6.6364,6.6364,0,0,0,20.7168,13.7705ZM17,25.6A5.6781,5.6781,0,0,1,11,20V10a4.6856,4.6856,0,0,1,5-5c3.0374,0,5,1.57,5,4a3.8732,3.8732,0,0,1-4,4v2c3.4341,0,5.6528,1.9629,5.6528,5A5.3907,5.3907,0,0,1,17,25.6Z"
+  })), children);
+})));
+if (false) {}
+const Bicycle = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bicycle(_ref34, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref34;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path72 || (_path72 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,16c-.0879,0-.1731.0093-.26.0132L24.2368,9H28V7H23a1,1,0,0,0-.978,1.21L22.62,11H12.3872l-1-3H14V6H7V8H9.28l1.0411,3.123-2.57,5.1392A6,6,0,1,0,11.91,23h2.61a1.991,1.991,0,0,0,1.5616-.75L23.14,13.4258l.6436,3.0039A5.9891,5.9891,0,1,0,26,16ZM6,26a4,4,0,1,1,.8364-7.9092L5.1055,21.5527l.009.0044A.9834.9834,0,0,0,5,22a.9931.9931,0,0,0,1.8853.4429l.0092.0044L8.6182,19A3.9835,3.9835,0,0,1,6,26Zm5.91-5a5.9986,5.9986,0,0,0-2.3733-3.8364l1.6787-3.3574L13.613,21Zm3.4577-1.06L13.054,13h7.8654ZM26,26a3.9882,3.9882,0,0,1-1.7859-7.56l.8079,3.77.02-.0044A.9859.9859,0,0,0,26,23a1,1,0,0,0,1-1,.9456.9456,0,0,0-.0415-.2056l.02-.0044-.8086-3.7729A3.9931,3.9931,0,0,1,26,26Z"
+  })), children);
+})));
+if (false) {}
+const Binding_01 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Binding_01(_ref35, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref35;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path73 || (_path73 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "M4 10H28V12H4zM4 20H28V22H4z"
+  })), children);
+})));
+if (false) {}
+const Binding_02 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Binding_02(_ref36, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref36;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path74 || (_path74 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "M25 8L23.3721 9.1621 28.542 16 23.386 22.8379 25.0139 24 31 16 25 8z"
+  })), _path75 || (_path75 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "M20 8L18.3721 9.1621 23.542 16 18.386 22.8379 20.0139 24 26 16 20 8zM8.6279 9.1621L7 8 1 16 6.9861 24 8.614 22.8379 3.458 16 8.6279 9.1621z"
+  })), _path76 || (_path76 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "M12 8L6 16 11.9861 24 13.614 22.8379 8.458 16 13.6279 9.1621 12 8z"
+  })), children);
+})));
+if (false) {}
+const Binoculars = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Binoculars(_ref37, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref37;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path77 || (_path77 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,8V5a1,1,0,0,0-1-1H21a1,1,0,0,0-1,1V8a2,2,0,0,0-2,2v2H14V10a2,2,0,0,0-2-2V5a1,1,0,0,0-1-1H5A1,1,0,0,0,4,5V8a2,2,0,0,0-2,2V22a2,2,0,0,0,1,1.72V27a1,1,0,0,0,1,1h8a1,1,0,0,0,1-1V23.72A2,2,0,0,0,14,22V20h4v2a2,2,0,0,0,1,1.72V27a1,1,0,0,0,1,1h8a1,1,0,0,0,1-1V23.72A2,2,0,0,0,30,22V10A2,2,0,0,0,28,8ZM11,26H5V24h6Zm1-4H4V10H6V6h4v4h2Zm2-4V14h4v4Zm13,8H21V24h6Zm1-4H20V10h2V6h4v4h2Z"
+  })), children);
+})));
+if (false) {}
+const QBlochSphere = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function QBlochSphere(_ref38, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref38;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path78 || (_path78 = /*#__PURE__*/React.createElement("path", {
+    d: "M21.87,7.84l-1.74-1L16,14h0a2,2,0,1,0,2,2,2,2,0,0,0-.27-1Z"
+  })), _path79 || (_path79 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,2a12,12,0,0,1,11.17,7.65,25.69,25.69,0,0,0-3.69-1.5l-1,1.77a22.7,22.7,0,0,1,5.41,2.39,11.05,11.05,0,0,1,0,3.38A22.92,22.92,0,0,1,16,21,22.92,22.92,0,0,1,4.13,17.69a11.05,11.05,0,0,1,0-3.38A22.8,22.8,0,0,1,15,11V9a25,25,0,0,0-10.17,2.6A12,12,0,0,1,16,4Zm0,24A12,12,0,0,1,4.83,20.35,24.88,24.88,0,0,0,16,23a24.88,24.88,0,0,0,11.17-2.65A12,12,0,0,1,16,28Z"
+  })), children);
+})));
+if (false) {}
+const BlockStorage = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BlockStorage(_ref39, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref39;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path80 || (_path80 = /*#__PURE__*/React.createElement("path", {
+    d: "M9,12V10H4a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H20a2,2,0,0,0,2-2V19H20v9H4V12"
+  })), _path81 || (_path81 = /*#__PURE__*/React.createElement("path", {
+    d: "M22 12H14V4h8zM12 4v8a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H14A2 2 0 0012 4zM14 18v4H10V18h4M8 18v4a2 2 0 002 2h4a2 2 0 002-2V18a2 2 0 00-2-2H10A2 2 0 008 18zM28 17v2H26V17h2m-4-1v4a1 1 0 001 1h4a1 1 0 001-1V16a1 1 0 00-1-1H25A1 1 0 0024 16z"
+  })), children);
+})));
+if (false) {}
+const BlockStorageAlt = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BlockStorageAlt(_ref40, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref40;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path82 || (_path82 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,20H26v2h2v6H4V22H6V20H4a2.0024,2.0024,0,0,0-2,2v6a2.0024,2.0024,0,0,0,2,2H28a2.0024,2.0024,0,0,0,2-2V22A2.0024,2.0024,0,0,0,28,20Z"
+  })), _circle12 || (_circle12 = /*#__PURE__*/React.createElement("circle", {
+    cx: "7",
+    cy: "25",
+    r: "1"
+  })), _path83 || (_path83 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 20H8V13h7zm-5-2h3V15H10zM24 20H17V13h7zm-5-2h3V15H19zM15 11H8V4h7zM10 9h3V6H10zM24 11H17V4h7zM19 9h3V6H19z"
+  })), children);
+})));
+if (false) {}
+const Blockchain = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Blockchain(_ref41, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref41;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path84 || (_path84 = /*#__PURE__*/React.createElement("path", {
+    d: "M6,24H4V8H6ZM28,8H26V24h2ZM24,6V4H8V6Zm0,22V26H8v2Z"
+  })), children);
+})));
+if (false) {}
+const Blog = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().forwardRef(function Blog(_ref42, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref42;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Icon_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path85 || (_path85 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M4 24H14V26H4zM4 18H14V20H4zM26 14H6a2 2 0 01-2-2V6A2 2 0 016 4H26a2 2 0 012 2v6A2 2 0 0126 14zM6 6v6H26V6zM26 28H20a2 2 0 01-2-2V20a2 2 0 012-2h6a2 2 0 012 2v6A2 2 0 0126 28zm-6-8v6h6V20z"
+  })), children);
+});
+if (false) {}
+const Bluetooth = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bluetooth(_ref43, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref43;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path86 || (_path86 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30a1.06,1.06,0,0,1-.42-.09A1,1,0,0,1,15,29V18.41L8.41,25,7,23.59,14.59,16,7,8.41,8.41,7,15,13.59V3a1,1,0,0,1,.58-.91,1,1,0,0,1,1.07.15l7,6A1,1,0,0,1,24,9a1,1,0,0,1-.29.75L17.41,16l6.3,6.29A1,1,0,0,1,24,23a1,1,0,0,1-.35.72l-7,6A1,1,0,0,1,16,30Zm1-11.59v8.42l4.53-3.89ZM17,5.17v8.42l4.53-4.53Z"
+  })), children);
+})));
+if (false) {}
+const BluetoothOff = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BluetoothOff(_ref44, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref44;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path87 || (_path87 = /*#__PURE__*/React.createElement("path", {
+    d: "M28 26.59L5.41 4 4 5.41 14.59 16 7 23.59 8.41 25 15 18.41V29a1 1 0 00.58.91A1.06 1.06 0 0016 30a1 1 0 00.65-.24l6.3-5.4L26.59 28zm-11 .24V18.41l4.53 4.53zM17 12.75V5.17l4.53 3.89-4.11 4.11 1.41 1.41 4.88-4.87A1 1 0 0024 9a1 1 0 00-.35-.72l-7-6a1 1 0 00-1.07-.15A1 1 0 0015 3v7.75z"
+  })), children);
+})));
+if (false) {}
+const Book = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Book(_ref45, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref45;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path88 || (_path88 = /*#__PURE__*/React.createElement("path", {
+    d: "M19 10H26V12H19zM19 15H26V17H19zM19 20H26V22H19zM6 10H13V12H6zM6 15H13V17H6zM6 20H13V22H6z"
+  })), _path89 || (_path89 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,5H4A2.002,2.002,0,0,0,2,7V25a2.002,2.002,0,0,0,2,2H28a2.002,2.002,0,0,0,2-2V7A2.002,2.002,0,0,0,28,5ZM4,7H15V25H4ZM17,25V7H28V25Z"
+  })), children);
+})));
+if (false) {}
+const Bookmark = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bookmark(_ref46, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref46;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path90 || (_path90 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,4V26.75l-7.1-3.59-.9-.45-.9.45L8,26.75V4H24m0-2H8A2,2,0,0,0,6,4V30L16,25,26,30V4A2,2,0,0,0,24,2Z"
+  })), children);
+})));
+if (false) {}
+const BookmarkAdd = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BookmarkAdd(_ref47, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref47;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path91 || (_path91 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,16V26.7515l-7.0962-3.5894L16,22.7051l-.9009.456L8,26.748V4H18V2H8A2,2,0,0,0,6,4V30l10-5.0537L26,30V16Z"
+  })), _path92 || (_path92 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 6L26 2 24 2 24 6 20 6 20 8 24 8 24 12 26 12 26 8 30 8 30 6 26 6z"
+  })), children);
+})));
+if (false) {}
+const BookmarkFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BookmarkFilled(_ref48, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref48;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path93 || (_path93 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,2H8A2,2,0,0,0,6,4V30l10-5.0538L26,30V4A2,2,0,0,0,24,2Z"
+  })), children);
+})));
+if (false) {}
+const Boolean = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Boolean(_ref49, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref49;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path94 || (_path94 = /*#__PURE__*/React.createElement("path", {
+    d: "M23,23a7,7,0,1,1,7-7A7.0078,7.0078,0,0,1,23,23Zm0-12a5,5,0,1,0,5,5A5.0055,5.0055,0,0,0,23,11Z"
+  })), _circle13 || (_circle13 = /*#__PURE__*/React.createElement("circle", {
+    cx: "9",
+    cy: "16",
+    r: "7"
+  })), children);
+})));
+if (false) {}
+const Boot = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Boot(_ref50, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref50;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path95 || (_path95 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,17H18a1.0008,1.0008,0,0,1-1-1V4a2.0025,2.0025,0,0,0-2-2H5A2.0025,2.0025,0,0,0,3,4V28a2.0025,2.0025,0,0,0,2,2H27a2.0025,2.0025,0,0,0,2-2V22A5.0057,5.0057,0,0,0,24,17Zm3,5v2H23V19h1A3.0033,3.0033,0,0,1,27,22ZM15,4V6H11V8h4v2H11v2h4v2H11v2h4a3.0033,3.0033,0,0,0,3,3h3v5H14.1624l-3-1H5V4ZM25,28V27H23v1H21V27H19v1H17V27H15v1H13V27H11v1H5V25h5.8376l3,1H27v2Z"
+  })), children);
+})));
+if (false) {}
+const BootVolume = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BootVolume(_ref51, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref51;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path96 || (_path96 = /*#__PURE__*/React.createElement("path", {
+    d: "M32 22v-2h-3v-2h-2v2h-1v2h1v6c0 1.1025.8975 2 2 2h3v-2h-3v-6h3zM23 30h-3c-1.1025 0-2-.8975-2-2v-6c0-1.103.8975-2 2-2h3c1.1025 0 2 .897 2 2v6c0 1.1025-.8975 2-2 2zm-3-8v6h3v-6h-3zM14 30h-3c-1.1025 0-2-.8975-2-2v-6c0-1.103.8975-2 2-2h3c1.1025 0 2 .897 2 2v6c0 1.1025-.8975 2-2 2zm-3-8v6h3v-6h-3zM5 20H2v-4H0v14H5c1.1025 0 2-.8975 2-2v-6c0-1.103-.8975-2-2-2zm-3 8v-6h3v6H2zM4 14V5h7.5857l4 4h12.4143v7h2v-7c-.0013-1.1041-.8959-1.9987-2-2h-11.5857l-3.4143-3.4141c-.3742-.3764-.8835-.5873-1.4143-.5859H4c-1.1041.0013-1.9987.8959-2 2V14h2z"
+  })), children);
+})));
+if (false) {}
+const BootVolumeAlt = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BootVolumeAlt(_ref52, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref52;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path97 || (_path97 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,30h-7c-1.1028,0-2-.8972-2-2v-2h2v2h7v-7h-2v-2h2c1.1028,0,2,.8972,2,2v7c0,1.1028-.8972,2-2,2Z"
+  })), _path98 || (_path98 = /*#__PURE__*/React.createElement("path", {
+    d: "M12 24L14 24 13.9998 17.414 22.5823 26 24 24.5857 15.4139 15.9998 22 16 22 14 12 14 12 24z"
+  })), _path99 || (_path99 = /*#__PURE__*/React.createElement("path", {
+    d: "M8,27H4c-1.104-.0013-1.9987-.896-2-2V5c.0013-1.104,.896-1.9987,2-2h7.5857c.5308-.0015,1.0401,.2095,1.4143,.5859l3.4143,3.4141h11.5857c1.104,.0013,1.9987,.896,2,2v7h-2v-7H15.5857l-4-4H4V25h4v2Z"
+  })), children);
+})));
+if (false) {}
+const BorderBottom = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BorderBottom(_ref53, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref53;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path100 || (_path100 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 27H29V29H3z",
+    transform: "rotate(180 16 28)"
+  })), _path101 || (_path101 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 23H29V25H27z",
+    transform: "rotate(180 28 24)"
+  })), _path102 || (_path102 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 19H29V21H27z",
+    transform: "rotate(180 28 20)"
+  })), _path103 || (_path103 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 15H29V17H27z",
+    transform: "rotate(180 28 16)"
+  })), _path104 || (_path104 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 11H29V13H27z",
+    transform: "rotate(180 28 12)"
+  })), _path105 || (_path105 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 7H29V9H27z",
+    transform: "rotate(180 28 8)"
+  })), _path106 || (_path106 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 3H29V5H27z",
+    transform: "rotate(180 28 4)"
+  })), _path107 || (_path107 = /*#__PURE__*/React.createElement("path", {
+    d: "M23 3H25V5H23z",
+    transform: "rotate(180 24 4)"
+  })), _path108 || (_path108 = /*#__PURE__*/React.createElement("path", {
+    d: "M19 3H21V5H19z",
+    transform: "rotate(180 20 4)"
+  })), _path109 || (_path109 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 3H17V5H15z",
+    transform: "rotate(180 16 4)"
+  })), _path110 || (_path110 = /*#__PURE__*/React.createElement("path", {
+    d: "M7 3H9V5H7z",
+    transform: "rotate(180 8 4)"
+  })), _path111 || (_path111 = /*#__PURE__*/React.createElement("path", {
+    d: "M11 3H13V5H11z",
+    transform: "rotate(180 12 4)"
+  })), _path112 || (_path112 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 23H5V25H3z",
+    transform: "rotate(180 4 24)"
+  })), _path113 || (_path113 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 19H5V21H3z",
+    transform: "rotate(180 4 20)"
+  })), _path114 || (_path114 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 15H5V17H3z",
+    transform: "rotate(180 4 16)"
+  })), _path115 || (_path115 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 11H5V13H3z",
+    transform: "rotate(180 4 12)"
+  })), _path116 || (_path116 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 7H5V9H3z",
+    transform: "rotate(180 4 8)"
+  })), _path117 || (_path117 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 3H5V5H3z",
+    transform: "rotate(180 4 4)"
+  })), _path118 || (_path118 = /*#__PURE__*/React.createElement("path", {
+    d: "M8 10H18V12H8zM8 15H14V17H8z"
+  })), children);
+})));
+if (false) {}
+const BorderFull = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BorderFull(_ref54, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref54;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path119 || (_path119 = /*#__PURE__*/React.createElement("path", {
+    d: "M8 10H18V12H8zM8 15H14V17H8z"
+  })), _path120 || (_path120 = /*#__PURE__*/React.createElement("path", {
+    d: "M29,29H3V3H29ZM5,27H27V5H5Z"
+  })), children);
+})));
+if (false) {}
+const BorderLeft = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BorderLeft(_ref55, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref55;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path121 || (_path121 = /*#__PURE__*/React.createElement("path", {
+    d: "M-9 15H17V17H-9z",
+    transform: "rotate(-90 4 16)"
+  })), _path122 || (_path122 = /*#__PURE__*/React.createElement("path", {
+    d: "M7 27H9V29H7z",
+    transform: "rotate(-90 8 28)"
+  })), _path123 || (_path123 = /*#__PURE__*/React.createElement("path", {
+    d: "M11 27H13V29H11z",
+    transform: "rotate(-90 12 28)"
+  })), _path124 || (_path124 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 27H17V29H15z",
+    transform: "rotate(-90 16 28)"
+  })), _path125 || (_path125 = /*#__PURE__*/React.createElement("path", {
+    d: "M19 27H21V29H19z",
+    transform: "rotate(-90 20 28)"
+  })), _path126 || (_path126 = /*#__PURE__*/React.createElement("path", {
+    d: "M23 27H25V29H23z",
+    transform: "rotate(-90 24 28)"
+  })), _path127 || (_path127 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 27H29V29H27z",
+    transform: "rotate(-90 28 28)"
+  })), _path128 || (_path128 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 23H29V25H27z",
+    transform: "rotate(-90 28 24)"
+  })), _path129 || (_path129 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 19H29V21H27z",
+    transform: "rotate(-90 28 20)"
+  })), _path130 || (_path130 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 15H29V17H27z",
+    transform: "rotate(-90 28 16)"
+  })), _path131 || (_path131 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 7H29V9H27z",
+    transform: "rotate(-90 28 8)"
+  })), _path132 || (_path132 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 11H29V13H27z",
+    transform: "rotate(-90 28 12)"
+  })), _path133 || (_path133 = /*#__PURE__*/React.createElement("path", {
+    d: "M7 3H9V5H7z",
+    transform: "rotate(-90 8 4)"
+  })), _path134 || (_path134 = /*#__PURE__*/React.createElement("path", {
+    d: "M11 3H13V5H11z",
+    transform: "rotate(-90 12 4)"
+  })), _path135 || (_path135 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 3H17V5H15z",
+    transform: "rotate(-90 16 4)"
+  })), _path136 || (_path136 = /*#__PURE__*/React.createElement("path", {
+    d: "M19 3H21V5H19z",
+    transform: "rotate(-90 20 4)"
+  })), _path137 || (_path137 = /*#__PURE__*/React.createElement("path", {
+    d: "M23 3H25V5H23z",
+    transform: "rotate(-90 24 4)"
+  })), _path138 || (_path138 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 3H29V5H27z",
+    transform: "rotate(-90 28 4)"
+  })), _path139 || (_path139 = /*#__PURE__*/React.createElement("path", {
+    d: "M8 10H18V12H8zM8 15H14V17H8z"
+  })), children);
+})));
+if (false) {}
+const BorderNone = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BorderNone(_ref56, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref56;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path140 || (_path140 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 3H5V5H3zM7 3H9V5H7zM11 3H13V5H11zM15 3H17V5H15zM3 7H5V9H3zM3 11H5V13H3zM3 15H5V17H3zM3 19H5V21H3zM3 23H5V25H3zM3 27H5V29H3zM27 3H29V5H27zM23 3H25V5H23zM19 3H21V5H19zM7 27H9V29H7zM11 27H13V29H11zM15 27H17V29H15zM23 27H25V29H23zM19 27H21V29H19zM27 7H29V9H27zM27 11H29V13H27zM27 15H29V17H27zM27 19H29V21H27zM27 23H29V25H27zM27 27H29V29H27zM8 10H18V12H8zM8 15H14V17H8z"
+  })), children);
+})));
+if (false) {}
+const BorderRight = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BorderRight(_ref57, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref57;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path141 || (_path141 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 15H41V17H15z",
+    transform: "rotate(90 28 16)"
+  })), _path142 || (_path142 = /*#__PURE__*/React.createElement("path", {
+    d: "M23 3H25V5H23z",
+    transform: "rotate(90 24 4)"
+  })), _path143 || (_path143 = /*#__PURE__*/React.createElement("path", {
+    d: "M19 3H21V5H19z",
+    transform: "rotate(90 20 4)"
+  })), _path144 || (_path144 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 3H17V5H15z",
+    transform: "rotate(90 16 4)"
+  })), _path145 || (_path145 = /*#__PURE__*/React.createElement("path", {
+    d: "M11 3H13V5H11z",
+    transform: "rotate(90 12 4)"
+  })), _path146 || (_path146 = /*#__PURE__*/React.createElement("path", {
+    d: "M7 3H9V5H7z",
+    transform: "rotate(90 8 4)"
+  })), _path147 || (_path147 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 3H5V5H3z",
+    transform: "rotate(90 4 4)"
+  })), _path148 || (_path148 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 7H5V9H3z",
+    transform: "rotate(90 4 8)"
+  })), _path149 || (_path149 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 11H5V13H3z",
+    transform: "rotate(90 4 12)"
+  })), _path150 || (_path150 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 15H5V17H3z",
+    transform: "rotate(90 4 16)"
+  })), _path151 || (_path151 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 23H5V25H3z",
+    transform: "rotate(90 4 24)"
+  })), _path152 || (_path152 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 19H5V21H3z",
+    transform: "rotate(90 4 20)"
+  })), _path153 || (_path153 = /*#__PURE__*/React.createElement("path", {
+    d: "M23 27H25V29H23z",
+    transform: "rotate(90 24 28)"
+  })), _path154 || (_path154 = /*#__PURE__*/React.createElement("path", {
+    d: "M19 27H21V29H19z",
+    transform: "rotate(90 20 28)"
+  })), _path155 || (_path155 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 27H17V29H15z",
+    transform: "rotate(90 16 28)"
+  })), _path156 || (_path156 = /*#__PURE__*/React.createElement("path", {
+    d: "M11 27H13V29H11z",
+    transform: "rotate(90 12 28)"
+  })), _path157 || (_path157 = /*#__PURE__*/React.createElement("path", {
+    d: "M7 27H9V29H7z",
+    transform: "rotate(90 8 28)"
+  })), _path158 || (_path158 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 27H5V29H3z",
+    transform: "rotate(90 4 28)"
+  })), _path159 || (_path159 = /*#__PURE__*/React.createElement("path", {
+    d: "M8 10H18V12H8zM8 15H14V17H8z"
+  })), children);
+})));
+if (false) {}
+const BorderTop = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BorderTop(_ref58, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref58;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path160 || (_path160 = /*#__PURE__*/React.createElement("path", {
+    d: "M3 3H29V5H3zM3 7H5V9H3zM3 11H5V13H3zM3 15H5V17H3zM3 19H5V21H3zM3 23H5V25H3zM3 27H5V29H3zM7 27H9V29H7zM11 27H13V29H11zM15 27H17V29H15zM23 27H25V29H23zM19 27H21V29H19zM27 7H29V9H27zM27 11H29V13H27zM27 15H29V17H27zM27 19H29V21H27zM27 23H29V25H27zM27 27H29V29H27zM8 10H18V12H8zM8 15H14V17H8z"
+  })), children);
+})));
+if (false) {}
+const Bot = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bot(_ref59, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref59;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path161 || (_path161 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 10H20V12H18zM12 10H14V12H12z"
+  })), _path162 || (_path162 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,20H21V18h1a2.0023,2.0023,0,0,0,2-2V12h2V10H24V8a2.0023,2.0023,0,0,0-2-2H20V2H18V6H14V2H12V6H10A2.0023,2.0023,0,0,0,8,8v2H6v2H8v4a2.0023,2.0023,0,0,0,2,2h1v2H6a2.0023,2.0023,0,0,0-2,2v8H6V22H26v8h2V22A2.0023,2.0023,0,0,0,26,20ZM10,8H22v8H10Zm3,10h6v2H13Z"
+  })), children);
+})));
+if (false) {}
+const Bottles_01 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bottles_01(_ref60, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref60;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path163 || (_path163 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 9.3706V3c0-.5522-.4478-1-1-1h-3v2h2v6.7207s3 .5066 3 4.2793v13h-3v2h4c.5522 0 1-.4478 1-1V15c0-3.4517-1.9326-5.0239-3-5.6294zM19 9.3706V3c0-.5522-.4478-1-1-1h-3v2h2v6.7207s3 .5066 3 4.2793v13h-3v2h4c.5522 0 1-.4478 1-1V15c0-3.4517-1.9326-5.0239-3-5.6294zM12 9.3706V3c0-.5522-.4478-1-1-1H7c-.5522 0-1 .4478-1 1v6.3706c-1.0674.6055-3 2.1777-3 5.6294v14c0 .5522.4478 1 1 1H14c.5522 0 1-.4478 1-1V15c0-3.4517-1.9326-5.0239-3-5.6294zm1 18.6294H5V15c0-3.7725 3-4.2793 3-4.2793V4h2v6.7207s3 .5068 3 4.2793v13z"
+  })), children);
+})));
+if (false) {}
+const Bottles_01Dash = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bottles_01Dash(_ref61, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref61;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path164 || (_path164 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 9.3706V3c0-.5522-.4478-1-1-1h-3v2h2v6.7207s3 .5066 3 4.2793v13h-3v2h4c.5522 0 1-.4478 1-1V15c0-3.4517-1.9326-5.0239-3-5.6294zM19 9.3706V3c0-.5522-.4478-1-1-1h-3v2h2v6.7207s3 .5066 3 4.2793v13h-3v2h4c.5522 0 1-.4478 1-1V15c0-3.4517-1.9326-5.0239-3-5.6294zM13 28h-3v2h4c.5522 0 1-.4478 1-1v-4h-2v3zM5 25H3v4c0 .5522.4478 1 1 1h4v-2h-3v-3zM13 18H15V23H13zM3 18H5V23H3zM12 9.3706V3c0-.5522-.4478-1-1-1H7c-.5522 0-1 .4478-1 1v6.3706c-1.0674.6055-3 2.1777-3 5.6294v1h2v-1c0-3.7725 3-4.2793 3-4.2793V4h2v6.7207s3 .5068 3 4.2793v1h2v-1c0-3.4517-1.9326-5.0239-3-5.6294z"
+  })), children);
+})));
+if (false) {}
+const Bottles_02 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bottles_02(_ref62, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref62;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path165 || (_path165 = /*#__PURE__*/React.createElement("path", {
+    d: "M24 9.0513v-3.0513c0-.5522-.4478-1-1-1h-3v2h2v3.02s2 1.1238 2 3.48v11.5h-4v2h5c.5522 0 1-.4478 1-1V13.5c0-1.7129-.7229-3.3076-2-4.4487zM16 9.0513v-3.0513c0-.5522-.4478-1-1-1h-6c-.5522 0-1 .4478-1 1v3.0513c-1.2771 1.1411-2 2.7358-2 4.4487v12.5c0 .5522.4478 1 1 1h10c.5522 0 1-.4478 1-1V13.5c0-1.7129-.7229-3.3076-2-4.4487zm0 15.9487H8V13.5c0-2.356 2-3.48 2-3.48v-3.02h4v3.02s2 1.124 2 3.48v11.5z"
+  })), children);
+})));
+if (false) {}
+const Bottles_02Dash = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bottles_02Dash(_ref63, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref63;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path166 || (_path166 = /*#__PURE__*/React.createElement("path", {
+    d: "M24 9.0513v-3.0513c0-.5522-.4478-1-1-1h-3v2h2v3.02s2 1.1238 2 3.48v11.5h-4v2h5c.5522 0 1-.4478 1-1V13.5c0-1.7129-.7229-3.3076-2-4.4487zM16 25h-3v2h4c.5522 0 1-.4478 1-1v-4h-2v3zM8 22h-2v4c0 .5522.4478 1 1 1h4v-2h-3v-3zM16 16H18V20H16zM6 16H8V20H6zM16 9.0513v-3.0513c0-.5522-.4478-1-1-1h-6c-.5522 0-1 .4478-1 1v3.0513c-1.2771 1.1411-2 2.7358-2 4.4487v.5h2v-.5c0-2.356 2-3.48 2-3.48v-3.02h4v3.02s2 1.124 2 3.48v.5h2v-.5c0-1.7129-.7229-3.3076-2-4.4487z"
+  })), children);
+})));
+if (false) {}
+const BottlesContainer = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BottlesContainer(_ref64, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref64;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path167 || (_path167 = /*#__PURE__*/React.createElement("path", {
+    d: "M23 10v-2c0-.5522-.4478-1-1-1h-3v2h2v1.9688s2 1.1238 2 3.48v8.5513h-4v2h5c.5522 0 1-.4478 1-1V14.4487c0-1.7129-.7229-3.3076-2-4.4487zM15 10v-2c0-.5522-.4478-1-1-1h-4c-.5522 0-1 .4478-1 1v2c-1.2771 1.1411-2 2.7358-2 4.4487v9.5513c0 .5522.4478 1 1 1h8c.5522 0 1-.4478 1-1V14.4487c0-1.7129-.7229-3.3076-2-4.4487zm0 13h-6V14.4487c0-2.356 2-3.48 2-3.48v-1.9688h2v1.9688s2 1.124 2 3.48v8.5513z"
+  })), _path168 || (_path168 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,2H4c-1.1046,0-2,.8954-2,2V28c0,1.1046,.8954,2,2,2H28c1.1046,0,2-.8954,2-2V4c0-1.1046-.8954-2-2-2Zm0,26H4V4H28V28Z"
+  })), children);
+})));
+if (false) {}
+const BottomPanelClose = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BottomPanelClose(_ref65, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref65;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path169 || (_path169 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m28,4H4c-1.1045,0-2,.8955-2,2v20c0,1.1045.8955,2,2,2h24c1.1045,0,2-.8955,2-2V6c0-1.1045-.8955-2-2-2Zm0,16v6H4v-6h24Zm0-14v12H4V6h11v6.1699s-3.5898-3.5801-3.5898-3.5801l-1.4102,1.4102,6,6,6-6-1.4102-1.4102-3.5898,3.5801v-6.1699h11Z"
+  })), children);
+})));
+if (false) {}
+const BottomPanelCloseFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BottomPanelCloseFilled(_ref66, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref66;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path170 || (_path170 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m28,4H4c-1.1045,0-2,.8955-2,2v20c0,1.1045.8955,2,2,2h24c1.1045,0,2-.8955,2-2V6c0-1.1045-.8955-2-2-2Zm0,2v12H4V6h11v6.1699s-3.5898-3.5801-3.5898-3.5801l-1.4102,1.4102,6,6,6-6-1.4102-1.4102-3.5898,3.5801v-6.1699h11Z"
+  })), children);
+})));
+if (false) {}
+const BottomPanelOpen = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BottomPanelOpen(_ref67, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref67;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path171 || (_path171 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m28,4H4c-1.1045,0-2,.8955-2,2v20c0,1.1045.8955,2,2,2h24c1.1045,0,2-.8955,2-2V6c0-1.1045-.8955-2-2-2Zm0,16v6H4v-6h24Zm0-14v12h-11v-6.1699s3.5898,3.5798,3.5898,3.5798l1.4102-1.4099-6-6-6,6,1.4102,1.4099,3.5898-3.5798v6.1699H4V6h24Z"
+  })), children);
+})));
+if (false) {}
+const BottomPanelOpenFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BottomPanelOpenFilled(_ref68, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref68;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path172 || (_path172 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m28,4H4c-1.1045,0-2,.8955-2,2v20c0,1.1045.8955,2,2,2h24c1.1045,0,2-.8955,2-2V6c0-1.1045-.8955-2-2-2Zm0,2v12h-11v-6.1699s3.5898,3.5798,3.5898,3.5798l1.4102-1.4099-6-6-6,6,1.4102,1.4099,3.5898-3.5798v6.1699H4V6h24Z"
+  })), children);
+})));
+if (false) {}
+const Box = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Box(_ref69, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref69;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path173 || (_path173 = /*#__PURE__*/React.createElement("path", {
+    d: "M20,21H12a2,2,0,0,1-2-2V17a2,2,0,0,1,2-2h8a2,2,0,0,1,2,2v2A2,2,0,0,1,20,21Zm-8-4v2h8V17Z"
+  })), _path174 || (_path174 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,4H4A2,2,0,0,0,2,6v4a2,2,0,0,0,2,2V28a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V12a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4ZM26,28H6V12H26Zm2-18H4V6H28v4Z"
+  })), children);
+})));
+if (false) {}
+const BoxExtraLarge = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BoxExtraLarge(_ref70, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref70;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path175 || (_path175 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,28H6a2.0021,2.0021,0,0,1-2-2V9H6V26H26V9h2V26A2.0021,2.0021,0,0,1,26,28Z"
+  })), _path176 || (_path176 = /*#__PURE__*/React.createElement("path", {
+    d: "M19 21L19 9 17 9 17 23 24 23 24 21 19 21zM16 9L14 9 12 15 10 9 8 9 10.752 16 8 23 10 23 12 17 14 23 16 23 13.245 16 16 9zM4 4H28V6H4z"
+  })), children);
+})));
+if (false) {}
+const BoxLarge = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BoxLarge(_ref71, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref71;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path177 || (_path177 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,28H6a2.0021,2.0021,0,0,1-2-2V9H6V26H26V9h2V26A2.0021,2.0021,0,0,1,26,28Z"
+  })), _path178 || (_path178 = /*#__PURE__*/React.createElement("path", {
+    d: "M14 21L14 9 12 9 12 23 20 23 20 21 14 21zM4 4H28V6H4z"
+  })), children);
+})));
+if (false) {}
+const BoxMedium = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BoxMedium(_ref72, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref72;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path179 || (_path179 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,28H6a2.0021,2.0021,0,0,1-2-2V9H6V26H26V9h2V26A2.0021,2.0021,0,0,1,26,28Z"
+  })), _path180 || (_path180 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 9L16.485 14 16 15.977 15.535 14 14 9 12 9 12 23 14 23 14 15 13.842 13.004 14.421 15 16 19.626 17.579 15 18.159 13 18 15 18 23 20 23 20 9 18 9zM4 4H28V6H4z"
+  })), children);
+})));
+if (false) {}
+const BoxSmall = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BoxSmall(_ref73, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref73;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path181 || (_path181 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,28H6a2.0021,2.0021,0,0,1-2-2V9H6V26H26V9h2V26A2.0021,2.0021,0,0,1,26,28Z"
+  })), _path182 || (_path182 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 23H12V21h6V17H14a2.002 2.002 0 01-2-2V11a2.002 2.002 0 012-2h6v2H14v4h4a2.002 2.002 0 012 2v4A2.0023 2.0023 0 0118 23zM4 4H28V6H4z"
+  })), children);
+})));
+if (false) {}
+const BoxPlot = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BoxPlot(_ref74, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref74;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path183 || (_path183 = /*#__PURE__*/React.createElement("path", {
+    d: "M22,6V4H12V6h4V8H12V20h4v2H12v2H22V22H18V20h4V8H18V6ZM14,18V15h6v3Zm6-5H14V10h6Z"
+  })), _path184 || (_path184 = /*#__PURE__*/React.createElement("path", {
+    d: "M30,30H4a2,2,0,0,1-2-2V2H4V28H30Z"
+  })), children);
+})));
+if (false) {}
+const Branch = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Branch(_ref75, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref75;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path185 || (_path185 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m20,6c0,1.8587,1.2795,3.4109,3,3.858v4.142c0,1.6543-1.3457,3-3,3h-8c-1.1299,0-2.1617.391-3,1.0256v-8.1676c1.7203-.4471,3-1.9993,3-3.858,0-2.2061-1.7944-4-4-4s-4,1.7939-4,4c0,1.8587,1.2797,3.4108,3,3.858v12.142s0,.142,0,.142c-1.7203.4473-3,1.9997-3,3.858,0,2.2056,1.7944,4,4,4s4-1.7944,4-4c0-1.8583-1.2797-3.4107-3-3.858v-.142c0-1.6543,1.3457-3,3-3h8c2.7568,0,5-2.2432,5-5v-4.142c1.7205-.4471,3-1.9993,3-3.858,0-2.2061-1.7939-4-4-4s-4,1.7939-4,4Zm-14,0c0-1.1025.897-2,2-2s2,.8975,2,2c0,1.1025-.897,2-2,2s-2-.8975-2-2Zm4,20c0,1.103-.897,2-2,2s-2-.897-2-2,.897-2,2-2,2,.897,2,2ZM26,6c0,1.1025-.8975,2-2,2s-2-.8975-2-2c0-1.1025.8975-2,2-2s2,.8975,2,2Z"
+  })), children);
+})));
+if (false) {}
+const BreakingChange = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BreakingChange(_ref76, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref76;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path186 || (_path186 = /*#__PURE__*/React.createElement("path", {
+    d: "M31 25a6 6 0 10-6 6A6.0066 6.0066 0 0031 25zm-2 0a3.9521 3.9521 0 01-.5669 2.019L22.981 21.5669A3.9529 3.9529 0 0125 21 4.0045 4.0045 0 0129 25zm-8 0a3.9521 3.9521 0 01.5669-2.019l5.4521 5.4521A3.9529 3.9529 0 0125 29 4.0045 4.0045 0 0121 25zM19.59 16L17 18.59 18.42 20 22.42 16 18.42 12 17 13.41 19.59 16zM10.41 16L13 13.41 11.58 12 7.58 16 11.58 20 13 18.59 10.41 16z"
+  })), _path187 || (_path187 = /*#__PURE__*/React.createElement("path", {
+    d: "M4,9H26v7h2V4a2,2,0,0,0-2-2H4A2,2,0,0,0,2,4V24a2,2,0,0,0,2,2H16V24H4ZM4,4H26V7H4Z"
+  })), children);
+})));
+if (false) {}
+const BrightnessContrast = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BrightnessContrast(_ref77, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref77;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path188 || (_path188 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 2H17V5H15zM27 15H30V17H27zM15 27H17V30H15zM2 15H5V17H2z"
+  })), _path189 || (_path189 = /*#__PURE__*/React.createElement("path", {
+    d: "M6.22 5.73H8.219999999999999V8.73H6.22z",
+    transform: "rotate(-45 7.227 7.236)"
+  })), _path190 || (_path190 = /*#__PURE__*/React.createElement("path", {
+    d: "M23.27 6.23H26.27V8.23H23.27z",
+    transform: "rotate(-45 24.766 7.232)"
+  })), _path191 || (_path191 = /*#__PURE__*/React.createElement("path", {
+    d: "M23.77 23.27H25.77V26.27H23.77z",
+    transform: "rotate(-45 24.77 24.77)"
+  })), _path192 || (_path192 = /*#__PURE__*/React.createElement("path", {
+    d: "M5.47 25.13L7.59 23 9 24.42 6.88 26.54 5.47 25.13zM16 8a8 8 0 108 8A8 8 0 0016 8zm0 14a6 6 0 010-12z"
+  })), children);
+})));
+if (false) {}
+const BringForward = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BringForward(_ref78, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref78;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path193 || (_path193 = /*#__PURE__*/React.createElement("path", {
+    d: "M12 15H10V12a2.0023 2.0023 0 012-2h3v2H12zM15 30H12a2.0023 2.0023 0 01-2-2V25h2v3h3zM18 28H22V30H18zM28 30H25V28h3V25h2v3A2.0023 2.0023 0 0128 30zM10 18H12V22H10zM28 18H30V22H28zM30 15H28V12H25V10h3a2.0023 2.0023 0 012 2zM18 10H22V12H18z"
+  })), _path194 || (_path194 = /*#__PURE__*/React.createElement("path", {
+    d: "M8,22H4a2.0023,2.0023,0,0,1-2-2V4A2.0023,2.0023,0,0,1,4,2H20a2.0023,2.0023,0,0,1,2,2V8H20V4H4V20H8Z"
+  })), children);
+})));
+if (false) {}
+const BringToFront = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BringToFront(_ref79, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref79;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path195 || (_path195 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,10H22V4a2.0023,2.0023,0,0,0-2-2H4A2.0023,2.0023,0,0,0,2,4V20a2.0023,2.0023,0,0,0,2,2h6v6a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V12A2,2,0,0,0,28,10ZM4,20,3.9985,4H20v6H12a2,2,0,0,0-2,2v8Z"
+  })), children);
+})));
+if (false) {}
+const WatsonHealthBrushFreehand = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function WatsonHealthBrushFreehand(_ref80, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref80;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path196 || (_path196 = /*#__PURE__*/React.createElement("path", {
+    d: "M28.8281 3.1719a4.0941 4.0941 0 00-5.6562 0L4.05 22.292A6.9537 6.9537 0 002 27.2412V30H4.7559a6.9523 6.9523 0 004.95-2.05L28.8281 8.8286a3.999 3.999 0 000-5.6567zM10.91 18.26l2.8286 2.8286L11.6172 23.21 8.7886 20.3818zM8.2915 26.5356A4.9665 4.9665 0 014.7559 28H4v-.7588a4.9669 4.9669 0 011.4644-3.5351l1.91-1.91 2.8286 2.8281zM27.4141 7.4141L15.1528 19.6748l-2.8286-2.8286 12.2617-12.26a2.0473 2.0473 0 012.8282 0 1.9995 1.9995 0 010 2.8282zM6.5 15A3.4994 3.4994 0 014.0249 9.026l3.5005-3.5a1.5019 1.5019 0 000-2.121 1.537 1.537 0 00-2.1216 0L3.415 5.3936 2 3.98 3.99 1.9915a3.5849 3.5849 0 014.95 0 3.5039 3.5039 0 010 4.949L5.439 10.44a1.5019 1.5019 0 000 2.121 1.5369 1.5369 0 002.1215 0l4.0249-4.0243L13 9.9507 8.9746 13.975A3.4754 3.4754 0 016.5 15z"
+  })), children);
+})));
+if (false) {}
+const WatsonHealthBrushPolygon = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function WatsonHealthBrushPolygon(_ref81, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref81;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path197 || (_path197 = /*#__PURE__*/React.createElement("path", {
+    d: "M28.8281 3.1719a4.0941 4.0941 0 00-5.6562 0L4.05 22.292A6.9537 6.9537 0 002 27.2412V30H4.7559a6.9523 6.9523 0 004.95-2.05L28.8281 8.8286a3.999 3.999 0 000-5.6567zM10.91 18.26l2.8286 2.8286L11.6172 23.21 8.7886 20.3818zM8.2915 26.5356A4.9665 4.9665 0 014.7559 28H4v-.7588a4.9669 4.9669 0 011.4644-3.5351l1.91-1.91 2.8286 2.8281zM27.4141 7.4141L15.1528 19.6748l-2.8286-2.8286 12.2617-12.26a2.0473 2.0473 0 012.8282 0 1.9995 1.9995 0 010 2.8282zM14 2a2.9948 2.9948 0 00-2.8157 2H7.8157A2.9925 2.9925 0 104 7.8154v3.3687a3 3 0 102 0V7.8159A2.9959 2.9959 0 007.8157 6h3.3686A2.9947 2.9947 0 1014 2zM5 15a1 1 0 111-1A1.0008 1.0008 0 015 15zM5 6A1 1 0 116 5 1.0008 1.0008 0 015 6zm9 0a1 1 0 111-1A1.0008 1.0008 0 0114 6z"
+  })), children);
+})));
+if (false) {}
+const BuildTool = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BuildTool(_ref82, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref82;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path198 || (_path198 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,14h-1V7c0-1.1-0.9-2-2-2h-6v2h6v7h-1c-1.1,0-2,0.9-2,2v9H9.9c-0.4-1.4-1.5-2.5-2.9-2.9V7h6.2l-2.6,2.6L12,11l5-5l-5-5 l-1.4,1.4L13.2,5H7C5.9,5,5,5.9,5,7v15.1c-1.7,0.4-3,2-3,3.9c0,2.2,1.8,4,4,4c1.9,0,3.4-1.3,3.9-3H22v1c0,1.1,0.9,2,2,2h4 c1.1,0,2-0.9,2-2V16C30,14.9,29.1,14,28,14z M6,28c-1.1,0-2-0.9-2-2s0.9-2,2-2c1.1,0,2,0.9,2,2S7.1,28,6,28z M24,28V16h4v12H24z"
+  })), children);
+})));
+if (false) {}
+const Building = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Building(_ref83, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref83;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path199 || (_path199 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,2H16a2.002,2.002,0,0,0-2,2V14H4a2.002,2.002,0,0,0-2,2V30H30V4A2.0023,2.0023,0,0,0,28,2ZM9,28V21h4v7Zm19,0H15V20a1,1,0,0,0-1-1H8a1,1,0,0,0-1,1v8H4V16H16V4H28Z"
+  })), _path200 || (_path200 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 8H20V10H18zM24 8H26V10H24zM18 14H20V16H18zM24 14H26V16H24zM18 20H20V22H18zM24 20H26V22H24z"
+  })), children);
+})));
+if (false) {}
+const BuildingInsights_1 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BuildingInsights_1(_ref84, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref84;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path201 || (_path201 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,2H16a2.002,2.002,0,0,0-2,2V14H4a2.002,2.002,0,0,0-2,2V30H30V4A2.0023,2.0023,0,0,0,28,2ZM9,28V21h4v7Zm19,0H15V20a1,1,0,0,0-1-1H8a1,1,0,0,0-1,1v8H4V16H16V4H28Z"
+  })), _path202 || (_path202 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 8H20V10H18zM24 8H26V10H24zM18 14H20V16H18zM24 14H26V16H24zM18 20H20V22H18zM24 20H26V22H24zM9 12H7a5.0059 5.0059 0 015-5V9A3.0033 3.0033 0 009 12zM4 12H2A10.0114 10.0114 0 0112 2V4A8.0092 8.0092 0 004 12z"
+  })), children);
+})));
+if (false) {}
+const BuildingInsights_2 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BuildingInsights_2(_ref85, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref85;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path203 || (_path203 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,2H16a2.002,2.002,0,0,0-2,2V14H4a2.002,2.002,0,0,0-2,2V30H30V4A2.0023,2.0023,0,0,0,28,2ZM9,28V21h4v7Zm19,0H15V20a1,1,0,0,0-1-1H8a1,1,0,0,0-1,1v8H4V16H16V4H28Z"
+  })), _path204 || (_path204 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 8H20V10H18zM24 8H26V10H24zM18 14H20V16H18zM24 14H26V16H24zM18 20H20V22H18zM24 20H26V22H24zM5.5 12a3.5 3.5 0 010-7h.627A4.0062 4.0062 0 0110 2h2V4L10 4A2.0023 2.0023 0 008 6V7H5.5a1.5 1.5 0 000 3H12v2z"
+  })), children);
+})));
+if (false) {}
+const BuildingInsights_3 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BuildingInsights_3(_ref86, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref86;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path205 || (_path205 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,2H16a2.002,2.002,0,0,0-2,2V14H4a2.002,2.002,0,0,0-2,2V30H30V4A2.0023,2.0023,0,0,0,28,2ZM9,28V21h4v7Zm19,0H15V20a1,1,0,0,0-1-1H8a1,1,0,0,0-1,1v8H4V16H16V4H28Z"
+  })), _path206 || (_path206 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 8H20V10H18zM24 8H26V10H24zM18 14H20V16H18zM24 14H26V16H24zM18 20H20V22H18zM24 20H26V22H24zM2 10H7V12H2zM10 2H12V7H10z"
+  })), _path207 || (_path207 = /*#__PURE__*/React.createElement("path", {
+    d: "M5.5 3.964H7.5V9.035H5.5z",
+    transform: "rotate(-45 6.5 6.5)"
+  })), children);
+})));
+if (false) {}
+const Bullhorn = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bullhorn(_ref87, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref87;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path208 || (_path208 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,6V8.17L5.64,11.87a2,2,0,0,0-1.64,2v4.34a2,2,0,0,0,1.64,2L8,20.56V24a2,2,0,0,0,2,2h8a2,2,0,0,0,2-2V22.74l6,1.09V26h2V6ZM18,24H10V20.93l8,1.45ZM6,18.17V13.83L26,10.2V21.8Z"
+  })), children);
+})));
+if (false) {}
+const Buoy = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Buoy(_ref88, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref88;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path209 || (_path209 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,22a3.4376,3.4376,0,0,1-3.0513-2.3164,1,1,0,0,0-1.8955-.0049A3.44,3.44,0,0,1,20,22a3.4376,3.4376,0,0,1-3.0513-2.3164A1.007,1.007,0,0,0,16,19a.9894.9894,0,0,0-.9468.6787A3.44,3.44,0,0,1,12,22a3.4376,3.4376,0,0,1-3.0513-2.3164A1.007,1.007,0,0,0,8,19a.971.971,0,0,0-.9468.6787A3.44,3.44,0,0,1,4,22H2v2H4a4.9316,4.9316,0,0,0,4-1.9873,5.5965,5.5965,0,0,0,1,.9912,7,7,0,0,0,14,0,5.5965,5.5965,0,0,0,1-.9912A4.9316,4.9316,0,0,0,28,24h2V22ZM16,28a5.0021,5.0021,0,0,1-4.9075-4.0854A5.2252,5.2252,0,0,0,12,24a4.9316,4.9316,0,0,0,4-1.9873A4.9316,4.9316,0,0,0,20,24a5.2252,5.2252,0,0,0,.9075-.0854A5.0021,5.0021,0,0,1,16,28Z"
+  })), _path210 || (_path210 = /*#__PURE__*/React.createElement("path", {
+    d: "M20.07,7.8345A2.0116,2.0116,0,0,0,18.0771,6H17V2H15V6H13.9175a1.9949,1.9949,0,0,0-1.9859,1.7715L10.2805,19h2.021l.7346-5h5.9212l.7351,5h2.021ZM13.33,12l.5877-4,4.167.0625L18.6633,12Z"
+  })), children);
+})));
+if (false) {}
+const Bus = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Bus(_ref89, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref89;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path211 || (_path211 = /*#__PURE__*/React.createElement("path", {
+    d: "M27 11H29V15H27zM3 11H5V15H3zM20 20H22V22H20zM10 20H12V22H10z"
+  })), _path212 || (_path212 = /*#__PURE__*/React.createElement("path", {
+    d: "M21,4H11A5.0059,5.0059,0,0,0,6,9V23a2.0023,2.0023,0,0,0,2,2v3h2V25H22v3h2V25a2.0027,2.0027,0,0,0,2-2V9A5.0059,5.0059,0,0,0,21,4Zm3,6,.0009,6H8V10ZM11,6H21a2.995,2.995,0,0,1,2.8157,2H8.1843A2.995,2.995,0,0,1,11,6ZM8,23V18H24.0012l.0008,5Z"
+  })), children);
+})));
+if (false) {}
+const BusinessProcesses = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function BusinessProcesses(_ref90, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref90;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path213 || (_path213 = /*#__PURE__*/React.createElement("path", {
+    d: "m23.0002,31c-.0095,0-.0188-.0001-.0283-.0004-.4102-.0115-.7715-.2723-.9116-.6578l-3.1365-8.6252-2.0046,4.6774c-.1577.3677-.519.6061-.9192.6061h-4v-2h3.3406l2.7402-6.3939c.1619-.3772.5479-.6166.9473-.6057.4102.0115.7715.2723.9116.6578l3.1365,8.6252,2.0046-4.6774c.1577-.3677.519-.6061.9192-.6061h4v2h-3.3406l-2.7402,6.3939c-.158.3684-.52.6061-.9189.6061Z"
+  })), _path214 || (_path214 = /*#__PURE__*/React.createElement("path", {
+    d: "m9,25h-5v-15h24v9h2v-9c0-1.103-.8975-2-2-2h-6V4c0-1.103-.8975-2-2-2h-8c-1.103,0-2,.897-2,2v4h-6c-1.103,0-2,.897-2,2v15c0,1.1025.897,2,2,2h5v-2ZM12,4h8v4h-8V4Z"
+  })), children);
+})));
+if (false) {}
+const ButtonCentered = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function ButtonCentered(_ref91, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref91;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path215 || (_path215 = /*#__PURE__*/React.createElement("path", {
+    d: "M9 15H23V17H9z"
+  })), _path216 || (_path216 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,22H4a2.0021,2.0021,0,0,1-2-2V12a2.0021,2.0021,0,0,1,2-2H28a2.0021,2.0021,0,0,1,2,2v8A2.0021,2.0021,0,0,1,28,22ZM4,12v8H28V12Z"
+  })), children);
+})));
+if (false) {}
+const ButtonFlushLeft = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function ButtonFlushLeft(_ref92, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref92;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path217 || (_path217 = /*#__PURE__*/React.createElement("path", {
+    d: "M6 15H20V17H6z"
+  })), _path218 || (_path218 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,22H4c-1.103,0-2-0.897-2-2v-8c0-1.103,0.897-2,2-2h24c1.103,0,2,0.897,2,2v8C30,21.103,29.103,22,28,22z M4,12v8h24v-8 H4z"
+  })), children);
+})));
+if (false) {}
+const CabinCare = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CabinCare(_ref93, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref93;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path219 || (_path219 = /*#__PURE__*/React.createElement("path", {
+    d: "M27.3022 2a2.6617 2.6617 0 00-1.9079.8059l-.3931.4053-.397-.4053a2.6613 2.6613 0 00-3.8158 0 2.7992 2.7992 0 000 3.8963L25.0012 11 29.21 6.7022a2.7992 2.7992 0 000-3.8963A2.6613 2.6613 0 0027.3022 2zM23.8218 18H15.083L11.8643 5.9653a4 4 0 00-7.7276 2.07L8.5454 24.5168A2 2 0 0010.4775 26H19v2H4v2H19a2 2 0 002-2V26h3a4.0046 4.0046 0 003.98-4.4A4.1214 4.1214 0 0023.8218 18zM24 24H10.4776L6.0686 7.5181A2 2 0 119.9324 6.4829L13.5466 20H24a2 2 0 010 4z"
+  })), children);
+})));
+if (false) {}
+const CabinCareAlert = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CabinCareAlert(_ref94, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref94;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path220 || (_path220 = /*#__PURE__*/React.createElement("path", {
+    d: "M24 2H26V9H24z"
+  })), _rect || (_rect = /*#__PURE__*/React.createElement("rect", {
+    width: "3",
+    height: "3",
+    x: "23.5",
+    y: "11",
+    rx: "1.5"
+  })), _path221 || (_path221 = /*#__PURE__*/React.createElement("path", {
+    d: "M23.8218,18H15.083L11.8643,5.9653a4,4,0,0,0-7.7276,2.07L8.5454,24.5168A2,2,0,0,0,10.4775,26H19v2H4v2H19a2,2,0,0,0,2-2V26h3a4.0046,4.0046,0,0,0,3.98-4.4A4.1215,4.1215,0,0,0,23.8218,18ZM24,24H10.4775L6.0686,7.5181A2,2,0,1,1,9.9324,6.4829L13.5466,20H24a2,2,0,0,1,0,4Z"
+  })), children);
+})));
+if (false) {}
+const CabinCareAlt = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CabinCareAlt(_ref95, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref95;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path222 || (_path222 = /*#__PURE__*/React.createElement("path", {
+    d: "M30 25V23H20.7676l-.8-3H27V18H19.4348l-2.469-9.2578-1.9316.5156 3.8017 14.2568A2.0037 2.0037 0 0020.77 25H22v3H10V25h6V23H6.7676l-.8-3H13V18H5.4348L2.9658 8.7422l-1.9316.5156L4.8359 23.5146A2.0037 2.0037 0 006.77 25H8v3H2v2H30V28H24V25zM27.303 2a2.6613 2.6613 0 00-1.9079.8059L25 3.2112l-.3951-.4053a2.6612 2.6612 0 00-3.8157 0 2.7991 2.7991 0 000 3.8963L25 11l4.2108-4.2978a2.7991 2.7991 0 000-3.8963A2.6613 2.6613 0 0027.303 2z"
+  })), children);
+})));
+if (false) {}
+const Cad = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Cad(_ref96, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref96;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path223 || (_path223 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 9H14a2 2 0 00-2 2V23h2V18h4v5h2V11A2 2 0 0018 9zm-4 7V11h4v5zM26 23H22V9h4a4 4 0 014 4v6A4 4 0 0126 23zm-2-2h2a2 2 0 002-2V13a2 2 0 00-2-2H24zM10 23H4a2 2 0 01-2-2V11A2 2 0 014 9h6v2H4V21h6z"
+  })), children);
+})));
+if (false) {}
+const Cafe = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Cafe(_ref97, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref97;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path224 || (_path224 = /*#__PURE__*/React.createElement("path", {
+    d: "M2 28H30V30H2zM24.5 11H8a2.002 2.002 0 00-2 2v8a5.0059 5.0059 0 005 5h8a5.0059 5.0059 0 005-5V20h.5a4.5 4.5 0 000-9zM22 21a3.0033 3.0033 0 01-3 3H11a3.0033 3.0033 0 01-3-3V13H22zm2.5-3H24V13h.5a2.5 2.5 0 010 5zM19 9H17V8.854a1.9883 1.9883 0 00-1.1055-1.7886L13.2109 5.7236A3.9788 3.9788 0 0111 2.146V1h2V2.146a1.9892 1.9892 0 001.1055 1.7886l2.6836 1.3418A3.9792 3.9792 0 0119 8.854z"
+  })), children);
+})));
+if (false) {}
+const Calculation = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Calculation(_ref98, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref98;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path225 || (_path225 = /*#__PURE__*/React.createElement("path", {
+    d: "M14 8L10 8 10 4 8 4 8 8 4 8 4 10 8 10 8 14 10 14 10 10 14 10 14 8zM4 19H14V21H4zM4 24H14V26H4zM18 8H28V10H18zM24.41 22L28 18.41 26.59 17 23 20.59 19.41 17 18 18.41 21.59 22 18 25.59 19.41 27 23 23.41 26.59 27 28 25.59 24.41 22z"
+  })), children);
+})));
+if (false) {}
+const CalculationAlt = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CalculationAlt(_ref99, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref99;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path226 || (_path226 = /*#__PURE__*/React.createElement("path", {
+    d: "M19 13H25V15H19zM13 21L11 21 11 19 9 19 9 21 7 21 7 23 9 23 9 25 11 25 11 23 13 23 13 21zM7 9H13V11H7zM19 17H25V19H19z"
+  })), _path227 || (_path227 = /*#__PURE__*/React.createElement("path", {
+    d: "M27,3H5A2.0023,2.0023,0,0,0,3,5V27a2.0023,2.0023,0,0,0,2,2H27a2.0023,2.0023,0,0,0,2-2V5A2.0023,2.0023,0,0,0,27,3ZM15,5V15H5V5ZM5,17H15V27H5ZM17,27V5H27V27Z"
+  })), children);
+})));
+if (false) {}
+const Calculator = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Calculator(_ref100, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref100;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path228 || (_path228 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,4V28H6V4H26m0-2H6A2,2,0,0,0,4,4V28a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V4A2,2,0,0,0,26,2Z"
+  })), _path229 || (_path229 = /*#__PURE__*/React.createElement("path", {
+    d: "M9 23H11V25H9zM21 23H23V25H21zM9 18H11V20H9zM21 18H23V20H21zM9 13H11V15H9zM15 23H17V25H15zM15 18H17V20H15zM15 13H17V15H15zM21 13H23V15H21zM9 7H23V10H9z"
+  })), children);
+})));
+if (false) {}
+const CalculatorCheck = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CalculatorCheck(_ref101, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref101;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path230 || (_path230 = /*#__PURE__*/React.createElement("path", {
+    d: "M24 26.59L21.41 24 20 25.41 24 29.41 31 22.41 29.59 21 24 26.59zM15 23H17V25H15zM9 23H11V25H9zM21 18H23V20H21zM15 18H17V20H15zM9 18H11V20H9zM21 13H23V15H21zM15 13H17V15H15zM9 13H11V15H9zM9 7H23V10H9z"
+  })), _path231 || (_path231 = /*#__PURE__*/React.createElement("path", {
+    d: "M17,30H6.0046A2.007,2.007,0,0,1,4,27.9951V3.9961A1.9984,1.9984,0,0,1,5.9961,2H26.0037A1.9985,1.9985,0,0,1,28,3.9961V18H26V4H6V28H17Z"
+  })), children);
+})));
+if (false) {}
+const Calendar = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Calendar(_ref102, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref102;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path232 || (_path232 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,4h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h20c1.1,0,2-0.9,2-2V6C28,4.9,27.1,4,26,4z M26,26H6V12h20 V26z M26,10H6V6h4v2h2V6h8v2h2V6h4V10z"
+  })), children);
+})));
+if (false) {}
+const CalendarAdd = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CalendarAdd(_ref103, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref103;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _switch || (_switch = /*#__PURE__*/React.createElement("switch", null, /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("path", {
+    d: "M30 22L24 22 24 16 22 16 22 22 16 22 16 24 22 24 22 30 24 30 24 24 30 24z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M28,6c0-1.1-0.9-2-2-2h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h8v-2H6V6h4v2h2V6h8v2h2V6h4v8h2V6z"
+  })))), children);
+})));
+if (false) {}
+const CalendarAddAlt = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CalendarAddAlt(_ref104, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref104;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _switch2 || (_switch2 = /*#__PURE__*/React.createElement("switch", null, /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("path", {
+    d: "M26 21L23 21 23 18 21 18 21 21 18 21 18 23 21 23 21 26 23 26 23 23 26 23z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M22,30c-4.4,0-8-3.6-8-8s3.6-8,8-8s8,3.6,8,8S26.4,30,22,30z M22,16c-3.3,0-6,2.7-6,6s2.7,6,6,6s6-2.7,6-6S25.3,16,22,16z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M28,6c0-1.1-0.9-2-2-2h-4V2h-2v2h-8V2h-2v2H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h6v-2H6V6h4v2h2V6h8v2h2V6h4v6h2V6z"
+  })))), children);
+})));
+if (false) {}
+const CalendarHeatMap = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CalendarHeatMap(_ref105, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref105;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path233 || (_path233 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,4H22V2H20V4H12V2H10V4H6A2.0025,2.0025,0,0,0,4,6V26a2.0025,2.0025,0,0,0,2,2H26a2.0025,2.0025,0,0,0,2-2V6A2.0025,2.0025,0,0,0,26,4ZM6,6h4V8h2V6h8V8h2V6h4l0,4H6Zm0,6h5v6H6ZM19,26H13V20h6Zm0-8H13V12h6Zm2,8V20h5l.0012,6Z"
+  })), children);
+})));
+if (false) {}
+const CalendarSettings = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CalendarSettings(_ref106, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref106;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path234 || (_path234 = /*#__PURE__*/React.createElement("path", {
+    d: "M30,23V21H27.91a5.9592,5.9592,0,0,0-1.0244-2.4707L28.364,17.05,26.95,15.6362l-1.4788,1.4785A5.9584,5.9584,0,0,0,23,16.09V14H21v2.09a5.9584,5.9584,0,0,0-2.4709,1.0244L17.05,15.6362,15.636,17.05l1.4787,1.479A5.9618,5.9618,0,0,0,16.09,21H14v2h2.09a5.9618,5.9618,0,0,0,1.0244,2.4707L15.636,26.95,17.05,28.3638l1.4788-1.4785A5.9584,5.9584,0,0,0,21,27.91V30h2V27.91a5.9584,5.9584,0,0,0,2.4709-1.0244L26.95,28.3638,28.364,26.95l-1.4787-1.479A5.9592,5.9592,0,0,0,27.91,23Zm-8,3a4,4,0,1,1,4-4A4.0045,4.0045,0,0,1,22,26Z"
+  })), _path235 || (_path235 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,6a2,2,0,0,0-2-2H22V2H20V4H12V2H10V4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2h4V26H6V6h4V8h2V6h8V8h2V6h4v6h2Z"
+  })), children);
+})));
+if (false) {}
+const CalendarTools = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CalendarTools(_ref107, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref107;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path236 || (_path236 = /*#__PURE__*/React.createElement("path", {
+    d: "M23.981,24.4333A3.9549,3.9549,0,0,0,26,25a4.0045,4.0045,0,0,0,4-4,3.9427,3.9427,0,0,0-.1492-1.0228l-2.4367,2.4369-.0005-.0005a1.9991,1.9991,0,1,1-2.8272-2.8272l-.0005-.0005,2.4368-2.4368A3.95,3.95,0,0,0,26,17a4.0045,4.0045,0,0,0-4,4,3.9544,3.9544,0,0,0,.5669,2.0191L17,28.586,18.4141,30Z"
+  })), _path237 || (_path237 = /*#__PURE__*/React.createElement("path", {
+    fillRule: "evenodd",
+    d: "M26,4H22V2H20V4H12V2H10V4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2h8V26H6V6h4V8h2V6h8V8h2V6h4v8h2V6A2,2,0,0,0,26,4Z"
+  })), children);
+})));
+if (false) {}
+const Calibrate = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Calibrate(_ref108, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref108;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path238 || (_path238 = /*#__PURE__*/React.createElement("path", {
+    d: "M28.83,21.17,25,17.37l.67-.67a1,1,0,0,0,0-1.41l-6-6a1,1,0,0,0-1.41,0h0l-.79.79L10.71,3.29a1,1,0,0,0-1.41,0h0l-4,4-.12.15-4,6a1,1,0,0,0,.12,1.26l3,3a1,1,0,0,0,1.42,0L10,13.41l2.09,2.09-4.8,4.79a1,1,0,0,0,0,1.41l2,2A1,1,0,0,0,10,24a1,1,0,0,0,.52-.15l4.33-2.6,2.44,2.45a1,1,0,0,0,1.41,0h0l.67-.7,3.79,3.83a4,4,0,0,0,5.66-5.66ZM10,10.58l-5,5L3.29,13.87,6.78,8.63,10,5.41l6.09,6.09L13.5,14.08Zm8,11-2.84-2.84-5,3L9.42,21,19,11.41,23.59,16Zm9.42,3.83a2,2,0,0,1-2.83,0h0l-3.8-3.79,2.83-2.83,3.8,3.79a2,2,0,0,1,0,2.83Z"
+  })), children);
+})));
+if (false) {}
+const Calls = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Calls(_ref109, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref109;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path239 || (_path239 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 14c1.1028 0 2 .8972 2 2s-.8972 2-2 2-2-.8972-2-2 .8972-2 2-2m0-2c-2.2091 0-4 1.7909-4 4s1.7909 4 4 4 4-1.7909 4-4-1.7909-4-4-4h0zM15 11l-1.4143 1.4141 2.5859 2.5859H7.8157c-.4141-1.1611-1.5137-2-2.8157-2-1.6543 0-3 1.3457-3 3s1.3457 3 3 3c1.302 0 2.4016-.8389 2.8157-2h8.356l-2.5859 2.5859 1.4143 1.4141 5-5-5-5zm-10 6c-.5515 0-1-.4487-1-1s.4485-1 1-1 1 .4487 1 1-.4485 1-1 1z"
+  })), children);
+})));
+if (false) {}
+const CallsAll = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CallsAll(_ref110, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref110;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path240 || (_path240 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 12c-2.2091 0-4 1.7908-4 4s1.7909 4 4 4 4-1.7909 4-4-1.7908-4-4-4zm0 6c-1.1028 0-2-.8972-2-2s.8972-2 2-2 2 .8972 2 2-.8972 2-2 2zM15 21v2h2.5859l-2.3008 2.3008c-.3911-.1875-.8235-.3008-1.2852-.3008-1.6543 0-3 1.3457-3 3s1.3457 3 3 3 3-1.3457 3-3c0-.4619-.1135-.894-.3005-1.2852l2.3005-2.3008v2.5859h2v-6h-6zm-1 8c-.5515 0-1-.4487-1-1s.4485-1 1-1 1 .4487 1 1-.4485 1-1 1zM11.4143 11.4141l-1.4143 1.4146 2.1716 2.1714h-4.356c-.4141-1.1611-1.5137-2-2.8157-2-1.6543 0-3 1.3457-3 3s1.3457 3 3 3c1.302 0 2.4016-.8389 2.8157-2h4.356l-2.1716 2.1714 1.4143 1.4146 4.5857-4.5859-4.5857-4.5859zm-6.4143 5.5859c-.5515 0-1-.4487-1-1s.4485-1 1-1 1 .4487 1 1-.4485 1-1 1zM19 5v2.5859l-2.3005-2.3008c.187-.3911.3005-.8232.3005-1.2852 0-1.6543-1.3457-3-3-3s-3 1.3457-3 3 1.3457 3 3 3c.4617 0 .894-.1133 1.2852-.3008l2.3008 2.3008h-2.5859v2h6v-6h-2zm-6-1c0-.5513.4485-1 1-1s1 .4487 1 1-.4485 1-1 1-1-.4487-1-1z"
+  })), children);
+})));
+if (false) {}
+const CallsIncoming = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CallsIncoming(_ref111, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref111;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path241 || (_path241 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 12c-2.2091 0-4 1.7908-4 4s1.7909 4 4 4 4-1.7909 4-4-1.7908-4-4-4zm0 6c-1.1028 0-2-.8972-2-2s.8972-2 2-2 2 .8972 2 2-.8972 2-2 2zM15 20l-1.4143 1.4141 2.5859 2.5859H7.8157c-.4141-1.1611-1.5137-2-2.8157-2-1.6543 0-3 1.3457-3 3s1.3457 3 3 3c1.302 0 2.4016-.8389 2.8157-2h8.356l-2.5859 2.5859 1.4143 1.4141 5-5-5-5zm-10 6c-.5515 0-1-.4487-1-1s.4485-1 1-1 1 .4487 1 1-.4485 1-1 1zM15 4l-1.4143 1.4141 2.5859 2.5859H7.8157c-.4141-1.1611-1.5137-2-2.8157-2-1.6543 0-3 1.3457-3 3s1.3457 3 3 3c1.302 0 2.4016-.8389 2.8157-2h8.356l-2.5859 2.5859 1.4143 1.4141 5-5-5-5zm-10 6c-.5515 0-1-.4487-1-1s.4485-1 1-1 1 .4487 1 1-.4485 1-1 1z"
+  })), children);
+})));
+if (false) {}
+const Camera = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Camera(_ref112, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref112;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path242 || (_path242 = /*#__PURE__*/React.createElement("path", {
+    d: "M29,26H3a1,1,0,0,1-1-1V8A1,1,0,0,1,3,7H9.46l1.71-2.55A1,1,0,0,1,12,4h8a1,1,0,0,1,.83.45L22.54,7H29a1,1,0,0,1,1,1V25A1,1,0,0,1,29,26ZM4,24H28V9H22a1,1,0,0,1-.83-.45L19.46,6H12.54L10.83,8.55A1,1,0,0,1,10,9H4Z"
+  })), _path243 || (_path243 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,22a6,6,0,1,1,6-6A6,6,0,0,1,16,22Zm0-10a4,4,0,1,0,4,4A4,4,0,0,0,16,12Z"
+  })), children);
+})));
+if (false) {}
+const CameraAction = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CameraAction(_ref113, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref113;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path244 || (_path244 = /*#__PURE__*/React.createElement("path", {
+    d: "M12,23a6,6,0,1,1,6-6A6,6,0,0,1,12,23Zm0-10a4,4,0,1,0,4,4A4,4,0,0,0,12,13Z"
+  })), _path245 || (_path245 = /*#__PURE__*/React.createElement("path", {
+    d: "M29,27H3a1,1,0,0,1-1-1V6A1,1,0,0,1,3,5H29a1,1,0,0,1,1,1V26A1,1,0,0,1,29,27ZM4,25H28V7H4Z"
+  })), _path246 || (_path246 = /*#__PURE__*/React.createElement("path", {
+    d: "M19 9H26V11H19z"
+  })), _circle14 || (_circle14 = /*#__PURE__*/React.createElement("circle", {
+    cx: "12",
+    cy: "17",
+    r: "1"
+  })), children);
+})));
+if (false) {}
+const Campsite = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Campsite(_ref114, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref114;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path247 || (_path247 = /*#__PURE__*/React.createElement("path", {
+    d: "M27.5618,26,17.17,8.9277,19.5361,5.04,17.8281,4,16,7.0049,14.17,4l-1.708,1.04,2.3665,3.8877L4.438,26H2v2H30V26ZM16,10.8506,25.2207,26H17V18H15v8H6.7791Z"
+  })), children);
+})));
+if (false) {}
+const Car = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Car(_ref115, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref115;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path248 || (_path248 = /*#__PURE__*/React.createElement("path", {
+    d: "M29.3379,15.9336l-7.7324-2.7783L18.374,9.0967A2.99,2.99,0,0,0,16.0537,8H8.0576a2.9982,2.9982,0,0,0-2.48,1.3115L2.8662,13.2949A4.9884,4.9884,0,0,0,2,16.1074V24a1,1,0,0,0,1,1H5.1421a3.9806,3.9806,0,0,0,7.7158,0h6.2842a3.9806,3.9806,0,0,0,7.7158,0H29a1,1,0,0,0,1-1V16.875A1,1,0,0,0,29.3379,15.9336ZM9,26a2,2,0,1,1,2-2A2.0027,2.0027,0,0,1,9,26Zm14,0a2,2,0,1,1,2-2A2.0025,2.0025,0,0,1,23,26Zm5-3H26.8579a3.9806,3.9806,0,0,0-7.7158,0H12.8579a3.9806,3.9806,0,0,0-7.7158,0H4V16.1074A2.9977,2.9977,0,0,1,4.52,14.4189l2.711-3.9814A.9992.9992,0,0,1,8.0576,10h7.9961a.9928.9928,0,0,1,.7647.3545l3.3994,4.2685a1.0007,1.0007,0,0,0,.4443.3184L28,17.5781Z"
+  })), children);
+})));
+if (false) {}
+const CarFront = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CarFront(_ref116, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref116;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path249 || (_path249 = /*#__PURE__*/React.createElement("path", {
+    d: "M13 19H19V21H13z"
+  })), _path250 || (_path250 = /*#__PURE__*/React.createElement("path", {
+    d: "M25.4409,14,24.1687,9.45A2.009,2.009,0,0,0,22.2456,8H9.7544A2.0089,2.0089,0,0,0,7.8313,9.4507L6.5315,14H4v2H6v7a2.0025,2.0025,0,0,0,2,2v3h2V25H22v3h2V25a2.0025,2.0025,0,0,0,2-2V16h2V14ZM9.7544,10H22.2458l1.4285,5H8.3257ZM24,21v2H8V21h2V19H8V17H24v2H22v2Z"
+  })), children);
+})));
+if (false) {}
+const Carbon = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Carbon(_ref117, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref117;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path251 || (_path251 = /*#__PURE__*/React.createElement("path", {
+    d: "M13.5,30.8149a1.0011,1.0011,0,0,1-.4927-.13l-8.5-4.815A1,1,0,0,1,4,25V15a1,1,0,0,1,.5073-.87l8.5-4.815a1.0013,1.0013,0,0,1,.9854,0l8.5,4.815A1,1,0,0,1,23,15V25a1,1,0,0,1-.5073.87l-8.5,4.815A1.0011,1.0011,0,0,1,13.5,30.8149ZM6,24.417l7.5,4.2485L21,24.417V15.583l-7.5-4.2485L6,15.583Z"
+  })), _path252 || (_path252 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,17H26V7.583L18.5,3.3345,10.4927,7.87,9.5073,6.13l8.5-4.815a1.0013,1.0013,0,0,1,.9854,0l8.5,4.815A1,1,0,0,1,28,7Z"
+  })), children);
+})));
+if (false) {}
+const CarbonUiBuilder = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CarbonUiBuilder(_ref118, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref118;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path253 || (_path253 = /*#__PURE__*/React.createElement("path", {
+    d: "M24 28H30V30H24z"
+  })), _circle15 || (_circle15 = /*#__PURE__*/React.createElement("circle", {
+    cx: "21",
+    cy: "29",
+    r: "1"
+  })), _circle16 || (_circle16 = /*#__PURE__*/React.createElement("circle", {
+    cx: "29",
+    cy: "25",
+    r: "1"
+  })), _path254 || (_path254 = /*#__PURE__*/React.createElement("path", {
+    d: "M20 24H26V26H20z",
+    transform: "rotate(-180 23 25)"
+  })), _path255 || (_path255 = /*#__PURE__*/React.createElement("path", {
+    d: "M24 20H30V22H24z"
+  })), _circle17 || (_circle17 = /*#__PURE__*/React.createElement("circle", {
+    cx: "21",
+    cy: "21",
+    r: "1"
+  })), _path256 || (_path256 = /*#__PURE__*/React.createElement("path", {
+    d: "M21.4927,14.1299l-8.5-4.8149c-.3057-.1729-.6797-.1729-.9854,0L3.5073,14.1299c-.3135,.1777-.5073,.5098-.5073,.8701v10c0,.3604,.1938,.6924,.5073,.8701l8.5,4.8149,.9854-1.7402-7.9927-4.5278V15.583l7.5-4.2485,7.5,4.2485v2.417h2v-3c0-.3604-.1938-.6924-.5073-.8701Z"
+  })), _path257 || (_path257 = /*#__PURE__*/React.createElement("path", {
+    d: "M25,15h2V7c0-.3604-.1938-.6924-.5073-.8701L17.9927,1.3149c-.3057-.1729-.6797-.1729-.9854,0L8.5074,6.1299l.9854,1.7402L17.5,3.3345l7.5,4.2485v7.417Z"
+  })), children);
+})));
+if (false) {}
+const CarbonAccounting = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CarbonAccounting(_ref119, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref119;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path258 || (_path258 = /*#__PURE__*/React.createElement("path", {
+    d: "M29 26H23V22a2.002 2.002 0 012-2h2V18H23V16h4a2.0023 2.0023 0 012 2v2a2.0023 2.0023 0 01-2 2H25v2h4zM19 22H15a2.0023 2.0023 0 01-2-2V10a2.002 2.002 0 012-2h4a2.002 2.002 0 012 2V20A2.0023 2.0023 0 0119 22zM15 10V20h4V10zM11 22H5a2.0023 2.0023 0 01-2-2V10A2.002 2.002 0 015 8h6v2H5V20h6z"
+  })), children);
+})));
+if (false) {}
+const CarbonForAem = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CarbonForAem(_ref120, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref120;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle18 || (_circle18 = /*#__PURE__*/React.createElement("circle", {
+    cx: "7",
+    cy: "6",
+    r: "1",
+    strokeWidth: "0"
+  })), _circle19 || (_circle19 = /*#__PURE__*/React.createElement("circle", {
+    cx: "11",
+    cy: "6",
+    r: "1",
+    strokeWidth: "0"
+  })), _circle20 || (_circle20 = /*#__PURE__*/React.createElement("circle", {
+    cx: "28.5",
+    cy: "24.5",
+    r: "1.5",
+    strokeWidth: "0"
+  })), _circle21 || (_circle21 = /*#__PURE__*/React.createElement("circle", {
+    cx: "23.5",
+    cy: "27.5",
+    r: "1.5",
+    strokeWidth: "0"
+  })), _circle22 || (_circle22 = /*#__PURE__*/React.createElement("circle", {
+    cx: "18.5",
+    cy: "24.5",
+    r: "1.5",
+    strokeWidth: "0"
+  })), _circle23 || (_circle23 = /*#__PURE__*/React.createElement("circle", {
+    cx: "18.5",
+    cy: "19.5",
+    r: "1.5",
+    strokeWidth: "0"
+  })), _circle24 || (_circle24 = /*#__PURE__*/React.createElement("circle", {
+    cx: "23.5",
+    cy: "16.5",
+    r: "1.5",
+    strokeWidth: "0"
+  })), _circle25 || (_circle25 = /*#__PURE__*/React.createElement("circle", {
+    cx: "28.5",
+    cy: "19.5",
+    r: "1.5",
+    strokeWidth: "0"
+  })), _path259 || (_path259 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m28,2H4c-1.1046,0-2,.8954-2,2v20c0,1.1046.8954,2,2,2h9v-2H4v-14h24v4h2V4c0-1.1046-.8954-2-2-2Zm0,6H4v-4h24v4Z"
+  })), children);
+})));
+if (false) {}
+const CarbonForIbmDotcom = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CarbonForIbmDotcom(_ref121, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref121;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path260 || (_path260 = /*#__PURE__*/React.createElement("path", {
+    d: "M29.509,17.689l-6-3.55C23.352,14.046,23.176,14,23,14s-0.352,0.046-0.509,0.14l-6,3.55C16.187,17.869,16,18.196,16,18.55 v6.9c0,0.354,0.187,0.681,0.491,0.86l6,3.55C22.648,29.954,22.824,30,23,30s0.352-0.046,0.509-0.14l6-3.55 C29.813,26.131,30,25.804,30,25.45v-6.9C30,18.196,29.813,17.869,29.509,17.689z M28,24.88l-5,2.958l-5-2.958v-5.76l5-2.958l5,2.958 V24.88z"
+  })), _circle26 || (_circle26 = /*#__PURE__*/React.createElement("circle", {
+    cx: "6",
+    cy: "6",
+    r: "1"
+  })), _circle27 || (_circle27 = /*#__PURE__*/React.createElement("circle", {
+    cx: "9",
+    cy: "6",
+    r: "1"
+  })), _path261 || (_path261 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,2H4C2.897,2,2,2.897,2,4v20c0,1.103,0.897,2,2,2h9v-2H4V10h24v4h2V4C30,2.897,29.103,2,28,2z M4,8V4h24v4H4z"
+  })), children);
+})));
+if (false) {}
+const CarbonForIbmProduct = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CarbonForIbmProduct(_ref122, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref122;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path262 || (_path262 = /*#__PURE__*/React.createElement("path", {
+    d: "M22.509,12.689l-6-3.55C16.352,9.046,16.176,9,16,9s-0.352,0.046-0.509,0.14l-6,3.55C9.187,12.869,9,13.196,9,13.55v6.9 c0,0.354,0.187,0.681,0.491,0.86l6,3.55C15.648,24.954,15.824,25,16,25s0.352-0.046,0.509-0.14l6-3.55 C22.813,21.131,23,20.804,23,20.45v-6.9C23,13.196,22.813,12.869,22.509,12.689z M21,19.88l-5,2.958l-5-2.958v-5.76l5-2.958l5,2.958 V19.88z"
+  })), _path263 || (_path263 = /*#__PURE__*/React.createElement("path", {
+    d: "M6 20.184V11.07l6.2-3.664-1.017-1.722L4.491 9.639C4.187 9.819 4 10.146 4 10.5v9.684C2.839 20.598 2 21.698 2 23c0 1.654 1.346 3 3 3s3-1.346 3-3C8 21.698 7.161 20.598 6 20.184zM5 24c-.551 0-1-.448-1-1s.449-1 1-1 1 .448 1 1S5.551 24 5 24zM27 20c-1.654 0-3 1.346-3 3 0 .353.072.687.185 1.002L16 28.838l-6.404-3.784-1.017 1.722 6.912 4.084C15.648 30.954 15.824 31 16 31s.352-.046.509-.139l8.96-5.295C25.919 25.835 26.439 26 27 26c1.654 0 3-1.346 3-3S28.654 20 27 20zM27 24c-.551 0-1-.448-1-1s.449-1 1-1 1 .448 1 1S27.551 24 27 24zM16 7c.731 0 1.392-.273 1.913-.708L26 11.071V18h2v-7.5c0-.354-.187-.681-.491-.861l-8.567-5.062C18.978 4.39 19 4.198 19 4c0-1.654-1.346-3-3-3s-3 1.346-3 3S14.346 7 16 7zM16 3c.551 0 1 .448 1 1s-.449 1-1 1-1-.448-1-1S15.449 3 16 3z"
+  })), children);
+})));
+if (false) {}
+const CarbonForMobile = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CarbonForMobile(_ref123, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref123;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path264 || (_path264 = /*#__PURE__*/React.createElement("path", {
+    d: "M32 14h-2v-5.9258l-5.5039-3.2104 1.0078-1.7275 6 3.5c.3071.1792.4961.5083.4961.8638v6.5zM20 22c-.1743 0-.3481-.0454-.5039-.1362l-6-3.5c-.3071-.1792-.4961-.5083-.4961-.8638v-7c0-.3555.189-.6846.4961-.8638l6-3.5c.3115-.1816.6963-.1816 1.0078 0l6 3.5c.3071.1792.4961.5083.4961.8638v7c0 .3555-.189.6846-.4961.8638l-6 3.5c-.1558.0908-.3296.1362-.5039.1362zm-5-5.0742l5 2.9165 5-2.9165v-5.8516l-5-2.9165-5 2.9165v5.8516z"
+  })), _circle28 || (_circle28 = /*#__PURE__*/React.createElement("circle", {
+    cx: "12.5",
+    cy: "24.5",
+    r: "1.5"
+  })), _path265 || (_path265 = /*#__PURE__*/React.createElement("path", {
+    d: "m19,30H6c-1.1028,0-2-.8972-2-2V4c0-1.1028.8972-2,2-2h13v2H6v24h13v-4h2v4c0,1.1028-.8972,2-2,2Z"
+  })), children);
+})));
+if (false) {}
+const CarbonForSalesforce = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CarbonForSalesforce(_ref124, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref124;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path266 || (_path266 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m29.51,17.69l-6-3.55c-.16-.09-.33-.14-.51-.14s-.35.05-.51.14l-6,3.55c-.3.18-.49.51-.49.86v6.9c0,.35.19.68.49.86l6,3.55c.16.09.33.14.51.14s.35-.05.51-.14l6-3.55c.3-.18.49-.51.49-.86v-6.9c0-.35-.19-.68-.49-.86Zm-1.51,7.19l-5,2.96-5-2.96v-5.76l5-2.96,5,2.96v5.76Z"
+  })), _path267 || (_path267 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m23.4,4.47c-.65,0-1.28.09-1.88.27-1.06-1.36-2.68-2.17-4.4-2.17-1.17,0-2.28.36-3.22,1.03-1.11-1.02-2.57-1.6-4.09-1.6h-.01c-1.62,0-3.14.63-4.29,1.78-1.14,1.14-1.76,2.65-1.76,4.25,0,.56.08,1.1.23,1.63-1.24,1.02-1.98,2.55-1.97,4.18,0,2.97,2.39,5.39,5.34,5.39h.28c.98,1.81,2.89,2.98,4.99,2.98h0c.47,0,.94-.06,1.38-.17v-2.11c-.43.18-.9.28-1.38.28h0c-1.53,0-2.92-.97-3.44-2.4l-.3-.81-.84.17c-.23.05-.46.07-.69.07-1.84,0-3.34-1.53-3.34-3.4,0-1.2.64-2.33,1.68-2.94l.77-.45-.36-.82c-.23-.51-.34-1.05-.34-1.61,0-1.07.41-2.07,1.17-2.83.77-.77,1.79-1.19,2.87-1.19h0c1.25,0,2.46.6,3.22,1.59l.6.79,1.2-.96c.65-.55,1.46-.85,2.3-.85,1.29,0,2.49.72,3.14,1.87l.45.8.83-.38c.58-.26,1.21-.39,1.86-.39,2.54,0,4.6,2.09,4.6,4.65,0,1.07-.37,2.04-.98,2.83l1.75,1.01c.77-1.09,1.22-2.41,1.22-3.84,0-3.67-2.96-6.65-6.6-6.65h.01Z"
+  })), children);
+})));
+if (false) {}
+const CaretDown = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function CaretDown(_ref125, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref125;
+  if (size === "glyph" || size === "glyph" || size === "glyphpx") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 8 4",
+      fill: "currentColor",
+      ...rest
+    }, _path268 || (_path268 = /*#__PURE__*/React.createElement("path", {
+      d: "M8 0L4 4 0 0z"
+    })), children);
+  }
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path269 || (_path269 = /*#__PURE__*/React.createElement("path", {
+    d: "M24 12L16 22 8 12z"
+  })), children);
+})));
+if (false) {}
+
+
+
+
+/***/ }),
+
+/***/ 6811:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   oE: () => (/* binding */ LogoInstagram)
+/* harmony export */ });
+/* unused harmony exports ListNumberedMirror, LoadBalancerApplication, LoadBalancerClassic, LoadBalancerGlobal, LoadBalancerListener, LoadBalancerLocal, LoadBalancerNetwork, LoadBalancerPool, LoadBalancerVpc, Location, LocationCompany, LocationCompanyFilled, LocationCurrent, LocationFilled, LocationHazard, LocationHazardFilled, LocationHeart, LocationHeartFilled, LocationInfo, LocationInfoFilled, LocationPerson, LocationPersonFilled, LocationSave, LocationStar, LocationStarFilled, Locked, LogicalPartition, Login, LogoAngular, LogoAnsibleCommunity, LogoDigg, LogoDiscord, LogoFacebook, LogoFigma, LogoFlickr, LogoGithub, LogoGitlab, LogoGlassdoor, LogoInvision, LogoJupyter, LogoKeybase, LogoKubernetes, LogoLinkedin, LogoLivestream, LogoMastodon, LogoMedium, LogoNpm, LogoOpenshift, LogoPinterest, LogoPython, LogoQuora, LogoRScript, LogoReact, LogoRedHatAnsible, LogoSketch, LogoSkype, LogoSlack, LogoSnapchat, LogoSvelte, LogoTumblr, LogoTwitter, LogoVmware, LogoVmwareAlt, LogoVue, LogoWechat, LogoX, LogoXing, LogoYelp, LogoYoutube, Logout, Loop, LowSeverity, Mac, MacCommand, MacOption, MacShift, MachineLearning, MachineLearningModel, MagicWand, MagicWandFilled, MailAll, MailReply, ManageProtection, ManagedSolutions, Map, MapBoundary, MapBoundaryVegetation, MapCenter, MapIdentify, MarineWarning, MathCurve, Maximize, MediaCast, MediaLibrary, MediaLibraryFilled, Medication, MedicationAlert, MedicationReminder, Menu, Merge, MergeNode, MessageQueue, Meter, MeterAlt, Microphone, MicrophoneFilled, MicrophoneOff, MicrophoneOffFilled, Microscope, Microservices_1, Microservices_2, Migrate, MigrateAlt, Milestone, MilitaryCamp, Minimize, Misuse, MisuseOutline, MixedRainHail, MlModelReference, Mobile, QMatrix, WatsonHealthMagnify, WatsonHealthMammogram */
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6779);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Icon_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5198);
+/**
+ * Copyright IBM Corp. 2016, 2023
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * Code generated by @carbon/icon-build-helpers. DO NOT EDIT.
+ */
+
+
+
+
+
+
+var _path, _path2, _path3, _path4, _path5, _path6, _path7, _path8, _path9, _path10, _path11, _path12, _path13, _path14, _path15, _path16, _path17, _path18, _circle, _circle2, _path19, _path20, _path21, _path22, _path23, _path24, _path25, _path26, _path27, _path28, _path29, _path30, _path31, _path32, _path33, _circle3, _path34, _path35, _path36, _path37, _path38, _path39, _path40, _circle4, _path41, _path42, _path43, _path44, _path45, _path46, _path47, _path48, _path49, _path50, _circle5, _circle6, _path51, _path52, _path53, _path54, _circle7, _path55, _path56, _path57, _path58, _path59, _path60, _path61, _path62, _path63, _path64, _path65, _path66, _path67, _path68, _path69, _path70, _path71, _path72, _path73, _path74, _path75, _path76, _path77, _path78, _path79, _path80, _path81, _path82, _path83, _path84, _path85, _path86, _path87, _path88, _path89, _path90, _path91, _path92, _path93, _path94, _path95, _path96, _path97, _path98, _path99, _path100, _path101, _path102, _path103, _path104, _path105, _path106, _path107, _path108, _path109, _path110, _path111, _path112, _path113, _path114, _path115, _path116, _path117, _path118, _path119, _path120, _path121, _path122, _path123, _path124, _path125, _path126, _path127, _path128, _path129, _path130, _path131, _path132, _circle8, _path133, _path134, _path135, _path136, _path137, _path138, _path139, _path140, _path141, _path142, _path143, _path144, _path145, _path146, _path147, _path148, _path149, _path150, _path151, _path152, _path153, _path154, _path155, _path156, _path157, _circle9, _path158, _path159, _circle10, _path160, _path161, _path162, _path163, _path164, _path165, _path166, _path167, _path168, _path169, _path170, _path171, _path172, _path173, _path174, _path175, _path176, _path177, _switch, _switch2, _path178, _path179, _path180, _path181, _path182, _path183, _path184, _path185, _path186, _path187, _path188, _path189, _path190, _path191, _path192, _path193, _path194, _path195, _circle11, _circle12, _path196, _path197, _path198, _path199, _path200;
+const didWarnAboutDeprecation = {};
+const ListNumberedMirror = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function ListNumberedMirror(_ref, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path || (_path = /*#__PURE__*/React.createElement("path", {
+    d: "M28 28h-6v-4c0-1.1.9-2 2-2h2v-2h-4v-2h4c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2h-2v2h4V28zM2 22H16V24H2zM26 12L26 4 24 4 24 5 22 5 22 7 24 7 24 12 22 12 22 14 24 14 26 14 28 14 28 12zM2 8H16V10H2z"
+  })), children);
+})));
+if (false) {}
+const LoadBalancerApplication = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LoadBalancerApplication(_ref2, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref2;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path2 || (_path2 = /*#__PURE__*/React.createElement("path", {
+    d: "M4 26H8V30H4zM14 26H18V30H14zM24 26H28V30H24zM25 16H17V14H15v2H7a2.0023 2.0023 0 00-2 2v6H7V18h8v6h2V18h8v6h2V18A2.0023 2.0023 0 0025 16zM9 2V12H23V2zm2 2h2v6H11zm10 6H15V4h6z"
+  })), children);
+})));
+if (false) {}
+const LoadBalancerClassic = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LoadBalancerClassic(_ref3, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref3;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path3 || (_path3 = /*#__PURE__*/React.createElement("path", {
+    d: "M4 26H8V30H4zM14 26H18V30H14zM24 26H28V30H24zM25 16H17V12H15v4H7a2.0023 2.0023 0 00-2 2v6H7V18h8v6h2V18h8v6h2V18A2.0023 2.0023 0 0025 16zM20 10V2H12v8zM14 8V4h4V8z"
+  })), children);
+})));
+if (false) {}
+const LoadBalancerGlobal = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LoadBalancerGlobal(_ref4, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref4;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path4 || (_path4 = /*#__PURE__*/React.createElement("path", {
+    d: "M4 26H8V30H4zM14 26H18V30H14zM24 26H28V30H24zM25 16H17V12H15v4H7a2.0023 2.0023 0 00-2 2v6H7V18h8v6h2V18h8v6h2V18A2.0023 2.0023 0 0025 16zM16 10a4 4 0 114-4A4.0045 4.0045 0 0116 10zm0-6a2 2 0 102 2A2.0021 2.0021 0 0016 4z"
+  })), children);
+})));
+if (false) {}
+const LoadBalancerListener = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LoadBalancerListener(_ref5, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref5;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path5 || (_path5 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 8H17V10H15zM19 8H21V10H19zM11 8H13V10H11zM25 16H17V13H15v3H7a2.0023 2.0023 0 00-2 2v6H7V18h8v6h2V18h8v6h2V18A2.0023 2.0023 0 0025 16zM4 26H8V30H4zM14 26H18V30H14zM24 26H28V30H24zM11 3H21V5H11z"
+  })), children);
+})));
+if (false) {}
+const LoadBalancerLocal = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LoadBalancerLocal(_ref6, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref6;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path6 || (_path6 = /*#__PURE__*/React.createElement("path", {
+    d: "M25 16H17V10H15v6H7a2.0023 2.0023 0 00-2 2v6H7V18h8v6h2V18h8v6h2V18A2.0023 2.0023 0 0025 16zM4 26H8V30H4zM14 26H18V30H14zM24 26H28V30H24zM11 5H21V7H11z"
+  })), children);
+})));
+if (false) {}
+const LoadBalancerNetwork = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LoadBalancerNetwork(_ref7, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref7;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path7 || (_path7 = /*#__PURE__*/React.createElement("path", {
+    d: "M25 16H17V12H15v4H7a2.0023 2.0023 0 00-2 2v4H7V18h8v4h2V18h8v4h2V18A2.0023 2.0023 0 0025 16zM20 10V2H12v8h8zM14 8V4h4V8zM26 24a2.9948 2.9948 0 00-2.8157 2H18.8157a2.982 2.982 0 00-5.6314 0H8.8157a3 3 0 100 2h4.3686a2.982 2.982 0 005.6314 0h4.3686A2.9947 2.9947 0 1026 24zM6 28a1 1 0 111-1A1.0009 1.0009 0 016 28zm10 0a1 1 0 111-1A1.0009 1.0009 0 0116 28zm10 0a1 1 0 111-1A1.0009 1.0009 0 0126 28z"
+  })), children);
+})));
+if (false) {}
+const LoadBalancerPool = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LoadBalancerPool(_ref8, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref8;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path8 || (_path8 = /*#__PURE__*/React.createElement("path", {
+    d: "M10 15H22V17H10zM8.7 6.2852A2.9665 2.9665 0 009 5 3 3 0 106 8a2.96 2.96 0 001.2852-.3008L10 10.4141V13h2V9.5859zM6 6A1 1 0 117 5 1.0009 1.0009 0 016 6zM19 5a3 3 0 10-4 2.8154V13h2V7.8159A2.9957 2.9957 0 0019 5zM16 6a1 1 0 111-1A1.0009 1.0009 0 0116 6zM26 2a3.0033 3.0033 0 00-3 3 2.9665 2.9665 0 00.3 1.2852L20 9.5859V13h2V10.4141l2.7148-2.7149A2.96 2.96 0 0026 8a3 3 0 000-6zm0 4a1 1 0 111-1A1.0009 1.0009 0 0126 6zM12 19H10v2.5859L7.2854 24.3008A2.9609 2.9609 0 006 24a3 3 0 103 3 2.9665 2.9665 0 00-.3-1.2852L12 22.4141zM6 28a1 1 0 111-1A1.0009 1.0009 0 016 28zM17 24.1841V19H15v5.1841a3 3 0 102 0zM16 28a1 1 0 111-1A1.0009 1.0009 0 0116 28zM26 24a2.9609 2.9609 0 00-1.2854.3008L22 21.5859V19H20v3.4141l3.3 3.3007A2.9665 2.9665 0 0023 27a3 3 0 103-3zm0 4a1 1 0 111-1A1.0009 1.0009 0 0126 28z"
+  })), children);
+})));
+if (false) {}
+const LoadBalancerVpc = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LoadBalancerVpc(_ref9, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref9;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path9 || (_path9 = /*#__PURE__*/React.createElement("path", {
+    d: "M8 30H2V24H8zM4 28H6V26H4zM19 30H13V24h6zm-4-2h2V26H15zM30 30H24V24h6zm-4-2h2V26H26zM16 10a4 4 0 114-4A4.0045 4.0045 0 0116 10zm0-6a2 2 0 102 2A2.002 2.002 0 0016 4zM26 16H21a4.0045 4.0045 0 01-4-4H15a4.0045 4.0045 0 01-4 4H6a2.0023 2.0023 0 00-2 2v4H6V18h5A5.9694 5.9694 0 0015 16.46V22h2V16.46A5.9694 5.9694 0 0021 18h5v4h2V18A2.0023 2.0023 0 0026 16z"
+  })), children);
+})));
+if (false) {}
+const Location = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Location(_ref10, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref10;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path10 || (_path10 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,18a5,5,0,1,1,5-5A5.0057,5.0057,0,0,1,16,18Zm0-8a3,3,0,1,0,3,3A3.0033,3.0033,0,0,0,16,10Z"
+  })), _path11 || (_path11 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30,7.5645,20.0513c-.0479-.0571-.3482-.4515-.3482-.4515A10.8888,10.8888,0,0,1,5,13a11,11,0,0,1,22,0,10.8844,10.8844,0,0,1-2.2148,6.5973l-.0015.0025s-.3.3944-.3447.4474ZM8.8125,18.395c.001.0007.2334.3082.2866.3744L16,26.9079l6.91-8.15c.0439-.0552.2783-.3649.2788-.3657A8.901,8.901,0,0,0,25,13,9,9,0,1,0,7,13a8.9054,8.9054,0,0,0,1.8125,5.395Z"
+  })), children);
+})));
+if (false) {}
+const LocationCompany = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationCompany(_ref11, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref11;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path12 || (_path12 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30,7.5645,20.0513c-.0479-.0571-.3482-.4515-.3482-.4515A10.8888,10.8888,0,0,1,5,13a11,11,0,0,1,22,0,10.8844,10.8844,0,0,1-2.2148,6.5973l-.0015.0025s-.3.3944-.3447.4474ZM8.8125,18.395c.001.0007.2334.3082.2866.3744L16,26.9079l6.91-8.15c.0439-.0552.2783-.3649.2788-.3657A8.901,8.901,0,0,0,25,13,9,9,0,0,0,7,13a8.9054,8.9054,0,0,0,1.8125,5.395Z"
+  })), _path13 || (_path13 = /*#__PURE__*/React.createElement("path", {
+    d: "M21,18H19V10H13v8H11V10a2.0021,2.0021,0,0,1,2-2h6a2.0021,2.0021,0,0,1,2,2Z"
+  })), _path14 || (_path14 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 16H17V18H15zM15 12H17V14H15z"
+  })), children);
+})));
+if (false) {}
+const LocationCompanyFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationCompanyFilled(_ref12, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref12;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path15 || (_path15 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M21,18H19V10H13v8H11V10a2.0021,2.0021,0,0,1,2-2h6a2.0021,2.0021,0,0,1,2,2Zm-4-2H15v2h2Zm0-4H15v2h2Z"
+  })), _path16 || (_path16 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm1,16H15V16h2Zm0-4H15V12h2Zm4,4H19V10H13v8H11V10a2.0023,2.0023,0,0,1,2-2h6a2.0023,2.0023,0,0,1,2,2Z"
+  })), children);
+})));
+if (false) {}
+const LocationCurrent = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationCurrent(_ref13, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref13;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path17 || (_path17 = /*#__PURE__*/React.createElement("path", {
+    d: "M4,12.9835a1,1,0,0,0,.6289.9448l9.6015,3.8409,3.8407,9.6019A1,1,0,0,0,19,28h.0162a1.0009,1.0009,0,0,0,.9238-.6582l8-22.0007A1,1,0,0,0,26.658,4.0594l-22,8A1.0011,1.0011,0,0,0,4,12.9835Z"
+  })), children);
+})));
+if (false) {}
+const LocationFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationFilled(_ref14, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref14;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path18 || (_path18 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm0,15a4,4,0,1,1,4-4A4.0045,4.0045,0,0,1,16,17Z"
+  })), _circle || (_circle = /*#__PURE__*/React.createElement("circle", {
+    cx: "16",
+    cy: "13",
+    r: "4",
+    fill: "none"
+  })), children);
+})));
+if (false) {}
+const LocationHazard = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationHazard(_ref15, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref15;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle2 || (_circle2 = /*#__PURE__*/React.createElement("circle", {
+    cx: "16",
+    cy: "20.5",
+    r: "1.5"
+  })), _path19 || (_path19 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 7H17V16H15z"
+  })), _path20 || (_path20 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30,7.5645,20.0513c-.0479-.0571-.3482-.4515-.3482-.4515A10.8888,10.8888,0,0,1,5,13a11,11,0,0,1,22,0,10.8844,10.8844,0,0,1-2.2148,6.5973l-.0015.0025s-.3.3944-.3447.4474ZM8.8125,18.395c.001.0007.2334.3082.2866.3744L16,26.9079l6.91-8.15c.0439-.0552.2783-.3649.2788-.3657A8.901,8.901,0,0,0,25,13,9,9,0,0,0,7,13a8.9054,8.9054,0,0,0,1.8125,5.395Z"
+  })), children);
+})));
+if (false) {}
+const LocationHazardFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationHazardFilled(_ref16, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref16;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path21 || (_path21 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M16,22a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,16,22Zm-1.125-6h2.25V7h-2.25Z"
+  })), _path22 || (_path22 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2ZM14.875,7h2.25v9h-2.25ZM16,22a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,16,22Z"
+  })), children);
+})));
+if (false) {}
+const LocationHeart = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationHeart(_ref17, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref17;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path23 || (_path23 = /*#__PURE__*/React.createElement("path", {
+    d: "M18.303,9a2.6616,2.6616,0,0,0-1.9079.8058l-.3932.4054-.397-.4054a2.6615,2.6615,0,0,0-3.8157,0,2.7992,2.7992,0,0,0,0,3.8964L16.0019,18l4.2089-4.2978a2.7992,2.7992,0,0,0,0-3.8964A2.6616,2.6616,0,0,0,18.303,9Z"
+  })), _path24 || (_path24 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30,7.5645,20.0513c-.0479-.0571-.3482-.4515-.3482-.4515A10.8888,10.8888,0,0,1,5,13a11,11,0,0,1,22,0,10.8844,10.8844,0,0,1-2.2148,6.5973l-.0015.0025s-.3.3944-.3447.4474ZM8.8125,18.395c.001.0007.2334.3082.2866.3744L16,26.9079l6.91-8.15c.0439-.0552.2783-.3649.2788-.3657A8.901,8.901,0,0,0,25,13,9,9,0,0,0,7,13a8.9054,8.9054,0,0,0,1.8125,5.395Z"
+  })), children);
+})));
+if (false) {}
+const LocationHeartFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationHeartFilled(_ref18, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref18;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path25 || (_path25 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M18.303,9a2.6616,2.6616,0,0,0-1.9079.8058l-.3932.4054-.397-.4054a2.6615,2.6615,0,0,0-3.8157,0,2.7992,2.7992,0,0,0,0,3.8964L16.0019,18l4.2089-4.2978a2.7992,2.7992,0,0,0,0-3.8964A2.6616,2.6616,0,0,0,18.303,9Z"
+  })), _path26 || (_path26 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm4.2109,11.7021L16.002,18l-4.2129-4.2979a2.7992,2.7992,0,0,1,0-3.8964,2.6619,2.6619,0,0,1,3.8159,0l.397.4057.393-.4057a2.6619,2.6619,0,0,1,3.8159,0A2.7992,2.7992,0,0,1,20.2109,13.7021Z"
+  })), children);
+})));
+if (false) {}
+const LocationInfo = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationInfo(_ref19, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref19;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path27 || (_path27 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "M17 18L17 11 13 11 13 13 15 13 15 18 12 18 12 20 20 20 20 18 17 18zM15.5 6c-.8284 0-1.5.6716-1.5 1.5s.6716 1.5 1.5 1.5 1.5-.6716 1.5-1.5-.6716-1.5-1.5-1.5z"
+  })), _path28 || (_path28 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m16,30l-8.4355-9.9487c-.0479-.0571-.3481-.4516-.3481-.4516-1.4507-1.9268-2.2163-4.2065-2.2163-6.5998,0-6.0641,4.9346-11,11-11s11,4.9359,11,11c0,2.3933-.7656,4.673-2.2148,6.5973l-.0015.0024s-.3003.3944-.3447.4474l-8.439,9.9528Zm-7.1875-11.605c.001.0007.2334.3083.2866.3744l6.9009,8.1385,6.9102-8.1498c.0439-.0552.2783-.3649.2788-.3656,1.1851-1.5746,1.811-3.4376,1.811-5.3925,0-4.9615-4.0376-9-9-9S7,8.0385,7,13c0,1.9559.627,3.8199,1.8125,5.395h0Z"
+  })), children);
+})));
+if (false) {}
+const LocationInfoFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationInfoFilled(_ref20, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref20;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path29 || (_path29 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m16,2c-6.0654,0-11,4.936-11,11,0,2.3931.7656,4.6729,2.2163,6.5996,0,0,.3003.3945.3481.4517l8.4355,9.9487,8.439-9.9526c.0444-.0532.3447-.4478.3447-.4478l.0015-.0024c1.4492-1.9243,2.2148-4.2041,2.2148-6.5972,0-6.064-4.9346-11-11-11Zm-.5,4c.8284,0,1.5.6714,1.5,1.5s-.6716,1.5-1.5,1.5-1.5-.6714-1.5-1.5.6716-1.5,1.5-1.5Zm4.5,14h-8v-2h3v-5h-2v-2h4v7h3v2Z"
+  })), _path30 || (_path30 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    strokeWidth: "0",
+    d: "m15.5,6c.8284,0,1.5.6714,1.5,1.5s-.6716,1.5-1.5,1.5-1.5-.6714-1.5-1.5.6716-1.5,1.5-1.5Zm4.5,14h-8v-2h3v-5h-2v-2h4v7h3v2Z"
+  })), children);
+})));
+if (false) {}
+const LocationPerson = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationPerson(_ref21, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref21;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path31 || (_path31 = /*#__PURE__*/React.createElement("path", {
+    d: "M20 19H18V17H14v2H12V17a2.0021 2.0021 0 012-2h4a2.0021 2.0021 0 012 2zM16 14a3 3 0 113-3A3.0033 3.0033 0 0116 14zm0-4a1 1 0 101 1A1.0011 1.0011 0 0016 10z"
+  })), _path32 || (_path32 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30,7.5645,20.0513c-.0479-.0571-.3482-.4515-.3482-.4515A10.8888,10.8888,0,0,1,5,13a11,11,0,0,1,22,0,10.8844,10.8844,0,0,1-2.2148,6.5973l-.0015.0025s-.3.3944-.3447.4474ZM8.8125,18.395c.001.0007.2334.3082.2866.3744L16,26.9079l6.91-8.15c.0439-.0552.2783-.3649.2788-.3657A8.901,8.901,0,0,0,25,13,9,9,0,0,0,7,13a8.9054,8.9054,0,0,0,1.8125,5.395Z"
+  })), children);
+})));
+if (false) {}
+const LocationPersonFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationPersonFilled(_ref22, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref22;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path33 || (_path33 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M20,19H18V17H14v2H12V17a2.0021,2.0021,0,0,1,2-2h4a2.0021,2.0021,0,0,1,2,2Zm-1-8a3,3,0,1,0-3,3A3.0033,3.0033,0,0,0,19,11Zm-2,0a1,1,0,1,1-1-1A1.0011,1.0011,0,0,1,17,11Z"
+  })), _circle3 || (_circle3 = /*#__PURE__*/React.createElement("circle", {
+    cx: "16",
+    cy: "11",
+    r: "1"
+  })), _path34 || (_path34 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm0,6a3,3,0,1,1-3,3A3.0033,3.0033,0,0,1,16,8Zm4,11H18V17H14v2H12V17a2.0023,2.0023,0,0,1,2-2h4a2.0023,2.0023,0,0,1,2,2Z"
+  })), children);
+})));
+if (false) {}
+const LocationSave = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationSave(_ref23, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref23;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path35 || (_path35 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 30h2V28a1.0009 1.0009 0 011-1h6a1.0009 1.0009 0 011 1v2h2V28a3.0033 3.0033 0 00-3-3H21a3.0033 3.0033 0 00-3 3zM24 24a4 4 0 114-4A4.0042 4.0042 0 0124 24zm0-6a2 2 0 102 2A2.0023 2.0023 0 0024 18zM25.3418 10.06l-22-8A1 1 0 002.06 3.3415l8 22A1.001 1.001 0 0010.9839 26H11a1 1 0 00.9287-.6289L15.77 15.7692l9.6016-3.8408a1 1 0 00-.0293-1.8687zM14.6284 14.0709v0l-.3979.1591-.1591.3979 0 0-3.0269 7.5678L4.6719 4.6715l17.5244 6.3726z"
+  })), children);
+})));
+if (false) {}
+const LocationStar = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationStar(_ref24, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref24;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path36 || (_path36 = /*#__PURE__*/React.createElement("path", {
+    d: "M16 7L17.912 10.667 22 11.173 19 13.926 19.6 18 16 15.708 12.4 18 13 13.926 10 11.173 14.2 10.667 16 7z"
+  })), _path37 || (_path37 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30,7.5645,20.0513c-.0479-.0571-.3482-.4515-.3482-.4515A10.8888,10.8888,0,0,1,5,13a11,11,0,0,1,22,0,10.8844,10.8844,0,0,1-2.2148,6.5973l-.0015.0025s-.3.3944-.3447.4474ZM8.8125,18.395c.001.0007.2334.3082.2866.3744L16,26.9079l6.91-8.15c.0439-.0552.2783-.3649.2788-.3657A8.901,8.901,0,0,0,25,13,9,9,0,0,0,7,13a8.9054,8.9054,0,0,0,1.8125,5.395Z"
+  })), children);
+})));
+if (false) {}
+const LocationStarFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LocationStarFilled(_ref25, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref25;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path38 || (_path38 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M16 7L17.912 10.667 22 11.173 19 13.926 19.6 18 16 15.708 12.4 18 13 13.926 10 11.173 14.2 10.667 16 7z"
+  })), _path39 || (_path39 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2A11.0134,11.0134,0,0,0,5,13a10.8885,10.8885,0,0,0,2.2163,6.6s.3.3945.3482.4517L16,30l8.439-9.9526c.0444-.0533.3447-.4478.3447-.4478l.0015-.0024A10.8846,10.8846,0,0,0,27,13,11.0134,11.0134,0,0,0,16,2Zm3.6,16L16,15.7085,12.4,18l.6-4.0742-3-2.7529,4.2-.5064L16,7l1.9116,3.6665L22,11.1729l-3,2.7529Z"
+  })), children);
+})));
+if (false) {}
+const Locked = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Locked(_ref26, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref26;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path40 || (_path40 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,14H22V8A6,6,0,0,0,10,8v6H8a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H24a2,2,0,0,0,2-2V16A2,2,0,0,0,24,14ZM12,8a4,4,0,0,1,8,0v6H12ZM24,28H8V16H24Z"
+  })), children);
+})));
+if (false) {}
+const LogicalPartition = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogicalPartition(_ref27, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref27;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle4 || (_circle4 = /*#__PURE__*/React.createElement("circle", {
+    cx: "9",
+    cy: "7",
+    r: "1"
+  })), _path41 || (_path41 = /*#__PURE__*/React.createElement("path", {
+    d: "M27,22v-4c0-1.1046-.8954-2-2-2h-8v-4h9c1.1046,0,2-.8954,2-2V4c0-1.1046-.8954-2-2-2H6c-1.1046,0-2,.8954-2,2v6c0,1.1046,.8954,2,2,2H15v4H7c-1.1046,0-2,.8954-2,2v4h-1c-1.1046,0-2,.8954-2,2v4c0,1.1046,.8954,2,2,2h4c1.1046,0,2-.8954,2-2v-4c0-1.1046-.8954-2-2-2h-1v-4H15v4h-1c-1.1046,0-2,.8954-2,2v4c0,1.1046,.8954,2,2,2h4c1.1046,0,2-.8954,2-2v-4c0-1.1046-.8954-2-2-2h-1v-4h8v4h-1c-1.1046,0-2,.8954-2,2v4c0,1.1046,.8954,2,2,2h4c1.1046,0,2-.8954,2-2v-4c0-1.1046-.8954-2-2-2h-1Zm-19,6H4v-4h4v4Zm10-4v4h-4v-4h4ZM6,10V4H26v6H6ZM28,28h-4v-4h4v4Z"
+  })), children);
+})));
+if (false) {}
+const Login = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Login(_ref28, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref28;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path42 || (_path42 = /*#__PURE__*/React.createElement("path", {
+    d: "M26,30H14a2,2,0,0,1-2-2V25h2v3H26V4H14V7H12V4a2,2,0,0,1,2-2H26a2,2,0,0,1,2,2V28A2,2,0,0,1,26,30Z"
+  })), _path43 || (_path43 = /*#__PURE__*/React.createElement("path", {
+    d: "M14.59 20.59L18.17 17 4 17 4 15 18.17 15 14.59 11.41 16 10 22 16 16 22 14.59 20.59z"
+  })), children);
+})));
+if (false) {}
+const LogoAngular = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoAngular(_ref29, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref29;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path44 || (_path44 = /*#__PURE__*/React.createElement("path", {
+    d: "M13.5,16h4.9L16,10.8L13.5,16z"
+  })), _path45 || (_path45 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,3L3,7.6l2.7,15.8L16,29l10.3-5.6L29,7.6L16,3z M21.1,21.6l-1.5-3.2h-7.1l-1.5,3.2H8.6L16,5.3l7.4,16.2H21.1z"
+  })), children);
+})));
+if (false) {}
+const LogoAnsibleCommunity = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoAnsibleCommunity(_ref30, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref30;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path46 || (_path46 = /*#__PURE__*/React.createElement("path", {
+    d: "M27.8,27.7L17.5,3.1C17.2,2.4,16.6,2,15.9,2c-0.7,0-1.3,0.4-1.6,1.1L3,30h3.9l4.5-11.1l13.3,10.7c0.5,0.4,0.9,0.6,1.4,0.6 c1,0,1.9-0.7,1.9-1.8C28,28.2,27.9,28,27.8,27.7z M15.9,7.5l6.7,16.4L12.5,16L15.9,7.5z"
+  })), children);
+})));
+if (false) {}
+const LogoDigg = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoDigg(_ref31, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref31;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path47 || (_path47 = /*#__PURE__*/React.createElement("path", {
+    d: "M6.48 7.6v3.92H2V21H9.28V7.6zm0 11.2H4.8v-5H6.48zM10.4 11.52H13.2V21.04H10.4zM10.4 7.6H13.2V10.399999999999999H10.4zM14.32 11.52V21H18.8v1.12H14.32V24.4H21.6V11.52zM18.8 18.8H17.12v-5H18.8zM22.72 11.52V21H27.2v1.12H22.72V24.4H30V11.52zM27.2 18.8H25.52v-5H27.2z"
+  })), children);
+})));
+if (false) {}
+const LogoDiscord = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoDiscord(_ref32, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref32;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path48 || (_path48 = /*#__PURE__*/React.createElement("path", {
+    d: "M25.7,7.1C23.9,6.3,22,5.7,20,5.3c0,0-0.1,0-0.1,0c-0.2,0.4-0.5,1-0.7,1.5c-2.2-0.3-4.3-0.3-6.4,0c-0.2-0.5-0.5-1-0.7-1.5 c0,0-0.1,0-0.1,0c-2,0.3-3.9,0.9-5.7,1.8c0,0,0,0,0,0c-3.6,5.4-4.6,10.7-4.1,15.9c0,0,0,0.1,0,0.1c2.4,1.8,4.7,2.8,7,3.5 c0,0,0.1,0,0.1,0c0.5-0.7,1-1.5,1.4-2.3c0,0,0-0.1,0-0.1c-0.8-0.3-1.5-0.6-2.2-1c-0.1,0-0.1-0.1,0-0.1c0.1-0.1,0.3-0.2,0.4-0.3 c0,0,0.1,0,0.1,0c4.6,2.1,9.5,2.1,14.1,0c0,0,0.1,0,0.1,0c0.1,0.1,0.3,0.2,0.4,0.3c0.1,0,0,0.1,0,0.1c-0.7,0.4-1.4,0.8-2.2,1 c0,0-0.1,0.1,0,0.1c0.4,0.8,0.9,1.6,1.4,2.3c0,0,0.1,0,0.1,0c2.3-0.7,4.6-1.8,7-3.5c0,0,0,0,0-0.1C30.5,17,28.9,11.8,25.7,7.1 C25.7,7.1,25.7,7.1,25.7,7.1z M11.4,19.9c-1.4,0-2.5-1.3-2.5-2.8s1.1-2.8,2.5-2.8c1.4,0,2.5,1.3,2.5,2.8 C13.9,18.6,12.8,19.9,11.4,19.9z M20.7,19.9c-1.4,0-2.5-1.3-2.5-2.8s1.1-2.8,2.5-2.8c1.4,0,2.5,1.3,2.5,2.8 C23.2,18.6,22.1,19.9,20.7,19.9z"
+  })), children);
+})));
+if (false) {}
+const LogoFacebook = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoFacebook(_ref33, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref33;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path49 || (_path49 = /*#__PURE__*/React.createElement("path", {
+    d: "M26.67,4H5.33A1.34,1.34,0,0,0,4,5.33V26.67A1.34,1.34,0,0,0,5.33,28H16.82V18.72H13.7V15.09h3.12V12.42c0-3.1,1.89-4.79,4.67-4.79.93,0,1.86,0,2.79.14V11H22.37c-1.51,0-1.8.72-1.8,1.77v2.31h3.6l-.47,3.63H20.57V28h6.1A1.34,1.34,0,0,0,28,26.67V5.33A1.34,1.34,0,0,0,26.67,4Z"
+  })), children);
+})));
+if (false) {}
+const LogoFigma = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoFigma(_ref34, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref34;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path50 || (_path50 = /*#__PURE__*/React.createElement("path", {
+    d: "M23.6,11.6c1-0.6,1.7-1.5,2.1-2.6c0.4-1.1,0.4-2.2,0.1-3.3c-0.3-1.1-1-2-1.9-2.7c-0.9-0.7-2.1-1-3.2-1h-9.2 c-1.2,0-2.3,0.4-3.2,1C7.2,3.7,6.6,4.7,6.2,5.7C5.9,6.8,5.9,8,6.3,9c0.4,1.1,1.1,2,2.1,2.6c-0.7,0.5-1.4,1.1-1.8,1.9 C6.2,14.3,6,15.1,6,16c0,0.9,0.2,1.7,0.6,2.5c0.4,0.8,1,1.4,1.8,1.9c-1,0.6-1.7,1.5-2.1,2.6c-0.4,1.1-0.4,2.2-0.1,3.3 c0.3,1.1,1,2,2,2.7c0.9,0.7,2.1,1,3.2,1c1.4,0,2.8-0.6,3.9-1.5c1-1,1.6-2.3,1.6-3.7v-4.8c1,0.9,2.3,1.4,3.6,1.4h0.1 c1.2,0,2.3-0.4,3.2-1c0.9-0.7,1.6-1.6,1.9-2.7c0.3-1.1,0.3-2.2-0.1-3.3C25.3,13.1,24.5,12.2,23.6,11.6z M16.9,3.7h3.7 c0.5,0,1,0,1.4,0.2c0.5,0.2,0.9,0.4,1.2,0.8c0.4,0.3,0.6,0.7,0.8,1.2s0.3,0.9,0.3,1.4c0,0.5-0.1,1-0.3,1.4c-0.2,0.4-0.5,0.8-0.8,1.2 c-0.4,0.3-0.8,0.6-1.2,0.8c-0.5,0.2-1,0.2-1.4,0.2h-3.7V3.7z M11.4,3.7h3.7v7h-3.7c-0.9,0-1.8-0.4-2.4-1.1C8.3,9,8,8.1,8,7.2 s0.4-1.8,1-2.4C9.6,4.2,10.5,3.8,11.4,3.7L11.4,3.7z M7.8,16c0-0.9,0.4-1.8,1.1-2.5c0.7-0.7,1.6-1,2.6-1h3.7v7h-3.7 c-1,0-1.9-0.4-2.6-1C8.2,17.8,7.8,16.9,7.8,16L7.8,16z M15.1,24.7c0,1-0.4,1.9-1.1,2.5c-0.7,0.7-1.6,1-2.6,1c-0.5,0-1,0-1.4-0.2 c-0.5-0.2-0.9-0.4-1.2-0.7c-0.4-0.3-0.6-0.7-0.8-1.2c-0.2-0.4-0.3-0.9-0.3-1.4c0-0.5,0.1-1,0.3-1.4c0.2-0.4,0.5-0.8,0.8-1.2 c0.4-0.3,0.8-0.6,1.2-0.8c0.5-0.2,1-0.2,1.4-0.2h3.7L15.1,24.7z M20.6,19.5h-0.1c-0.9,0-1.8-0.4-2.4-1.1c-0.6-0.7-1-1.5-1-2.4 c0-0.9,0.4-1.8,1-2.4c0.6-0.7,1.5-1,2.4-1.1h0.1c0.5,0,1,0,1.4,0.2c0.5,0.2,0.9,0.4,1.2,0.8c0.4,0.3,0.6,0.7,0.8,1.2 c0.2,0.4,0.3,0.9,0.3,1.4c0,0.5-0.1,1-0.3,1.4c-0.2,0.4-0.5,0.8-0.8,1.2c-0.4,0.3-0.8,0.6-1.2,0.8C21.6,19.5,21.1,19.5,20.6,19.5 L20.6,19.5z"
+  })), children);
+})));
+if (false) {}
+const LogoFlickr = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoFlickr(_ref35, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref35;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle5 || (_circle5 = /*#__PURE__*/React.createElement("circle", {
+    cx: "8",
+    cy: "16",
+    r: "6"
+  })), _circle6 || (_circle6 = /*#__PURE__*/React.createElement("circle", {
+    cx: "24",
+    cy: "16",
+    r: "6"
+  })), children);
+})));
+if (false) {}
+const LogoGithub = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoGithub(_ref36, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref36;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path51 || (_path51 = /*#__PURE__*/React.createElement("path", {
+    fillRule: "evenodd",
+    d: "M16,2a14,14,0,0,0-4.43,27.28c.7.13,1-.3,1-.67s0-1.21,0-2.38c-3.89.84-4.71-1.88-4.71-1.88A3.71,3.71,0,0,0,6.24,22.3c-1.27-.86.1-.85.1-.85A2.94,2.94,0,0,1,8.48,22.9a3,3,0,0,0,4.08,1.16,2.93,2.93,0,0,1,.88-1.87c-3.1-.36-6.37-1.56-6.37-6.92a5.4,5.4,0,0,1,1.44-3.76,5,5,0,0,1,.14-3.7s1.17-.38,3.85,1.43a13.3,13.3,0,0,1,7,0c2.67-1.81,3.84-1.43,3.84-1.43a5,5,0,0,1,.14,3.7,5.4,5.4,0,0,1,1.44,3.76c0,5.38-3.27,6.56-6.39,6.91a3.33,3.33,0,0,1,.95,2.59c0,1.87,0,3.38,0,3.84s.25.81,1,.67A14,14,0,0,0,16,2Z"
+  })), children);
+})));
+if (false) {}
+const LogoGitlab = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoGitlab(_ref37, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref37;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path52 || (_path52 = /*#__PURE__*/React.createElement("path", {
+    d: "m28.5678,12.8926l-.0366-.0934-3.5388-9.2356c-.072-.181-.1995-.3346-.3642-.4386-.3375-.2095-.7699-.1863-1.083.0582-.1512.1228-.2608.2892-.3141.4765l-2.3894,7.3105h-9.6756l-2.3894-7.3105c-.0518-.1884-.1617-.3556-.3141-.4779-.3131-.2445-.7455-.2677-1.083-.0582-.1643.1045-.2917.2579-.3642.4386l-3.5456,9.2315-.0352.0934c-1.0465,2.7345-.1578,5.8315,2.1796,7.5948l.0122.0095.0325.023,5.3908,4.037,2.667,2.0185,1.6246,1.2265c.3905.2965.9308.2965,1.3213,0l1.6246-1.2265,2.667-2.0185,5.4233-4.0614.0135-.0108c2.3319-1.7635,3.219-4.8551,2.1769-7.5867Z"
+  })), children);
+})));
+if (false) {}
+const LogoGlassdoor = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoGlassdoor(_ref38, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref38;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path53 || (_path53 = /*#__PURE__*/React.createElement("path", {
+    d: "M10.8281,28H21.1719a3.43,3.43,0,0,0,3.43-3.43V10.3306h-3.43V24.57H7.3981A3.43,3.43,0,0,0,10.8281,28Z"
+  })), _path54 || (_path54 = /*#__PURE__*/React.createElement("path", {
+    d: "M21.1719,4H10.8281a3.43,3.43,0,0,0-3.43,3.43v14.24h3.43V7.43H24.6019A3.43,3.43,0,0,0,21.1719,4Z"
+  })), children);
+})));
+if (false) {}
+const LogoInstagram = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().forwardRef(function LogoInstagram(_ref39, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref39;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Icon_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle7 || (_circle7 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "22.406",
+    cy: "9.594",
+    r: "1.44"
+  })), _path55 || (_path55 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M16,9.8378A6.1622,6.1622,0,1,0,22.1622,16,6.1622,6.1622,0,0,0,16,9.8378ZM16,20a4,4,0,1,1,4-4A4,4,0,0,1,16,20Z"
+  })), _path56 || (_path56 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M16,6.1622c3.2041,0,3.5837.0122,4.849.07a6.6418,6.6418,0,0,1,2.2283.4132,3.9748,3.9748,0,0,1,2.2774,2.2774,6.6418,6.6418,0,0,1,.4132,2.2283c.0577,1.2653.07,1.6449.07,4.849s-.0122,3.5837-.07,4.849a6.6418,6.6418,0,0,1-.4132,2.2283,3.9748,3.9748,0,0,1-2.2774,2.2774,6.6418,6.6418,0,0,1-2.2283.4132c-1.2652.0577-1.6446.07-4.849.07s-3.5838-.0122-4.849-.07a6.6418,6.6418,0,0,1-2.2283-.4132,3.9748,3.9748,0,0,1-2.2774-2.2774,6.6418,6.6418,0,0,1-.4132-2.2283c-.0577-1.2653-.07-1.6449-.07-4.849s.0122-3.5837.07-4.849a6.6418,6.6418,0,0,1,.4132-2.2283A3.9748,3.9748,0,0,1,8.9227,6.6453a6.6418,6.6418,0,0,1,2.2283-.4132c1.2653-.0577,1.6449-.07,4.849-.07M16,4c-3.259,0-3.6677.0138-4.9476.0722A8.8068,8.8068,0,0,0,8.14,4.63,6.1363,6.1363,0,0,0,4.63,8.14a8.8068,8.8068,0,0,0-.5578,2.9129C4.0138,12.3323,4,12.741,4,16s.0138,3.6677.0722,4.9476A8.8074,8.8074,0,0,0,4.63,23.8605a6.1363,6.1363,0,0,0,3.51,3.51,8.8068,8.8068,0,0,0,2.9129.5578C12.3323,27.9862,12.741,28,16,28s3.6677-.0138,4.9476-.0722a8.8074,8.8074,0,0,0,2.9129-.5578,6.1363,6.1363,0,0,0,3.51-3.51,8.8074,8.8074,0,0,0,.5578-2.9129C27.9862,19.6677,28,19.259,28,16s-.0138-3.6677-.0722-4.9476A8.8068,8.8068,0,0,0,27.37,8.14a6.1363,6.1363,0,0,0-3.51-3.5095,8.8074,8.8074,0,0,0-2.9129-.5578C19.6677,4.0138,19.259,4,16,4Z"
+  })), children);
+});
+if (false) {}
+const LogoInvision = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoInvision(_ref40, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref40;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path57 || (_path57 = /*#__PURE__*/React.createElement("path", {
+    d: "M4,4v24h24V4H4z M12.1,9c0.8,0,1.4,0.6,1.4,1.4c0,0.8-0.6,1.4-1.4,1.4c0,0,0,0,0,0c-0.8,0-1.4-0.6-1.4-1.4 C10.8,9.6,11.4,9,12.1,9z M21.5,22.2c-1.4,0-2.1-0.8-2.1-2c0-0.3,0-0.7,0.1-1l0.7-2.4c0.1-0.2,0.1-0.5,0.1-0.7 c0-0.8-0.5-1.3-1.2-1.3c-1,0-1.6,0.7-1.9,2L15.9,22h-2.3l0.4-1.7c-0.7,1.1-1.6,1.8-2.8,1.8c-1.4,0-2.1-0.8-2.1-2c0-0.3,0-0.7,0.1-1 l1.1-4.3H8.7L9.2,13h3.9l-1.5,6.1c-0.1,0.3-0.1,0.6-0.1,0.9c0,0.4,0.2,0.5,0.5,0.6c0.2,0,1.6,0,2.4-1.8l1-4.1h-1.6l0.5-1.8h3.5 l-0.5,2.1c0.6-1.2,1.9-2.2,3.1-2.2c1.3,0,2.4,0.9,2.4,2.7c0,0.5-0.1,1-0.2,1.5l-0.7,2.4c-0.1,0.2-0.1,0.4-0.1,0.6 c0,0.4,0.2,0.6,0.5,0.6c0.3,0,0.7-0.2,1.2-1.5l0.9,0.4C23.7,21.4,22.7,22.2,21.5,22.2z"
+  })), children);
+})));
+if (false) {}
+const LogoJupyter = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoJupyter(_ref41, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref41;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path58 || (_path58 = /*#__PURE__*/React.createElement("path", {
+    d: "M26.0766 3.5878a1.69 1.69 0 11-1.76-1.5853 1.67 1.67 0 011.76 1.5853zM16.2191 23.1113c-4.4866 0-8.43-1.61-10.4688-3.9882a11.1618 11.1618 0 0020.9377 0C24.6541 21.5011 20.7257 23.1113 16.2191 23.1113zM16.2191 7.6483c4.4867 0 8.43 1.61 10.4689 3.9881a11.1618 11.1618 0 00-20.9377 0C7.7892 9.2535 11.7126 7.6483 16.2191 7.6483zM10.0427 27.7388a2.1085 2.1085 0 11-.2031-.7976 2.1278 2.1278 0 01.2031.7976zM6.26 7.1064A1.2263 1.2263 0 117.4517 5.83 1.2415 1.2415 0 016.26 7.1064z"
+  })), children);
+})));
+if (false) {}
+const LogoKeybase = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoKeybase(_ref42, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref42;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path59 || (_path59 = /*#__PURE__*/React.createElement("path", {
+    d: "M14.1233 26.9328a1.1122 1.1122 0 11-1.1121-1.1122 1.112 1.112 0 011.1121 1.1122M21.0257 26.9328a1.1122 1.1122 0 11-1.1122-1.1122 1.1121 1.1121 0 011.1122 1.1122"
+  })), _path60 || (_path60 = /*#__PURE__*/React.createElement("path", {
+    d: "M9.999 5.797H10.973V6.771H9.999z",
+    transform: "rotate(-86.462 10.486 6.284)"
+  })), _path61 || (_path61 = /*#__PURE__*/React.createElement("path", {
+    d: "M26.4275,16.3825l-.0013.001a13.0868,13.0868,0,0,0-5.1431-4.1825c-.3754-.1667-.7543-.3142-1.1354-.4454.0128-.0314.0277-.0615.04-.0933a4.83,4.83,0,0,0-2.9861-6.319,5.9368,5.9368,0,0,0-1.9962-.3558c-.0366-.1253-.1165-.6743.58-2.1571L14.3742,2q-.17.236-.3368.4661c-.384.5309-.7549,1.0444-1.1029,1.55a2.1657,2.1657,0,0,0-1.4486-.6771L9.8543,3.2377H9.852l-.0025,0c-.0429-.0025-.0864-.0039-.1293-.0039A2.1877,2.1877,0,0,0,7.54,5.2825L7.4388,6.9169l0,.003,0,.0028A2.1882,2.1882,0,0,0,9.4854,9.23l1.1673.0723a5.1711,5.1711,0,0,0,.47,2.688,13.1954,13.1954,0,0,0-4.2637,2.9C3,18.7883,3,23.06,3,26.4916v2.0706l1.524-1.6163A12.3293,12.3293,0,0,0,5.8548,30H7.8367A10.7091,10.7091,0,0,1,5.878,25.51l2.2353-2.3708L6.963,26.745l2.03-1.4774c3.5858-2.61,7.8678-3.2093,12.7263-1.7826a4.6276,4.6276,0,0,0,5.2189-1.468c.0441-.0628.0828-.128.1228-.1926a9.6141,9.6141,0,0,1,.1638,1.7454,12.4214,12.4214,0,0,1-1.61,6.43h1.877A14.4022,14.4022,0,0,0,28.87,23.57,12.2666,12.2666,0,0,0,26.4275,16.3825ZM13.8455,5.9257a1.5872,1.5872,0,0,0,1.3983.7068,4.2111,4.2111,0,0,1,1.44.2719,3.17,3.17,0,0,1,1.0279,5.4638l-.4752-.5849-.0032-.004a1.7048,1.7048,0,0,0-3.0235.9865,3.2143,3.2143,0,0,1-1.899-3.5412,8.4815,8.4815,0,0,1,1.4374-3.466A1.642,1.642,0,0,0,13.8455,5.9257Zm3.49,9.2589-.6072.4962a.2675.2675,0,0,1-.376-.038l-.1264-.1549a.2791.2791,0,0,1,.0394-.3927l.6-.49-1.235-1.5158a.362.362,0,1,1,.5611-.4575l3.4546,4.2517a.3619.3619,0,0,1-.1988.5815.3566.3566,0,0,1-.0816.0094.3609.3609,0,0,1-.2806-.1332l-.3441-.4239-1.2215.9971a.2815.2815,0,0,1-.3965-.04l-.5532-.6775a.2786.2786,0,0,1,.04-.3919l1.2275-1.002ZM9.08,7.0184l.1014-1.6342A.5394.5394,0,0,1,9.72,4.8781l.0326.001,1.6335.1013a.5387.5387,0,0,1,.5046.5716l-.0073.1182a10.6739,10.6739,0,0,0-.9028,2.0046L9.5859,7.5886A.5407.5407,0,0,1,9.08,7.0184ZM25.5944,21.07a2.9883,2.9883,0,0,1-3.4112.8373c-4.5313-1.3305-8.6289-1.0534-12.2124.82l1.9069-5.978-7.203,7.6393a11.67,11.67,0,0,1,3.3532-8.3419,11.4953,11.4953,0,0,1,4.1073-2.6908,5.42,5.42,0,0,0,2.2411,1.2214,4.714,4.714,0,0,0,.5627.12,1.6258,1.6258,0,0,0,.2449,1.6416l.0847.1038a1.6247,1.6247,0,0,0,.2594,1.605l.5532.6777a1.6276,1.6276,0,0,0,2.29.2314l.3314-.2705a1.7079,1.7079,0,0,0,1.9867-2.6535l-1.9427-2.3911a4.88,4.88,0,0,0,.4863-.456,12.449,12.449,0,0,1,1.3829.5181,11.419,11.419,0,0,1,4.5085,3.6838C26.0987,18.7278,26.2745,20.1043,25.5944,21.07Z"
+  })), children);
+})));
+if (false) {}
+const LogoKubernetes = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoKubernetes(_ref43, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref43;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path62 || (_path62 = /*#__PURE__*/React.createElement("path", {
+    d: "M15.134 17.189L15.999 17.605 16.862 17.19 17.076 16.259 16.479 15.512 15.518 15.512 14.919 16.257 15.134 17.189zM14.2166 13.88l.0024.0019a.5239.5239 0 00.8321-.4013l0-.003.0127-.0063L15.242 10.33c-.2173.0268-.43.0635-.6333.1094a6.2 6.2 0 00-2.9727 1.6176l2.5752 1.8257zM12.8347 16.2622l.003-.001a.5241.5241 0 00.206-.9008l-.0024-.002.0029-.0127-2.3515-2.1035a6.1775 6.1775 0 00-.8746 3.9l3.0142-.87zM13.8645 18.501a.5229.5229 0 00-.6059-.3989l-.0034 0-.0049-.0063-3.0908.5249a6.2052 6.2052 0 002.4863 3.1108l1.1972-2.8935-.0087-.0117.0009-.003A.5184.5184 0 0013.8645 18.501zM16.4622 19.6431l-.0015-.0025a.53.53 0 00-.48-.2759.5269.5269 0 00-.4434.2769l-.0015.0029H15.533l-1.52 2.7481a6.2277 6.2277 0 003.38.1723c.207-.0468.41-.104.6044-.1684l-1.5234-2.7534zM18.7371 18.09l-.0034 0a.51.51 0 00-.1206-.0088.5263.5263 0 00-.4546.7319l.001.0024-.004.0054 1.21 2.9234A6.185 6.185 0 0021.86 18.61l-3.1176-.5269zM21.2893 13.2437L18.951 15.3364l.0014.0064-.0024.0019a.5249.5249 0 00.2055.9014l.0035.0005.0024.0132 3.0293.872a6.2915 6.2915 0 00-.9014-3.8881zM16.9383 13.4673l0 .0029a.5161.5161 0 00.1143.3037.5236.5236 0 00.7192.0967l.0025-.0019.0088.0039 2.5586-1.814a6.2307 6.2307 0 00-3.584-1.7285l.1777 3.1357z"
+  })), _path63 || (_path63 = /*#__PURE__*/React.createElement("path", {
+    d: "M30.3806,19.0376,27.9016,8.2705a1.9057,1.9057,0,0,0-1.038-1.291L16.83,2.1885a1.9332,1.9332,0,0,0-1.6656,0L5.1326,6.9819a1.9072,1.9072,0,0,0-1.0381,1.291L1.6194,19.04A1.89,1.89,0,0,0,1.88,20.499a1.8364,1.8364,0,0,0,.1088.1514l6.9439,8.6338a1.9244,1.9244,0,0,0,1.5.7158l11.1357-.0024a1.9251,1.9251,0,0,0,1.5-.7149L30.01,20.6479A1.8911,1.8911,0,0,0,30.3806,19.0376Zm-3.8115-.13a.6432.6432,0,0,1-.7812.4429l-.0039,0-.0049-.001-.0069-.0019-.0048-.002-.0572-.0117c-.0346-.0068-.07-.0142-.0981-.0215a2.4643,2.4643,0,0,1-.3589-.1328c-.0576-.0249-.1172-.0513-.1807-.0752l-.0175-.0063a5.5192,5.5192,0,0,0-1.0284-.3013.4119.4119,0,0,0-.2954.0981l-.0371.0254-.0019.0015-.002,0c-.0439-.0088-.1748-.0322-.2519-.0444a7.8166,7.8166,0,0,1-3.459,4.351c.0093.022.02.05.0307.0806a.9352.9352,0,0,0,.0669.1567l.002.002-.001.0029-.0166.042a.4148.4148,0,0,0-.03.3091,5.69,5.69,0,0,0,.5322.9517c.0376.0561.0757.1084.1128.1591a2.4,2.4,0,0,1,.2095.32c.0166.0312.0371.0752.0552.1137l.0229.0484a.6083.6083,0,1,1-1.0947.5176l-.0224-.0455c-.0186-.038-.0381-.0776-.0518-.1088a2.5059,2.5059,0,0,1-.1211-.3658c-.0166-.0595-.0337-.1215-.0537-.185l-.0059-.0166a5.5441,5.5441,0,0,0-.4052-.9922.4177.4177,0,0,0-.2627-.1709l-.0415-.0127-.0015,0-.0015-.0019c-.01-.0171-.0337-.0611-.0595-.1075-.0235-.042-.0484-.0874-.0664-.12a7.8868,7.8868,0,0,1-1.0269.3091,7.7588,7.7588,0,0,1-4.51-.3233l-.1352.2442-.002.001a.481.481,0,0,0-.2563.124,2.2827,2.2827,0,0,0-.336.7207c-.04.1172-.08.2383-.1279.3569-.0205.064-.0376.127-.0537.188a2.4747,2.4747,0,0,1-.12.3623c-.0127.03-.0313.0669-.0493.1025l-.0245.0494h0l-.0005.0024-.0019.002a.6773.6773,0,0,1-.5952.3945.5484.5484,0,0,1-.24-.0542.6426.6426,0,0,1-.2578-.86c.0088-.0171.0176-.0371.0274-.0576.0171-.0371.0346-.0757.05-.1045a2.53,2.53,0,0,1,.21-.3222c.0367-.05.0747-.1026.1118-.1578a5.8209,5.8209,0,0,0,.543-.976.5889.5889,0,0,0-.0532-.336l0-.0019,0-.002.1074-.2573a7.8224,7.8224,0,0,1-3.46-4.32l-.2593.0444-.0015-.001-.0264-.0151a.5961.5961,0,0,0-.3159-.106,5.5447,5.5447,0,0,0-1.0283.3013l-.0171.0064c-.062.0239-.1211.0488-.1782.0732a2.4949,2.4949,0,0,1-.3613.1333c-.0308.0083-.0708.0171-.1094.0249l-.0459.01-.0049.0019-.0068.002-.0049.001-.0039,0a.6078.6078,0,1,1-.2695-1.18l.0039-.001.0053-.0015.002,0,.0034-.0009.0469-.0113c.04-.01.081-.02.1133-.0258a2.4132,2.4132,0,0,1,.3808-.0357c.063-.0024.1284-.0054.1958-.0107l.0142-.0015A5.554,5.554,0,0,0,7.77,17.92a.72.72,0,0,0,.231-.227l.0244-.0318.001-.0014.0014,0,.2471-.0718a7.7765,7.7765,0,0,1,1.2246-5.4126l-.19-.17,0-.002-.0044-.0278a.5983.5983,0,0,0-.1153-.3159,5.6171,5.6171,0,0,0-.8916-.6265c-.0585-.0342-.1157-.0649-.1713-.0942a2.4731,2.4731,0,0,1-.3267-.1973c-.0264-.0195-.0586-.0459-.0894-.0713l-.0356-.0288L7.67,10.6387l-.0049-.0039A.7045.7045,0,0,1,7.4041,10.2a.5725.5725,0,0,1,.1128-.4575A.5835.5835,0,0,1,8,9.5288a.7226.7226,0,0,1,.4214.1592l.0361.0283c.0332.0259.07.0552.0972.0781a2.5254,2.5254,0,0,1,.2671.2759c.04.0469.0825.0952.1284.1441l.01.01a5.5221,5.5221,0,0,0,.7989.72.4159.4159,0,0,0,.31.0406l.043-.0069h.0019l.0015.001c.0357.0264.1484.1074.2134.1514a7.7273,7.7273,0,0,1,3.9233-2.24,7.9671,7.9671,0,0,1,1.0816-.1665l.0141-.2515.001-.0014a.6486.6486,0,0,0,.1939-.3076,5.5779,5.5779,0,0,0-.066-1.0791l-.0009-.0088c-.0093-.0664-.021-.13-.0328-.1914a2.5611,2.5611,0,0,1-.0493-.38c-.0009-.03-.0005-.0679,0-.1045l.0005-.05-.0005-.0073,0-.0093a.6088.6088,0,1,1,1.211,0l.0009.0605c.001.0386.0015.0791.0005.11a2.5348,2.5348,0,0,1-.0493.38c-.0117.0615-.0234.125-.0327.1914l-.0039.0317a5.4479,5.4479,0,0,0-.064,1.0567.4132.4132,0,0,0,.1616.2666l.0328.03.0019.0015v.0019c.0015.0435.0083.1836.0137.2637a7.79,7.79,0,0,1,2.7173.7559,7.8812,7.8812,0,0,1,2.2632,1.65l.226-.1612h.002l.0312.002a.5914.5914,0,0,0,.33-.041,5.4885,5.4885,0,0,0,.7871-.71l.0215-.022c.0454-.0478.0869-.0952.1274-.1416a2.57,2.57,0,0,1,.27-.2783c.0263-.0229.062-.05.0967-.0776l.0366-.0288a.6088.6088,0,1,1,.7544.9472l-.0435.0357c-.0307.0254-.063.0517-.0884.0708a2.4733,2.4733,0,0,1-.3266.1968c-.0562.0293-.1143.06-.1734.0947a5.6889,5.6889,0,0,0-.8921.6269.4152.4152,0,0,0-.1079.293l-.0034.044v.0019l-.0014.001c-.0162.0146-.0508.0459-.0914.082s-.0864.0772-.1186.1065a7.7983,7.7983,0,0,1,1.25,5.3994l.24.07.001.001.0171.0254a.6014.6014,0,0,0,.24.2334,5.595,5.595,0,0,0,1.063.1757l.0122.001c.0674.0059.1328.0083.1963.0108a2.4617,2.4617,0,0,1,.38.0356c.0312.0059.0713.0156.11.0254l.0644.0156A.643.643,0,0,1,26.5691,18.9077Z"
+  })), children);
+})));
+if (false) {}
+const LogoLinkedin = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoLinkedin(_ref44, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref44;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path64 || (_path64 = /*#__PURE__*/React.createElement("path", {
+    d: "M26.2,4H5.8C4.8,4,4,4.8,4,5.7v20.5c0,0.9,0.8,1.7,1.8,1.7h20.4c1,0,1.8-0.8,1.8-1.7V5.7C28,4.8,27.2,4,26.2,4z M11.1,24.4 H7.6V13h3.5V24.4z M9.4,11.4c-1.1,0-2.1-0.9-2.1-2.1c0-1.2,0.9-2.1,2.1-2.1c1.1,0,2.1,0.9,2.1,2.1S10.5,11.4,9.4,11.4z M24.5,24.3 H21v-5.6c0-1.3,0-3.1-1.9-3.1c-1.9,0-2.1,1.5-2.1,2.9v5.7h-3.5V13h3.3v1.5h0.1c0.5-0.9,1.7-1.9,3.4-1.9c3.6,0,4.3,2.4,4.3,5.5V24.3z"
+  })), children);
+})));
+if (false) {}
+const LogoLivestream = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoLivestream(_ref45, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref45;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path65 || (_path65 = /*#__PURE__*/React.createElement("path", {
+    d: "M22.49 23.71h-.76c-2.26 0-4.52 0-6.78 0a3.12 3.12 0 01-2.41-1A14.91 14.91 0 0110 18.88c-1.3-2.6-2.54-5.22-3.82-7.82-.39-.8-.82-1.56-1.28-2.32A7.84 7.84 0 002 5.6c1.24 0 2.41 0 3.57 0a45.63 45.63 0 017 .61 8.09 8.09 0 016.34 5.09 48.51 48.51 0 012.17 7.36A26 26 0 0022.49 23.71zM28.1 26.38a2.93 2.93 0 01-2.74-2.64 42.08 42.08 0 01-.14-4.9 48 48 0 00-.61-7.58 3.75 3.75 0 00-.83-2h2.65c.54 0 .73.37.89.78A12.1 12.1 0 0128 13.28c.29 2.72.31 5.45.33 8.18a10.94 10.94 0 000 1.15c.09.78.4 1.1 1.17 1.08.5 0 .5-.06.5-.06v2.69A8.62 8.62 0 0128.1 26.38z"
+  })), children);
+})));
+if (false) {}
+const LogoMastodon = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoMastodon(_ref46, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref46;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path66 || (_path66 = /*#__PURE__*/React.createElement("path", {
+    d: "m29.0581,11.1929c0-6.0742-3.9797-7.8545-3.9797-7.8545-2.0066-.9214-5.4522-1.3091-9.0318-1.3384h-.0879c-3.5798.0293-7.023.417-9.0296,1.3384,0,0-3.98,1.7803-3.98,7.8545,0,1.3911-.0271,3.0537.0171,4.8174.1445,5.9404,1.0889,11.7945,6.5811,13.2481,2.5322.6704,4.7063.8105,6.4573.7144,3.1755-.1758,4.958-1.1333,4.958-1.1333l-.1047-2.3037s-2.269.7153-4.8176.6284c-2.5249-.0869-5.1902-.2725-5.5986-3.3726-.0378-.272-.0566-.563-.0566-.8691,0,0,2.4785.606,5.6196.75,1.9207.0879,3.7219-.1128,5.5515-.3311,3.5083-.4189,6.563-2.5806,6.9468-4.5557.605-3.1113.5552-7.5928.5552-7.5928Zm-4.6943,7.8257h-2.9138v-7.1382c0-1.5049-.6331-2.2686-1.8997-2.2686-1.4002,0-2.1018.9058-2.1018,2.6973v3.9077h-2.8967v-3.9077c0-1.7915-.7019-2.6973-2.1021-2.6973-1.2666,0-1.8997.7637-1.8997,2.2686v7.1382h-2.9138v-7.3545c0-1.5029.3828-2.6978,1.1516-3.5811.7927-.8838,1.8308-1.3369,3.1196-1.3369,1.491,0,2.6204.5732,3.367,1.7192l.7256,1.2168.7261-1.2168c.7463-1.146,1.8755-1.7192,3.3667-1.7192,1.2886,0,2.3267.4531,3.1196,1.3369.7686.8833,1.1514,2.0781,1.1514,3.5811v7.3545Z"
+  })), children);
+})));
+if (false) {}
+const LogoMedium = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoMedium(_ref47, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref47;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path67 || (_path67 = /*#__PURE__*/React.createElement("path", {
+    d: "M30 16c0 3.7-.6 6.7-1.4 6.7-.8 0-1.4-3-1.4-6.7s.6-6.7 1.4-6.7C29.4 9.3 30 12.3 30 16M26.5 16c0 4.1-1.8 7.5-3.9 7.5s-3.9-3.4-3.9-7.5 1.8-7.5 3.9-7.5S26.5 11.9 26.5 16M17.8 16c0 4.4-3.5 8-7.9 8S2 20.4 2 16s3.5-8 7.9-8S17.8 11.6 17.8 16"
+  })), children);
+})));
+if (false) {}
+const LogoNpm = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoNpm(_ref48, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref48;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path68 || (_path68 = /*#__PURE__*/React.createElement("path", {
+    d: "M4,28V4h24v24H4z M8.5,8.5v15H16v-12h4.5v12h3v-15H8.5z"
+  })), children);
+})));
+if (false) {}
+const LogoOpenshift = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoOpenshift(_ref49, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref49;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path69 || (_path69 = /*#__PURE__*/React.createElement("path", {
+    d: "M26.4612,15.7968A12.1352,12.1352,0,0,0,25.2821,11.48L29,10.13a11.9879,11.9879,0,0,0-1.0281-1.7382l-1.7431.635a11.9884,11.9884,0,0,0-21.71,7.9129l1.7477-.6412a12.19,12.19,0,0,0,.3309,1.9846L2.8838,19.6384A12.1451,12.1451,0,0,0,4.7565,23.7l1.9663-.7163.0026.0039a11.8856,11.8856,0,0,0,4.67,3.8909A12.013,12.013,0,0,0,27.34,21.0743a11.8725,11.8725,0,0,0,1.08-5.992Zm-2.92,3.4967a7.8,7.8,0,0,1-10.3533,3.7744,7.7207,7.7207,0,0,1-2.2714-1.6128l-1.9846.7235a7.84,7.84,0,0,1-2.0742-3.9895l.0009-.0008,3.7242-1.3566a7.8175,7.8175,0,0,1-.1232-2.0653l-1.7517.6362A7.7729,7.7729,0,0,1,19.7645,8.94h.0067a7.7442,7.7442,0,0,1,2.2646,1.615L23.78,9.921a7.8014,7.8014,0,0,1,1.229,1.6558l-3.71,1.3595a7.8245,7.8245,0,0,1,.9766,4.3882l1.9685-.7151A7.6714,7.6714,0,0,1,23.5411,19.2935Z"
+  })), children);
+})));
+if (false) {}
+const LogoPinterest = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoPinterest(_ref50, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref50;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path70 || (_path70 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2a14,14,0,0,0-5.1,27,13.24,13.24,0,0,1,0-4l1.65-7A5.05,5.05,0,0,1,12.17,16c0-1.94,1.13-3.4,2.53-3.4a1.76,1.76,0,0,1,1.77,2c0,1.2-.76,3-1.16,4.66a2,2,0,0,0,2.08,2.53c2.48,0,4.4-2.63,4.4-6.41a5.53,5.53,0,0,0-5.85-5.7,6.06,6.06,0,0,0-6.32,6.08,5.42,5.42,0,0,0,1,3.19.44.44,0,0,1,.1.4c-.11.44-.35,1.4-.39,1.59s-.21.31-.47.19c-1.75-.82-2.84-3.37-2.84-5.43,0-4.41,3.21-8.47,9.25-8.47,4.85,0,8.63,3.46,8.63,8.09,0,4.82-3,8.7-7.27,8.7a3.76,3.76,0,0,1-3.21-1.6l-.87,3.33a15.55,15.55,0,0,1-1.74,3.67A14.17,14.17,0,0,0,16,30,14,14,0,0,0,16,2"
+  })), children);
+})));
+if (false) {}
+const LogoPython = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoPython(_ref51, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref51;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path71 || (_path71 = /*#__PURE__*/React.createElement("path", {
+    d: "M23.4882,9.14v2.9663a4.2843,4.2843,0,0,1-4.173,4.2352H12.6431a3.4077,3.4077,0,0,0-3.34,3.3945v6.3607c0,1.81,1.5742,2.8751,3.34,3.3945a11.1762,11.1762,0,0,0,6.6721,0c1.6817-.4869,3.34-1.4668,3.34-3.3945V23.55H15.983v-.8486H25.9951c1.9414,0,2.6648-1.3542,3.34-3.3867a11.4642,11.4642,0,0,0,0-6.7889c-.48-1.9327-1.3961-3.3867-3.34-3.3867ZM19.7356,25.2476a1.2731,1.2731,0,1,1-1.2534,1.269A1.2607,1.2607,0,0,1,19.7356,25.2476Z"
+  })), _path72 || (_path72 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M19.7356,25.2476a1.2731,1.2731,0,1,1-1.2534,1.269A1.2607,1.2607,0,0,1,19.7356,25.2476Z"
+  })), _path73 || (_path73 = /*#__PURE__*/React.createElement("path", {
+    d: "M15.8351,2a19.0717,19.0717,0,0,0-3.192.2725c-2.8268.4994-3.34,1.5447-3.34,3.4723V8.2909h6.68V9.14H6.7962a4.1708,4.1708,0,0,0-4.173,3.3867,12.4855,12.4855,0,0,0,0,6.7889c.4748,1.9776,1.6088,3.3867,3.55,3.3867H8.47V19.65a4.2449,4.2449,0,0,1,4.173-4.15h6.6721a3.3654,3.3654,0,0,0,3.34-3.3944V5.745a3.729,3.729,0,0,0-3.34-3.4723A20.8377,20.8377,0,0,0,15.8351,2ZM12.2226,4.0478a1.2731,1.2731,0,1,1-1.2534,1.2768A1.2675,1.2675,0,0,1,12.2226,4.0478Z"
+  })), _path74 || (_path74 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M12.2226,4.0478a1.2731,1.2731,0,1,1-1.2534,1.2768A1.2675,1.2675,0,0,1,12.2226,4.0478Z"
+  })), children);
+})));
+if (false) {}
+const LogoQuora = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoQuora(_ref52, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref52;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path75 || (_path75 = /*#__PURE__*/React.createElement("path", {
+    d: "M29,23.86H27a1.72,1.72,0,0,1-1.73,1.72c-1.15,0-1.82-.86-2.58-2a11,11,0,0,0,4.79-9.1c.09-7.19-5.85-11.89-12.17-11.89S3,7.37,3,14.37,9,26.16,15.17,26.16a10.71,10.71,0,0,0,3.07-.48c1.15,2.11,2.59,3.74,5.46,3.74A5,5,0,0,0,29,23.86Zm-8.14-3.45a6.31,6.31,0,0,0-5.56-3.16,6,6,0,0,0-3.74,1.15L12.2,20a2.56,2.56,0,0,1,.86-.1c1.82,0,3,1.53,4.12,3.64a7.58,7.58,0,0,1-1.91.19C10.86,23.76,9,20.6,9,14.47s1.91-9.3,6.23-9.3,6.32,3.16,6.32,9.3A20.68,20.68,0,0,1,20.83,20.41Z"
+  })), children);
+})));
+if (false) {}
+const LogoRScript = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoRScript(_ref53, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref53;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path76 || (_path76 = /*#__PURE__*/React.createElement("path", {
+    fillRule: "evenodd",
+    d: "M30,14.7842c0-5.1782-6.2681-9.376-14-9.376S2,9.606,2,14.7842c0,4.6147,4.9814,8.4419,11.5361,9.2226v2.9917l4.7762-.0019,0-2.9741a19.3812,19.3812,0,0,0,3.3418-.6646L23.593,27l5.3975-.0024-3.253-5.4849C28.3625,19.8086,30,17.4263,30,14.7842Zm-22.4983.7c0-3.54,4.7644-6.41,10.6414-6.41s10.2138,1.9629,10.2138,6.41A5.4694,5.4694,0,0,1,24.9587,20.61a3.2252,3.2252,0,0,0-.2978-.1749,10.4735,10.4735,0,0,0-1.34-.5048s4.1743-.31,4.1743-4.4659-4.3684-4.2343-4.3684-4.2343H13.5361V21.2554C9.97,20.22,7.5017,18.0283,7.5017,15.4839Zm13.7422,1.8452-2.8928.001.0014-2.6812,2.8914.0015a1.2476,1.2476,0,0,1,1.34,1.3149A1.3232,1.3232,0,0,1,21.2439,17.3291Zm-2.9326,3.4946h1.2825a.8785.8785,0,0,1,.6406.291,3.2917,3.2917,0,0,1,.51.63,22.4033,22.4033,0,0,1-2.4326.1455Z"
+  })), children);
+})));
+if (false) {}
+const LogoReact = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoReact(_ref54, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref54;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path77 || (_path77 = /*#__PURE__*/React.createElement("path", {
+    d: "M25,11.6c-0.3-0.1-0.6-0.2-0.9-0.3c0-0.2,0.1-0.4,0.1-0.6c0.7-3.3,0.2-6-1.3-6.9c-1.5-0.8-3.9,0-6.3,2.1 c-0.2,0.2-0.5,0.4-0.7,0.6c-0.2-0.1-0.3-0.3-0.5-0.4C13,3.9,10.5,3,9,3.9c-1.5,0.8-1.9,3.4-1.3,6.5c0.1,0.3,0.1,0.6,0.2,0.9 c-0.4,0.1-0.7,0.2-1,0.3c-3,1-4.9,2.7-4.9,4.3c0,1.7,2,3.5,5.1,4.5c0.2,0.1,0.5,0.2,0.8,0.2c-0.1,0.3-0.2,0.7-0.2,1 c-0.6,3.1-0.1,5.5,1.3,6.4c1.5,0.9,4,0,6.5-2.2c0.2-0.2,0.4-0.4,0.6-0.5c0.2,0.2,0.5,0.5,0.8,0.7c2.4,2.1,4.7,2.9,6.2,2 c1.5-0.9,2-3.5,1.4-6.7c0-0.2-0.1-0.5-0.2-0.8c0.2-0.1,0.4-0.1,0.5-0.2c3.2-1.1,5.3-2.8,5.3-4.5C30,14.3,28,12.7,25,11.6z M17.5,6.9 c2.1-1.8,4-2.5,4.9-2c0.9,0.5,1.3,2.7,0.7,5.6c0,0.2-0.1,0.4-0.1,0.6c-1.2-0.3-2.5-0.5-3.7-0.6c-0.7-1-1.5-2-2.4-3 C17.1,7.3,17.3,7.1,17.5,6.9L17.5,6.9z M10.3,17.4c0.3,0.5,0.5,1,0.8,1.5c0.3,0.5,0.6,1,0.9,1.4c-0.9-0.1-1.7-0.2-2.6-0.4 C9.6,19.1,9.9,18.3,10.3,17.4z M10.3,14.6c-0.4-0.8-0.6-1.6-0.9-2.4c0.8-0.2,1.7-0.3,2.5-0.4c-0.3,0.5-0.6,0.9-0.9,1.4 C10.8,13.6,10.5,14.1,10.3,14.6L10.3,14.6z M10.9,16c0.4-0.8,0.8-1.5,1.2-2.3c0.4-0.7,0.9-1.5,1.4-2.2c0.8-0.1,1.7-0.1,2.6-0.1 c0.9,0,1.7,0,2.6,0.1c0.5,0.7,0.9,1.4,1.3,2.2c0.4,0.7,0.8,1.5,1.2,2.3c-0.4,0.8-0.8,1.5-1.2,2.3c-0.4,0.7-0.9,1.5-1.3,2.2 c-0.8,0.1-1.7,0.1-2.6,0.1c-0.9,0-1.7,0-2.5-0.1c-0.5-0.7-0.9-1.4-1.4-2.2C11.7,17.5,11.3,16.8,10.9,16L10.9,16z M20.9,18.9 c0.3-0.5,0.6-1,0.8-1.5c0.4,0.8,0.7,1.6,0.9,2.5c-0.9,0.2-1.7,0.3-2.6,0.4C20.4,19.8,20.7,19.3,20.9,18.9z M21.7,14.6 c-0.3-0.5-0.5-1-0.8-1.5c-0.3-0.5-0.6-0.9-0.8-1.4c0.9,0.1,1.7,0.3,2.6,0.4C22.4,13,22.1,13.8,21.7,14.6z M16,8.3 c0.6,0.6,1.1,1.3,1.6,2c-1.1-0.1-2.2-0.1-3.3,0C14.9,9.6,15.5,8.9,16,8.3z M9.6,4.9c0.9-0.5,3,0.2,5.2,2.2c0.1,0.1,0.3,0.3,0.4,0.4 c-0.9,0.9-1.7,1.9-2.4,3c-1.3,0.1-2.5,0.3-3.7,0.6c-0.1-0.3-0.1-0.6-0.2-0.9C8.3,7.5,8.7,5.4,9.6,4.9z M8.2,19.6 c-0.2-0.1-0.5-0.1-0.7-0.2c-1.4-0.5-2.5-1.1-3.3-1.7c-0.7-0.6-1-1.2-1-1.7c0-1,1.5-2.3,4.1-3.2c0.3-0.1,0.6-0.2,1-0.3 C8.6,13.7,9,14.9,9.6,16C9,17.2,8.6,18.4,8.2,19.6z M14.7,25.1c-1.1,1-2.2,1.6-3.1,2c-0.9,0.3-1.5,0.3-2,0.1 c-0.9-0.5-1.3-2.5-0.8-5.1C8.9,21.7,9,21.4,9,21c1.2,0.3,2.5,0.5,3.8,0.5c0.7,1,1.5,2,2.4,3C15,24.7,14.9,24.9,14.7,25.1z M16,23.7 c-0.6-0.6-1.1-1.3-1.7-2c0.5,0,1.1,0,1.6,0c0.6,0,1.1,0,1.7,0C17.2,22.4,16.6,23.1,16,23.7z M23.3,25.4c-0.2,0.9-0.5,1.5-0.9,1.7 c-0.9,0.5-2.8-0.2-4.8-1.9c-0.2-0.2-0.5-0.4-0.7-0.6c0.8-0.9,1.6-1.9,2.3-3c1.3-0.1,2.5-0.3,3.8-0.6c0.1,0.2,0.1,0.5,0.2,0.7 C23.5,23.1,23.5,24.4,23.3,25.4z M24.3,19.4c-0.2,0-0.3,0.1-0.5,0.1c-0.4-1.2-0.9-2.4-1.4-3.6c0.5-1.1,1-2.3,1.4-3.5 c0.3,0.1,0.6,0.2,0.8,0.3c2.6,0.9,4.2,2.2,4.2,3.2C28.8,17.1,27.1,18.5,24.3,19.4z"
+  })), _path78 || (_path78 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,18.5c0.5,0,1-0.1,1.4-0.4c0.4-0.3,0.7-0.7,0.9-1.1c0.2-0.5,0.2-1,0.1-1.5c-0.1-0.5-0.3-0.9-0.7-1.3 c-0.3-0.4-0.8-0.6-1.3-0.7c-0.5-0.1-1,0-1.5,0.1c-0.5,0.2-0.9,0.5-1.1,0.9c-0.3,0.4-0.4,0.9-0.4,1.4c0,0.3,0.1,0.7,0.2,1 c0.1,0.3,0.3,0.6,0.5,0.8c0.2,0.2,0.5,0.4,0.8,0.5C15.3,18.4,15.7,18.5,16,18.5z"
+  })), children);
+})));
+if (false) {}
+const LogoRedHatAnsible = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoRedHatAnsible(_ref55, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref55;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path79 || (_path79 = /*#__PURE__*/React.createElement("path", {
+    d: "M21.9104,20.5859h0l-5-11c-.1577-.3452-.5061-.5859-.9104-.5859s-.7529,.2407-.9104,.5859l-5,11c-.0576,.1265-.0896,.2661-.0896,.4141,0,.5522,.4478,1,1,1,.4043,0,.7527-.2407,.9104-.5859l1.9985-4.3965,6.4978,4.7876c.166,.1226,.3711,.1948,.5933,.1948,.5522,0,1-.4478,1-1,0-.1479-.032-.2881-.0896-.4141Zm-5.9104-8.1689l2.499,5.498-3.7441-2.7588,1.2451-2.7393Z"
+  })), _path80 || (_path80 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30c-7.7197,0-14-6.2803-14-14S8.2803,2,16,2s14,6.2803,14,14-6.2803,14-14,14Zm0-26c-6.6167,0-12,5.3833-12,12s5.3833,12,12,12,12-5.3833,12-12-5.3833-12-12-12Z"
+  })), children);
+})));
+if (false) {}
+const LogoSketch = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoSketch(_ref56, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref56;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path81 || (_path81 = /*#__PURE__*/React.createElement("path", {
+    d: "M16.1,3.2l7.7,0.9c0.2,0,0.3,0.1,0.4,0.2l5.7,7.7c0.2,0.2,0.2,0.5,0,0.7l-13.6,16c-0.1,0.1-0.3,0.1-0.4,0c0,0,0,0,0,0 l-13.6-16C2,12.5,2,12.2,2.1,12l5.7-7.7c0.1-0.1,0.2-0.2,0.4-0.2l7.7-0.9C16,3.2,16,3.2,16.1,3.2z M17.7,4.8c0,0-0.1,0-0.2,0 c0,0-0.1,0.1,0,0.2l0,0l4.3,5.4c0,0.1,0.1,0.1,0.1,0.2c0,0.2-0.1,0.3-0.3,0.3l0,0H10.4c-0.1,0-0.1,0-0.2-0.1 c-0.1-0.1-0.1-0.3-0.1-0.4l0,0L14.5,5c0,0,0-0.1,0-0.2c0,0-0.1,0-0.2,0l0,0l-5.9,5.9c0,0-0.1,0.1-0.2,0.1c-0.1,0-0.2-0.1-0.2-0.2v0 l0.2-4.3c0-0.1,0-0.1-0.1-0.1c-0.1,0-0.1,0-0.1,0.1l0,0l-1.1,4.9c0,0.2-0.2,0.3-0.3,0.3l0,0l-2.8,0.6c-0.1,0-0.1,0.1-0.1,0.1 c0,0.1,0,0.1,0.1,0.1l0,0h2.7c0.2,0,0.3,0.1,0.4,0.2l0,0l6.6,11.8c0,0.1,0.1,0.1,0.2,0.1c0.1,0,0.1-0.1,0.1-0.2l0,0L8.6,12.9 c0,0,0-0.1,0-0.1c0-0.2,0.1-0.3,0.3-0.4l0,0h14.2c0.1,0,0.1,0,0.2,0c0.2,0.1,0.2,0.3,0.2,0.4l0,0l-5.3,11.3c0,0.1,0,0.2,0.1,0.2 c0.1,0,0.2,0,0.2-0.1l0,0L25,12.6c0.1-0.1,0.2-0.2,0.4-0.2l0,0h2.7c0.1,0,0.1,0,0.1-0.1c0-0.1,0-0.1-0.1-0.1l0,0l-2.8-0.6 c-0.2,0-0.3-0.2-0.4-0.3l0,0L24,6.3c0-0.1-0.1-0.1-0.1-0.1c-0.1,0-0.1,0-0.1,0.1v0l0.2,4.3c0,0.1,0,0.1-0.1,0.2 c-0.1,0.1-0.2,0.1-0.3,0l0,0L17.7,4.8z"
+  })), children);
+})));
+if (false) {}
+const LogoSkype = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoSkype(_ref57, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref57;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path82 || (_path82 = /*#__PURE__*/React.createElement("path", {
+    d: "M27.91,17.88A11.63,11.63,0,0,0,28.06,16,12.06,12.06,0,0,0,16,3.94a11.63,11.63,0,0,0-1.88.15,7.29,7.29,0,0,0-10,10A11.63,11.63,0,0,0,3.94,16,12.06,12.06,0,0,0,16,28.06a11.63,11.63,0,0,0,1.88-.15,7.29,7.29,0,0,0,10-10Zm-6.18,3.6a5,5,0,0,1-2.24,1.73,9,9,0,0,1-3.48.62A8.41,8.41,0,0,1,12,23a5.2,5.2,0,0,1-1.82-1.63,3.59,3.59,0,0,1-.7-2,1.36,1.36,0,0,1,.43-1A1.56,1.56,0,0,1,11,18a1.38,1.38,0,0,1,.91.32,2.5,2.5,0,0,1,.63.94,5.83,5.83,0,0,0,.66,1.18,2.61,2.61,0,0,0,1,.78,3.87,3.87,0,0,0,1.69.31,4,4,0,0,0,2.34-.62,1.8,1.8,0,0,0,.89-1.53,1.54,1.54,0,0,0-.47-1.17,3.09,3.09,0,0,0-1.25-.7c-.52-.17-1.21-.34-2.08-.53A16,16,0,0,1,12.41,16a4.78,4.78,0,0,1-1.89-1.4,3.5,3.5,0,0,1-.7-2.21,3.65,3.65,0,0,1,.74-2.24,4.7,4.7,0,0,1,2.14-1.5A9.51,9.51,0,0,1,16,8.17a8.63,8.63,0,0,1,2.59.35,5.81,5.81,0,0,1,1.83.92,3.91,3.91,0,0,1,1.06,1.21,2.62,2.62,0,0,1,.34,1.25,1.4,1.4,0,0,1-.43,1,1.43,1.43,0,0,1-1.07.46,1.25,1.25,0,0,1-.89-.28,3.36,3.36,0,0,1-.65-.87,3.79,3.79,0,0,0-1.05-1.31,3.13,3.13,0,0,0-1.95-.46,3.64,3.64,0,0,0-2,.5,1.44,1.44,0,0,0-.76,1.2,1.15,1.15,0,0,0,.25.75,2.21,2.21,0,0,0,.72.55,4.74,4.74,0,0,0,.92.36c.32.09.84.22,1.57.39.92.2,1.74.42,2.49.66a7.61,7.61,0,0,1,1.9.88,3.59,3.59,0,0,1,1.23,1.31A4,4,0,0,1,22.5,19,4.24,4.24,0,0,1,21.73,21.48Z"
+  })), children);
+})));
+if (false) {}
+const LogoSlack = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoSlack(_ref58, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref58;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path83 || (_path83 = /*#__PURE__*/React.createElement("path", {
+    d: "M9.0423 19.1661A2.5212 2.5212 0 116.5212 16.645H9.0423zM10.3127 19.1661a2.5212 2.5212 0 015.0423 0v6.3127a2.5212 2.5212 0 11-5.0423 0zM12.8339 9.0423A2.5212 2.5212 0 1115.355 6.5212V9.0423zM12.8339 10.3127a2.5212 2.5212 0 010 5.0423H6.5212a2.5212 2.5212 0 110-5.0423zM22.9577 12.8339a2.5212 2.5212 0 112.5211 2.5211H22.9577zM21.6873 12.8339a2.5212 2.5212 0 01-5.0423 0V6.5212a2.5212 2.5212 0 115.0423 0zM19.1661 22.9577a2.5212 2.5212 0 11-2.5211 2.5211V22.9577zM19.1661 21.6873a2.5212 2.5212 0 010-5.0423h6.3127a2.5212 2.5212 0 110 5.0423z"
+  })), children);
+})));
+if (false) {}
+const LogoSnapchat = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoSnapchat(_ref59, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref59;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path84 || (_path84 = /*#__PURE__*/React.createElement("path", {
+    d: "M27.9774,9.6279a7.33,7.33,0,0,0-.1186-1.2888,5.2458,5.2458,0,0,0-.4872-1.4948,5.1869,5.1869,0,0,0-.9988-1.3324,4.9557,4.9557,0,0,0-2.1805-1.2433,8.8444,8.8444,0,0,0-2.3059-.2458l-.0044-.0119H10.1143l-.0007.0119a12.578,12.578,0,0,0-1.3221.0591A6.2955,6.2955,0,0,0,7.3792,4.4,5.1155,5.1155,0,0,0,4.2538,7.8152a8.8,8.8,0,0,0-.2459,2.2855L4,21.9065a14.9206,14.9206,0,0,0,.1088,1.5992A5.53,5.53,0,0,0,4.6,25.1205a5.17,5.17,0,0,0,1.443,1.744,4.6907,4.6907,0,0,0,1.4442.7822,7.83,7.83,0,0,0,2.3741.3484c.5034.0032,1.0069.0158,1.5106.0137,3.659-.0154,7.3178.0264,10.9767-.0226a8.6316,8.6316,0,0,0,1.44-.1528A4.8765,4.8765,0,0,0,26.2,26.6613a4.9915,4.9915,0,0,0,1.5931-2.6546,9.6646,9.6646,0,0,0,.2074-2.1v-.1407C28,21.7112,27.9793,9.7855,27.9774,9.6279ZM24.7635,20.7326c-.1536.36-.93.6577-2.2433.8606-.1232.019-.1751.2183-.2463.5445-.0293.1348-.0592.2669-.1.4057a.2451.2451,0,0,1-.26.1943h-.0205a2.1011,2.1011,0,0,1-.3738-.0472,4.921,4.921,0,0,0-.9852-.1044,4.37,4.37,0,0,0-.7106.06,3.4048,3.4048,0,0,0-1.3483.6888,3.912,3.912,0,0,1-2.3668.9328c-.05,0-.0973-.0018-.1335-.0035-.0287.0024-.0584.0035-.0881.0035a3.9062,3.9062,0,0,1-2.3651-.9322,3.4118,3.4118,0,0,0-1.35-.69,4.3612,4.3612,0,0,0-.71-.06,4.858,4.858,0,0,0-.9852.1115,2.1872,2.1872,0,0,1-.3737.0536.2574.2574,0,0,1-.2807-.2012c-.0414-.1407-.0711-.277-.1-.4082-.0716-.328-.1237-.5282-.2465-.5472-1.3133-.2026-2.0893-.5011-2.2439-.8626a.3349.3349,0,0,1-.0272-.114.2109.2109,0,0,1,.1764-.22,4.5854,4.5854,0,0,0,2.7564-1.6391,6.1681,6.1681,0,0,0,.94-1.4616l.0048-.01a.943.943,0,0,0,.09-.79c-.1693-.3991-.73-.5769-1.1007-.6946-.0921-.0291-.1794-.0567-.2488-.0844-.3288-.13-.8693-.4041-.7973-.7828a.7333.7333,0,0,1,.7127-.4683.5052.5052,0,0,1,.2158.043,2.1572,2.1572,0,0,0,.8916.2355.7465.7465,0,0,0,.5134-.1569q-.0145-.2629-.0318-.5256a8.8742,8.8742,0,0,1,.2122-3.5447A4.6074,4.6074,0,0,1,15.8173,7.76q.177-.0015.3539-.0033a4.6152,4.6152,0,0,1,4.2853,2.7606,8.884,8.884,0,0,1,.2118,3.5478l-.0036.0574c-.01.1629-.02.317-.0278.4665a.7215.7215,0,0,0,.4656.1558,2.2321,2.2321,0,0,0,.84-.234.6628.6628,0,0,1,.2751-.0545.832.832,0,0,1,.3133.06l.005.0019a.5825.5825,0,0,1,.4409.4781c.0034.1835-.133.4578-.8039.7226-.0687.0272-.1564.0551-.2489.0844-.3712.1178-.9312.2956-1.1005.6944a.9422.9422,0,0,0,.09.7893l.0048.01a5.4311,5.4311,0,0,0,3.6967,3.1005.211.211,0,0,1,.1764.22A.3408.3408,0,0,1,24.7635,20.7326Z"
+  })), _path85 || (_path85 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M24.7635,20.7326c-.1536.36-.93.6577-2.2433.8606-.1232.019-.1751.2183-.2463.5445-.0293.1348-.0592.2669-.1.4057a.2451.2451,0,0,1-.26.1943h-.0205a2.1011,2.1011,0,0,1-.3738-.0472,4.921,4.921,0,0,0-.9852-.1044,4.37,4.37,0,0,0-.7106.06,3.4048,3.4048,0,0,0-1.3483.6888,3.912,3.912,0,0,1-2.3668.9328c-.05,0-.0973-.0018-.1335-.0035-.0287.0024-.0584.0035-.0881.0035a3.9062,3.9062,0,0,1-2.3651-.9322,3.4118,3.4118,0,0,0-1.35-.69,4.3612,4.3612,0,0,0-.71-.06,4.858,4.858,0,0,0-.9852.1115,2.1872,2.1872,0,0,1-.3737.0536.2574.2574,0,0,1-.2807-.2012c-.0414-.1407-.0711-.277-.1-.4082-.0716-.328-.1237-.5282-.2465-.5472-1.3133-.2026-2.0893-.5011-2.2439-.8626a.3349.3349,0,0,1-.0272-.114.2109.2109,0,0,1,.1764-.22,4.5854,4.5854,0,0,0,2.7564-1.6391,6.1681,6.1681,0,0,0,.94-1.4616l.0048-.01a.943.943,0,0,0,.09-.79c-.1693-.3991-.73-.5769-1.1007-.6946-.0921-.0291-.1794-.0567-.2488-.0844-.3288-.13-.8693-.4041-.7973-.7828a.7333.7333,0,0,1,.7127-.4683.5052.5052,0,0,1,.2158.043,2.1572,2.1572,0,0,0,.8916.2355.7465.7465,0,0,0,.5134-.1569q-.0145-.2629-.0318-.5256a8.8742,8.8742,0,0,1,.2122-3.5447A4.6074,4.6074,0,0,1,15.8173,7.76q.177-.0015.3539-.0033a4.6152,4.6152,0,0,1,4.2853,2.7606,8.884,8.884,0,0,1,.2118,3.5478l-.0036.0574c-.01.1629-.02.317-.0278.4665a.7215.7215,0,0,0,.4656.1558,2.2321,2.2321,0,0,0,.84-.234.6628.6628,0,0,1,.2751-.0545.832.832,0,0,1,.3133.06l.005.0019a.5825.5825,0,0,1,.4409.4781c.0034.1835-.133.4578-.8039.7226-.0687.0272-.1564.0551-.2489.0844-.3712.1178-.9312.2956-1.1005.6944a.9422.9422,0,0,0,.09.7893l.0048.01a5.4311,5.4311,0,0,0,3.6967,3.1005.211.211,0,0,1,.1764.22A.3408.3408,0,0,1,24.7635,20.7326Z",
+    "data-icon-path": "inner-path"
+  })), children);
+})));
+if (false) {}
+const LogoSvelte = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoSvelte(_ref60, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref60;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path86 || (_path86 = /*#__PURE__*/React.createElement("path", {
+    d: "M26.1,5.7C23.5,2,18.4,0.9,14.7,3.2L8.2,7.4c-1.8,1.1-3,2.9-3.4,5c-0.3,1.7,0,3.5,0.8,5.1c-0.6,0.8-0.9,1.8-1.1,2.8 c-0.4,2.1,0.1,4.3,1.4,6c2.6,3.7,7.7,4.8,11.4,2.5l6.5-4.2c1.8-1.1,3-2.9,3.4-5c0.3-1.7,0-3.5-0.8-5.1c0.6-0.8,0.9-1.8,1.1-2.8 C27.9,9.6,27.4,7.4,26.1,5.7z M24.3,11c0,0.2-0.1,0.4-0.2,0.6L24,12l-0.3-0.2c-0.8-0.6-1.6-1-2.6-1.3l-0.2-0.1l0-0.2 c0-0.3-0.1-0.7-0.3-1c-0.4-0.5-1-0.8-1.7-0.6c-0.1,0-0.3,0.1-0.4,0.2L12,12.9c-0.3,0.2-0.5,0.5-0.6,0.9c-0.1,0.4,0,0.8,0.2,1.1 c0.4,0.5,1,0.8,1.7,0.6c0.1,0,0.3-0.1,0.4-0.2l2.5-1.6c0.4-0.3,0.9-0.5,1.3-0.6c2.1-0.5,4.3,0.3,5.6,2.1c0.7,1,1,2.4,0.8,3.6 c-0.2,1.2-1,2.3-2,3l-6.5,4.2c-0.4,0.3-0.9,0.5-1.3,0.6c-2.1,0.5-4.3-0.3-5.6-2.1c-0.7-1-1-2.4-0.8-3.6c0-0.2,0.1-0.4,0.2-0.6L8,20 l0.3,0.2c0.8,0.6,1.6,1,2.6,1.3l0.2,0.1l0,0.2c0,0.3,0.1,0.7,0.3,1c0.4,0.5,1,0.8,1.7,0.6c0.1,0,0.3-0.1,0.4-0.2l6.5-4.2 c0.3-0.2,0.5-0.5,0.6-0.9c0.1-0.4,0-0.8-0.2-1.1c-0.4-0.5-1-0.8-1.7-0.6c-0.1,0-0.3,0.1-0.4,0.2l-2.5,1.6c-0.4,0.3-0.9,0.5-1.3,0.6 c-2.1,0.5-4.3-0.3-5.6-2.1c-0.8-1-1-2.4-0.8-3.6c0.2-1.2,1-2.3,2-3l6.5-4.2c0.4-0.3,0.9-0.5,1.3-0.6c2.1-0.5,4.3,0.3,5.6,2.1 C24.2,8.5,24.5,9.8,24.3,11z"
+  })), children);
+})));
+if (false) {}
+const LogoTumblr = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoTumblr(_ref61, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref61;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path87 || (_path87 = /*#__PURE__*/React.createElement("path", {
+    d: "M22.6,28h-4c-3.59,0-6.3-1.86-6.3-6.3V14.58H9V10.72A7.17,7.17,0,0,0,14.3,4h3.76v6.12h4.36v4.46H18.06v6.2c0,1.86.94,2.49,2.42,2.49H22.6Z"
+  })), children);
+})));
+if (false) {}
+const LogoTwitter = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoTwitter(_ref62, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref62;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path88 || (_path88 = /*#__PURE__*/React.createElement("path", {
+    d: "M11.5475,25.7523c9.0566,0,14.0102-7.5034,14.0102-14.0102,0-.2131,0-.4253-.0144-.6365,.9637-.697,1.7955-1.5601,2.4566-2.5488-.8987,.3982-1.852,.6594-2.8282,.7747,1.0279-.6154,1.7972-1.5833,2.1648-2.7235-.9666,.5736-2.024,.9778-3.1267,1.1952-1.8648-1.9829-4.984-2.0786-6.9669-.2138-1.2788,1.2026-1.8214,2.9947-1.4245,4.7047-3.9591-.1985-7.6479-2.0685-10.1482-5.1446-1.3069,2.2499-.6394,5.1282,1.5245,6.5731-.7836-.0232-1.5501-.2346-2.2349-.6163v.0624c.0006,2.3439,1.6529,4.3628,3.9504,4.8269-.7249,.1977-1.4855,.2266-2.2234,.0845,.6451,2.0058,2.4937,3.38,4.6003,3.4195-1.7436,1.3703-3.8975,2.1142-6.1152,2.112-.3918-.0008-.7832-.0245-1.1722-.071,2.2518,1.4451,4.8719,2.2116,7.5475,2.208"
+  })), children);
+})));
+if (false) {}
+const LogoVmware = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoVmware(_ref63, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref63;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path89 || (_path89 = /*#__PURE__*/React.createElement("path", {
+    d: "M3.4,11C3,10.1,2,9.7,1,10.2s-1.3,1.4-0.9,2.3L4.1,21c0.6,1.3,1.3,2,2.5,2c1.3,0,1.9-0.8,2.5-2c0,0,3.4-7.4,3.4-7.5 c0-0.1,0.1-0.3,0.5-0.3c0.3,0,0.5,0.2,0.5,0.6V21c0,1.1,0.6,2,1.8,2s1.8-0.9,1.8-2V15c0-1.1,0.8-1.9,1.9-1.9c1.1,0,1.9,0.8,1.9,1.9 V21c0,1.1,0.6,2,1.8,2s1.8-0.9,1.8-2V15c0-1.1,0.8-1.9,1.9-1.9c1.1,0,1.9,0.8,1.9,1.9V21c0,1.1,0.6,2,1.8,2s1.8-0.9,1.8-2v-6.8 c0-2.5-2-4.2-4.4-4.2s-3.9,1.7-3.9,1.7c-0.8-1-1.9-1.7-3.8-1.7c-2,0-3.7,1.7-3.7,1.7c-0.8-1-2.2-1.7-3.3-1.7c-1.7,0-3.1,0.8-4,2.7 l-2.5,5.9L3.4,11"
+  })), children);
+})));
+if (false) {}
+const LogoVmwareAlt = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoVmwareAlt(_ref64, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref64;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path90 || (_path90 = /*#__PURE__*/React.createElement("path", {
+    d: "M22.4131 19.1099l-1.9154-5.5355c-.0401-.1304-.1003-.351-.1003-.5415 0-.5114.4112-1.0128 1.073-1.0128.5515 0 .9226.351 1.083.8624l1.2034 3.9812 1.2335-3.9711c.1604-.5315.5716-.8925 1.1432-.8925h.1304c.5716 0 .9828.371 1.1432.8925l1.2435 3.9812 1.2335-4.0113c.1504-.4713.4814-.8524 1.073-.8524.6117 0 1.0429.4713 1.0429 1.0229 0 .1504-.0401.351-.0702.4513l-2.0056 5.6258c-.2306.6919-.6919.9928-1.2335.9928h-.0702c-.5415 0-.9928-.3109-1.2034-.9527l-1.2435-3.9511-1.2635 3.9511c-.2006.6418-.6619.9527-1.2034.9527h-.0702c-.5315 0-.9928-.3109-1.2234-.9928zM2.0939 12.645c-.2469-.5532-.8692-.8001-1.452-.5433-.5828.2568-.7902.8989-.5334 1.452l2.4299 5.2846c.3852.8297.7902 1.2644 1.5409 1.2644.81 0 1.1656-.4741 1.5409-1.2644 0 0 2.1237-4.6228 2.1435-4.6722.0198-.0494.0889-.1976.3062-.1976.1877 0 .3358.1482.3358.3457v4.524c0 .6914.3852 1.2644 1.1261 1.2644s1.1458-.5729 1.1458-1.2644v-3.6943c0-.7112.5136-1.1755 1.2051-1.1755s1.1557.4741 1.1557 1.1755v3.6943c0 .6914.3852 1.2644 1.1261 1.2644s1.1458-.5729 1.1458-1.2644v-3.6943c0-.7112.5136-1.1755 1.2051-1.1755s1.1557.4741 1.1557 1.1755v3.6943c0 .6914.3852 1.2644 1.1261 1.2644s1.1458-.5729 1.1458-1.2644v-4.2079c0-1.5508-1.2446-2.6275-2.7361-2.6275s-2.4299 1.0372-2.4299 1.0372c-.4939-.6421-1.1853-1.0372-2.341-1.0372-1.2248 0-2.3015 1.0372-2.3015 1.0372-.5038-.6421-1.3434-1.0372-2.0447-1.0372-1.0866 0-1.9459.4741-2.4694 1.6792l-1.5508 3.6647-1.9756-4.7018"
+  })), children);
+})));
+if (false) {}
+const LogoVue = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoVue(_ref65, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref65;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path91 || (_path91 = /*#__PURE__*/React.createElement("path", {
+    d: "M24.9,3.9L16,19.4L7.1,3.9H2l14,24.3L30,3.9H24.9z"
+  })), _path92 || (_path92 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,9.5l-3.2-5.6H8.1L16,17.5l7.9-13.6h-4.6L16,9.5z"
+  })), children);
+})));
+if (false) {}
+const LogoWechat = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoWechat(_ref66, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref66;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path93 || (_path93 = /*#__PURE__*/React.createElement("path", {
+    fillRule: "evenodd",
+    d: "M27.0857,24.7792A6.6179,6.6179,0,0,0,30,19.4662c0-3.88-3.7765-7.0269-8.4338-7.0269s-8.4339,3.1465-8.4339,7.0269,3.7765,7.028,8.4339,7.028a9.9547,9.9547,0,0,0,2.7533-.385l.2473-.0374a.8923.8923,0,0,1,.448.13l1.8469,1.0664.1621.0525a.2813.2813,0,0,0,.2812-.2812l-.0455-.2053-.38-1.4175-.0292-.18A.56.56,0,0,1,27.0857,24.7792ZM12.1208,4.68C6.5313,4.68,2,8.4552,2,13.1137a7.9386,7.9386,0,0,0,3.4965,6.3746.6713.6713,0,0,1,.2835.55l-.035.2147-.4562,1.701L5.234,22.2a.3384.3384,0,0,0,.3372.3383l.196-.063,2.2155-1.28a1.0584,1.0584,0,0,1,.5366-.1552l.2975.0443a11.9674,11.9674,0,0,0,3.304.4632l.5554-.014a6.5153,6.5153,0,0,1-.3395-2.0662c0-4.2478,4.1323-7.6918,9.2295-7.6918l.55.014C21.3538,7.761,17.169,4.68,12.1208,4.68Zm6.6337,13.6629a1.1247,1.1247,0,1,1,1.1247-1.1247A1.1243,1.1243,0,0,1,18.7545,18.3427Zm5.6233,0a1.1247,1.1247,0,1,1,1.1235-1.1247A1.1245,1.1245,0,0,1,24.3778,18.3427ZM8.7468,11.7638a1.3493,1.3493,0,1,1,1.35-1.3486A1.3485,1.3485,0,0,1,8.7468,11.7638Zm6.7469,0a1.3493,1.3493,0,1,1,1.35-1.3486A1.3486,1.3486,0,0,1,15.4937,11.7638Z"
+  })), children);
+})));
+if (false) {}
+const LogoX = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoX(_ref67, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref67;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path94 || (_path94 = /*#__PURE__*/React.createElement("path", {
+    d: "m18.2342,14.1624l8.7424-10.1624h-2.0717l-7.591,8.8238-6.0629-8.8238h-6.9929l9.1684,13.3432-9.1684,10.6568h2.0718l8.0163-9.3183,6.4029,9.3183h6.9929l-9.5083-13.8376h.0005Zm-2.8376,3.2984l-.9289-1.3287L7.0763,5.5596h3.1822l5.9649,8.5323.9289,1.3287,7.7536,11.0907h-3.1822l-6.3272-9.05v-.0005Z"
+  })), children);
+})));
+if (false) {}
+const LogoXing = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoXing(_ref68, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref68;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path95 || (_path95 = /*#__PURE__*/React.createElement("path", {
+    d: "M11.42,8.29a1.25,1.25,0,0,0-1.13-.76h-4a.65.65,0,0,0-.55.25.63.63,0,0,0,0,.62l2.73,4.73v0L4.17,20.72a.6.6,0,0,0,0,.62.58.58,0,0,0,.52.28h4a1.22,1.22,0,0,0,1.1-.78l4.36-7.71S11.42,8.29,11.42,8.29Z"
+  })), _path96 || (_path96 = /*#__PURE__*/React.createElement("path", {
+    d: "M27.83,2.88a.65.65,0,0,0,0-.62A.61.61,0,0,0,27.3,2H23.22a1.19,1.19,0,0,0-1.08.77s-8.7,15.43-9,15.93l5.74,10.53A1.26,1.26,0,0,0,20,30h4a.59.59,0,0,0,.54-.26.62.62,0,0,0,0-.62l-5.69-10.4a0,0,0,0,1,0,0Z"
+  })), children);
+})));
+if (false) {}
+const LogoYelp = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoYelp(_ref69, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref69;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path97 || (_path97 = /*#__PURE__*/React.createElement("path", {
+    fillRule: "evenodd",
+    d: "M8.5089 15.1845l5.0598 2.4675c.9733.4747.8229 1.9059-.2278 2.1679l-5.4618 1.3619c-.6813.1699-1.3541-.3002-1.4345-.9977-.1719-1.492-.0021-2.9655.4564-4.3296.2227-.6625.9797-.9764 1.6079-.67zM10.5348 25.6004l3.7659-4.1831c.7245-.8048 2.0589-.2657 2.0211.8165l-.1964 5.6273c-.0245.7012-.6613 1.2203-1.3532 1.1041-1.4551-.2444-2.8315-.8069-4.0331-1.6322-.5775-.3967-.6731-1.212-.2043-1.7327zM19.464 20.0339l5.3529 1.7396c.6663.2165.9912.9705.6894 1.6027-.6279 1.3155-1.5387 2.4909-2.6766 3.4301-.5412.4466-1.3521.3154-1.724-.2796l-2.9838-4.7752c-.5738-.9184.3123-2.0524 1.3421-1.7177zM24.9076 16.619l-5.411 1.5515c-1.0409.2984-1.8868-.8658-1.2812-1.7636l3.1481-4.6668c.3909-.5795 1.2034-.6861 1.7275-.2237 1.0791.9521 1.9628 2.1433 2.56 3.5214.2792.6443-.0685 1.3877-.7434 1.5813zM12.2638 3.4886c-.9739.2609-1.903.6058-2.7815 1.0247-.6096.2907-.8399 1.0415-.5022 1.6264l5.2887 9.1604c.5934 1.0277 2.1643.6067 2.1643-.5799V4.1427c0-.6754-.5749-1.2105-1.2481-1.1574-.9703.0765-1.9474.2424-2.9212.5033z"
+  })), children);
+})));
+if (false) {}
+const LogoYoutube = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LogoYoutube(_ref70, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref70;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path98 || (_path98 = /*#__PURE__*/React.createElement("path", {
+    d: "M29.41,9.26a3.5,3.5,0,0,0-2.47-2.47C24.76,6.2,16,6.2,16,6.2s-8.76,0-10.94.59A3.5,3.5,0,0,0,2.59,9.26,36.13,36.13,0,0,0,2,16a36.13,36.13,0,0,0,.59,6.74,3.5,3.5,0,0,0,2.47,2.47C7.24,25.8,16,25.8,16,25.8s8.76,0,10.94-.59a3.5,3.5,0,0,0,2.47-2.47A36.13,36.13,0,0,0,30,16,36.13,36.13,0,0,0,29.41,9.26ZM13.2,20.2V11.8L20.47,16Z"
+  })), children);
+})));
+if (false) {}
+const Logout = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Logout(_ref71, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref71;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path99 || (_path99 = /*#__PURE__*/React.createElement("path", {
+    d: "M6,30H18a2.0023,2.0023,0,0,0,2-2V25H18v3H6V4H18V7h2V4a2.0023,2.0023,0,0,0-2-2H6A2.0023,2.0023,0,0,0,4,4V28A2.0023,2.0023,0,0,0,6,30Z"
+  })), _path100 || (_path100 = /*#__PURE__*/React.createElement("path", {
+    d: "M20.586 20.586L24.172 17 10 17 10 15 24.172 15 20.586 11.414 22 10 28 16 22 22 20.586 20.586z"
+  })), children);
+})));
+if (false) {}
+const Loop = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Loop(_ref72, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref72;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path101 || (_path101 = /*#__PURE__*/React.createElement("path", {
+    d: "M23.59 19.41L26 22 21 22 21 24 26 24 23.59 26.59 25 28 30 23 25 18 23.59 19.41zM13 6A9 9 0 005.52 20l1.66-1.11A7 7 0 1113 22H2v2H13A9 9 0 0013 6z"
+  })), children);
+})));
+if (false) {}
+const LowSeverity = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function LowSeverity(_ref73, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref73;
+  if (size === "glyph" || size === "glyph" || size === "glyphpx") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 16 16",
+      fill: "currentColor",
+      ...rest
+    }, _path102 || (_path102 = /*#__PURE__*/React.createElement("path", {
+      d: "M4 4H12V12H4z"
+    })), _path103 || (_path103 = /*#__PURE__*/React.createElement("path", {
+      d: "M12,4v8H4V4h8m1-1H3V13H13V3Z"
+    })), children);
+  }
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 16 16",
+    fill: "currentColor",
+    ...rest
+  }, _path104 || (_path104 = /*#__PURE__*/React.createElement("path", {
+    d: "M4 4H12V12H4z"
+  })), _path105 || (_path105 = /*#__PURE__*/React.createElement("path", {
+    d: "M12,4v8H4V4h8m1-1H3V13H13V3Z"
+  })), children);
+})));
+if (false) {}
+const Mac = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Mac(_ref74, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref74;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path106 || (_path106 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "M30 23h-6c-1.103 0-2-.8975-2-2v-10c0-1.103.897-2 2-2h6v2h-6v10h6v2zM18 9h-4c-1.103 0-2 .897-2 2v12h2v-5h4v5h2v-12c0-1.103-.897-2-2-2zm-4 7v-5h4v5h-4zM8 9L6.4849 14 6 15.977 5.535 14 4 9 2 9 2 23 4 23 4 15 3.8415 13.0039 4.4212 15 6 19.6263 7.5788 15 8.1588 13 8 15 8 23 10 23 10 9 8 9z"
+  })), children);
+})));
+if (false) {}
+const MacCommand = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MacCommand(_ref75, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref75;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path107 || (_path107 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,13a4,4,0,0,0,4-4V8a4,4,0,0,0-4-4H23a4,4,0,0,0-4,4v3H13V8A4,4,0,0,0,9,4H8A4,4,0,0,0,4,8V9a4,4,0,0,0,4,4h3v6H8a4,4,0,0,0-4,4v1a4,4,0,0,0,4,4H9a4,4,0,0,0,4-4V21h6v3a4,4,0,0,0,4,4h1a4,4,0,0,0,4-4V23a4,4,0,0,0-4-4H21V13ZM21,8a2,2,0,0,1,2-2h1a2,2,0,0,1,2,2V9a2,2,0,0,1-2,2H21ZM8,11A2,2,0,0,1,6,9V8A2,2,0,0,1,8,6H9a2,2,0,0,1,2,2v3H8Zm3,13a2,2,0,0,1-2,2H8a2,2,0,0,1-2-2V23a2,2,0,0,1,2-2h3Zm8-5H13V13h6Zm2,2h3a2,2,0,0,1,2,2v1a2,2,0,0,1-2,2H23a2,2,0,0,1-2-2Z"
+  })), children);
+})));
+if (false) {}
+const MacOption = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MacOption(_ref76, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref76;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path108 || (_path108 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 5H28V7H18zM10.6 5L4 5 4 7 9.4 7 18.4 27 28 27 28 25 19.6 25z"
+  })), children);
+})));
+if (false) {}
+const MacShift = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MacShift(_ref77, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref77;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path109 || (_path109 = /*#__PURE__*/React.createElement("path", {
+    d: "M21,28H11a2.0023,2.0023,0,0,1-2-2V16H4a1,1,0,0,1-.707-1.707l12-12a.9994.9994,0,0,1,1.414,0l12,12A1,1,0,0,1,28,16H23V26A2.0027,2.0027,0,0,1,21,28ZM6.4141,14H11V26H21V14h4.5859L16,4.4141Z"
+  })), children);
+})));
+if (false) {}
+const MachineLearning = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MachineLearning(_ref78, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref78;
+  if (false) {}
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path110 || (_path110 = /*#__PURE__*/React.createElement("path", {
+    d: "M16 25a6.9908 6.9908 0 01-5.833-3.1287l1.666-1.1074a5.0007 5.0007 0 008.334 0l1.666 1.1074A6.9908 6.9908 0 0116 25zM20 14a2 2 0 102 2A1.9806 1.9806 0 0020 14zM12 14a2 2 0 102 2A1.9806 1.9806 0 0012 14z"
+  })), _path111 || (_path111 = /*#__PURE__*/React.createElement("path", {
+    d: "M30,16V14H28V10a4.0045,4.0045,0,0,0-4-4H22V2H20V6H12V2H10V6H8a4.0045,4.0045,0,0,0-4,4v4H2v2H4v5H2v2H4v3a4.0045,4.0045,0,0,0,4,4H24a4.0045,4.0045,0,0,0,4-4V23h2V21H28V16ZM26,26a2.0023,2.0023,0,0,1-2,2H8a2.0023,2.0023,0,0,1-2-2V10A2.0023,2.0023,0,0,1,8,8H24a2.0023,2.0023,0,0,1,2,2Z"
+  })), children);
+})));
+if (false) {}
+const MachineLearningModel = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MachineLearningModel(_ref79, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref79;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path112 || (_path112 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m27,19c1.6543,0,3-1.3457,3-3s-1.3457-3-3-3c-1.302,0-2.4016.8384-2.8157,2h-5.7703l7.3008-7.3008c.3911.1875.8235.3008,1.2852.3008,1.6543,0,3-1.3457,3-3s-1.3457-3-3-3-3,1.3457-3,3c0,.4619.1135.894.3005,1.2852l-8.3005,8.3008v-6.5859c0-1.1025.897-2,2-2h2v-2h-2c-1.2002,0-2.2661.5425-3,1.3823-.7339-.8398-1.7998-1.3823-3-1.3823h-1c-4.9624,0-9,4.0371-9,9v6c0,4.9629,4.0376,9,9,9h1c1.2002,0,2.2661-.5425,3-1.3823.7339.8398,1.7998,1.3823,3,1.3823h2v-2h-2c-1.103,0-2-.8975-2-2v-6.5859l8.3005,8.3008c-.187.3911-.3005.8232-.3005,1.2852,0,1.6543,1.3457,3,3,3s3-1.3457,3-3-1.3457-3-3-3c-.4617,0-.894.1133-1.2852.3008l-7.3008-7.3008h5.7703c.4141,1.1616,1.5137,2,2.8157,2Zm0-4c.5513,0,1,.4482,1,1s-.4487,1-1,1-1-.4482-1-1,.4487-1,1-1Zm0-11c.5515,0,1,.4487,1,1s-.4485,1-1,1-1-.4487-1-1,.4485-1,1-1Zm-13,8h-2v2h2v4h-2c-1.6543,0-3,1.3457-3,3v2h2v-2c0-.5518.4487-1,1-1h2v4c0,1.1025-.897,2-2,2h-1c-3.5195,0-6.4324-2.6133-6.9202-6h1.9202v-2h-2v-4h3c1.6543,0,3-1.3457,3-3v-2h-2v2c0,.5518-.4487,1-1,1h-2.9202c.4878-3.3867,3.4006-6,6.9202-6h1c1.103,0,2,.8975,2,2v4Zm14,15c0,.5513-.4485,1-1,1s-1-.4487-1-1,.4485-1,1-1,1,.4487,1,1Z"
+  })), children);
+})));
+if (false) {}
+const MagicWand = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MagicWand(_ref80, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref80;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path113 || (_path113 = /*#__PURE__*/React.createElement("path", {
+    d: "M29.4141,24,12,6.5859a2.0476,2.0476,0,0,0-2.8281,0l-2.586,2.586a2.0021,2.0021,0,0,0,0,2.8281L23.999,29.4141a2.0024,2.0024,0,0,0,2.8281,0l2.587-2.5865a1.9993,1.9993,0,0,0,0-2.8281ZM8,10.5859,10.5859,8l5,5-2.5866,2.5869-5-5ZM25.4131,28l-11-10.999L17,14.4141l11,11Z"
+  })), _path114 || (_path114 = /*#__PURE__*/React.createElement("path", {
+    d: "M2.586 14.586H5.414V17.414H2.586z",
+    transform: "rotate(-45 4 16)"
+  })), _path115 || (_path115 = /*#__PURE__*/React.createElement("path", {
+    d: "M14.586 2.586H17.414V5.414H14.586z",
+    transform: "rotate(-45 16 4)"
+  })), _path116 || (_path116 = /*#__PURE__*/React.createElement("path", {
+    d: "M2.586 2.586H5.414V5.414H2.586z",
+    transform: "rotate(-45 4 4)"
+  })), children);
+})));
+if (false) {}
+const MagicWandFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MagicWandFilled(_ref81, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref81;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path117 || (_path117 = /*#__PURE__*/React.createElement("path", {
+    d: "M29.4141,24,12,6.5859a2.0476,2.0476,0,0,0-2.8281,0l-2.586,2.586a2.0021,2.0021,0,0,0,0,2.8281L23.999,29.4141a2.0024,2.0024,0,0,0,2.8281,0l2.587-2.5865a1.9993,1.9993,0,0,0,0-2.8281ZM8,10.5859,10.5859,8l5,5-2.5866,2.5869-5-5Z"
+  })), _path118 || (_path118 = /*#__PURE__*/React.createElement("path", {
+    d: "M2.586 14.586H5.414V17.414H2.586z",
+    transform: "rotate(-45 4 16)"
+  })), _path119 || (_path119 = /*#__PURE__*/React.createElement("path", {
+    d: "M14.586 2.586H17.414V5.414H14.586z",
+    transform: "rotate(-45 16 4)"
+  })), _path120 || (_path120 = /*#__PURE__*/React.createElement("path", {
+    d: "M2.586 2.586H5.414V5.414H2.586z",
+    transform: "rotate(-45 4 4)"
+  })), children);
+})));
+if (false) {}
+const WatsonHealthMagnify = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function WatsonHealthMagnify(_ref82, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref82;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path121 || (_path121 = /*#__PURE__*/React.createElement("path", {
+    d: "M12,21H4V4H22v8h2V4a2,2,0,0,0-2-2H4A2,2,0,0,0,2,4V21a2,2,0,0,0,2,2h8Z"
+  })), _path122 || (_path122 = /*#__PURE__*/React.createElement("path", {
+    d: "M30,28.58l-3.11-3.11a6,6,0,1,0-1.42,1.42L28.58,30ZM22,26a4,4,0,1,1,4-4A4,4,0,0,1,22,26Z"
+  })), children);
+})));
+if (false) {}
+const MailAll = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MailAll(_ref83, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref83;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path123 || (_path123 = /*#__PURE__*/React.createElement("path", {
+    d: "M16.59 20.41L20.17 24 20.17 24 16.58 27.59 18 29 23 24 18 19 16.59 20.41zM23.59 20.41L27.17 24 27.17 24 23.58 27.59 25 29 30 24 25 19 23.59 20.41z"
+  })), _path124 || (_path124 = /*#__PURE__*/React.createElement("path", {
+    d: "M14,23H4V7.91l11.43,7.91a1,1,0,0,0,1.14,0L28,7.91V17h2V7a2,2,0,0,0-2-2H4A2,2,0,0,0,2,7V23a2,2,0,0,0,2,2H14ZM25.8,7,16,13.78,6.2,7Z"
+  })), children);
+})));
+if (false) {}
+const MailReply = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MailReply(_ref84, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref84;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path125 || (_path125 = /*#__PURE__*/React.createElement("path", {
+    d: "M25,18l-1.4141,1.4141L26.1672,22H18a4,4,0,0,0,0,8h2V28H18a2,2,0,0,1,0-4h8.1672l-2.5827,2.5874L25,28l5-5Z"
+  })), _path126 || (_path126 = /*#__PURE__*/React.createElement("path", {
+    d: "M10,22H4L3.9966,6.9064l11.4341,7.9159a1.0008,1.0008,0,0,0,1.1386,0L28,6.9086,28,16h2V6a2.0025,2.0025,0,0,0-2-2H4A2,2,0,0,0,2,5.9965V22a2.0026,2.0026,0,0,0,2,2h6ZM25.7986,6,16,12.7837,6.2014,6Z"
+  })), children);
+})));
+if (false) {}
+const WatsonHealthMammogram = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function WatsonHealthMammogram(_ref85, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref85;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path127 || (_path127 = /*#__PURE__*/React.createElement("path", {
+    d: "M25 32L32 32 32 25 30 25 30 30 25 30 25 32zM25 27H22V17h3a3.0033 3.0033 0 013 3v4A3.0033 3.0033 0 0125 27zm-1-2h1a1.0006 1.0006 0 001-1V20a1.0006 1.0006 0 00-1-1H24zM20 27H14V23a2.002 2.002 0 012-2h2V19H14V17h4a2.0023 2.0023 0 012 2v2a2.0023 2.0023 0 01-2 2H16v2h4zM25 15H22V5h3a3.0033 3.0033 0 013 3v4A3.0033 3.0033 0 0125 15zm-1-2h1a1.0009 1.0009 0 001-1V8a1.0009 1.0009 0 00-1-1H24zM18 5H14V7h4V9H15v2h3v2H14v2h4a2.0027 2.0027 0 002-2V7A2.0023 2.0023 0 0018 5zM10 27H8V23.9541C3.2847 23.5117 2 19.9443 2 18c0-3.0146 2.082-4.5015 3.9189-5.814C7.5723 11.0054 9 9.9854 9 8V5h2V8c0 3.0146-2.082 4.5015-3.9189 5.814C5.4277 14.9946 4 16.0146 4 18c.0054.4033.1914 4 5 4a1 1 0 011 1zM7 0L0 0 0 7 2 7 2 2 7 2 7 0z"
+  })), children);
+})));
+if (false) {}
+const ManageProtection = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function ManageProtection(_ref86, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref86;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path128 || (_path128 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30,9.8242,26.7071A10.9815,10.9815,0,0,1,4,17V4A2.0022,2.0022,0,0,1,6,2H26a2.0022,2.0022,0,0,1,2,2V17a10.9815,10.9815,0,0,1-5.8242,9.7069ZM6,4V17a8.9852,8.9852,0,0,0,4.7656,7.9423L16,27.7333l5.2344-2.791A8.9852,8.9852,0,0,0,26,17V4Z"
+  })), _path129 || (_path129 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,25.277V6h8V16.8048a7,7,0,0,1-3.7,6.1731Z"
+  })), children);
+})));
+if (false) {}
+const ManagedSolutions = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function ManagedSolutions(_ref87, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref87;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path130 || (_path130 = /*#__PURE__*/React.createElement("path", {
+    d: "M30 23L25 23 25 18 23 18 23 23 18 23 18 25 23 25 23 30 25 30 25 25 30 25 30 23z"
+  })), _path131 || (_path131 = /*#__PURE__*/React.createElement("path", {
+    d: "M24.1273,11.8394l1.1807.2136a5.7919,5.7919,0,0,1,2.6247,1.1445A5.4219,5.4219,0,0,1,29.9532,18h2.0293a7.5022,7.5022,0,0,0-6.15-7.8848,10.0067,10.0067,0,0,0-7.9387-7.9336,10.0025,10.0025,0,0,0-11.72,7.9336A7.5055,7.5055,0,0,0,.0576,18.4088,7.6841,7.6841,0,0,0,7.7725,25H14V23H7.6978a5.6323,5.6323,0,0,1-5.6024-4.4859,5.5064,5.5064,0,0,1,4.4338-6.4306l1.3488-.2441.2138-1.11a8.2061,8.2061,0,0,1,6.7427-6.6426,7.9714,7.9714,0,0,1,3.0138.13,8.1442,8.1442,0,0,1,6.0526,6.4464Z"
+  })), children);
+})));
+if (false) {}
+const Map = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Map(_ref88, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref88;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path132 || (_path132 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,24l-6.09-8.6A8.14,8.14,0,0,1,16,2a8.08,8.08,0,0,1,8,8.13,8.2,8.2,0,0,1-1.8,5.13ZM16,4a6.07,6.07,0,0,0-6,6.13,6.19,6.19,0,0,0,1.49,4L16,20.52,20.63,14A6.24,6.24,0,0,0,22,10.13,6.07,6.07,0,0,0,16,4Z"
+  })), _circle8 || (_circle8 = /*#__PURE__*/React.createElement("circle", {
+    cx: "16",
+    cy: "9",
+    r: "2"
+  })), _path133 || (_path133 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,12H26v2h2V28H4V14H6V12H4a2,2,0,0,0-2,2V28a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V14A2,2,0,0,0,28,12Z"
+  })), children);
+})));
+if (false) {}
+const MapCenter = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MapCenter(_ref89, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref89;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path134 || (_path134 = /*#__PURE__*/React.createElement("path", {
+    d: "M23 26H25V30H23zM23 18H25V22H23zM26 23H30V25H26zM18 23H22V25H18zM25.3418 10.06l-22-8A1 1 0 002.06 3.3415l8 22A1.0011 1.0011 0 0010.9839 26H11a1 1 0 00.9287-.6289L15.77 15.7692l9.6015-3.8408a1 1 0 00-.0293-1.8687zM14.6284 14.0709v0l-.3979.1591-.1591.3979 0 0-3.0268 7.5678L4.6719 4.6715l17.5244 6.3726z"
+  })), children);
+})));
+if (false) {}
+const MapIdentify = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MapIdentify(_ref90, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref90;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path135 || (_path135 = /*#__PURE__*/React.createElement("path", {
+    d: "M15 8H17V14H15zM15 18H17V24H15zM18 15H24V17H18zM8 15H14V17H8zM4 10H2V4A2.0021 2.0021 0 014 2h6V4H4zM10 30H4a2.0021 2.0021 0 01-2-2V22H4v6h6zM28 30H22V28h6V22h2v6A2.0021 2.0021 0 0128 30zM30 10H28V4H22V2h6a2.0021 2.0021 0 012 2z"
+  })), children);
+})));
+if (false) {}
+const MapBoundary = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MapBoundary(_ref91, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref91;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path136 || (_path136 = /*#__PURE__*/React.createElement("path", {
+    d: "M12 10H14V14H12zM18 18H22V20H18zM14 18L14 16 12 16 12 20 16 20 16 18 14 18zM16 4H28V16H16z"
+  })), _path137 || (_path137 = /*#__PURE__*/React.createElement("path", {
+    d: "M17.885 29.997L11.819 26.142 4 27.989 4 4 14 4 14 8 12 8 12 6 6 6 6 25.461 12.181 24.001 18.115 27.773 22.818 26 26 26 26 20 24 20 24 18 28 18 28 28 23.182 28 17.885 29.997z"
+  })), children);
+})));
+if (false) {}
+const MapBoundaryVegetation = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MapBoundaryVegetation(_ref92, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref92;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path138 || (_path138 = /*#__PURE__*/React.createElement("path", {
+    d: "M28 16H18V14h5V10a2 2 0 012-2h1.5a1.5 1.5 0 00.2837-2.9734l-.7109-.1355L25.9982 4.32a2.6322 2.6322 0 00-1.68-2.1823 2.5051 2.5051 0 00-3.0836 1.3042l-.3032.6472-.71-.0771a2.0185 2.0185 0 00-2.17 2.4343A2.0976 2.0976 0 0020.1261 8H21v2h-.7817A4.1491 4.1491 0 0116.012 6.3136a4.0047 4.0047 0 013.7414-4.306A4.5006 4.5006 0 0127.8267 3.26a3.5051 3.5051 0 012.1422 3.7094A3.6283 3.6283 0 0126.3172 10H25v4h3zM18 18H22V20H18zM14 18L14 16 12 16 12 20 16 20 16 18 14 18zM12 10H14V14H12z"
+  })), _path139 || (_path139 = /*#__PURE__*/React.createElement("path", {
+    d: "M17.885 30L11.819 26.142 4 27.989 4 4 14 4 14 8 12 8 12 6 6 6 6 25.461 12.181 24.001 18.115 27.776 22.818 26 26 26 26 20 24 20 24 18 28 18 28 28 23.182 28 17.885 30z"
+  })), children);
+})));
+if (false) {}
+const MarineWarning = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MarineWarning(_ref93, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref93;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path140 || (_path140 = /*#__PURE__*/React.createElement("path", {
+    d: "M12,20H7a1,1,0,0,0-.97,1.2422L6.9692,25H9.0308l-.75-3H23.7192l-.75,3h2.0616l.9394-3.7578A1,1,0,0,0,25,20H14V3a1,1,0,0,0-1.7993-.6011L2.2075,15.3906A1,1,0,0,0,3,17h9ZM5.0308,15,12,5.94V15Z"
+  })), _path141 || (_path141 = /*#__PURE__*/React.createElement("path", {
+    d: "M26.9058,25.751A2.998,2.998,0,0,1,24,28a3.4376,3.4376,0,0,1-3.0513-2.3164A1.007,1.007,0,0,0,20,25a.9894.9894,0,0,0-.9468.6787A3.44,3.44,0,0,1,16,28a3.4376,3.4376,0,0,1-3.0513-2.3164A1.007,1.007,0,0,0,12,25a.971.971,0,0,0-.9468.6787A3.44,3.44,0,0,1,8,28a2.998,2.998,0,0,1-2.9058-2.249l-1.9365.498A4.9965,4.9965,0,0,0,8,30a4.9316,4.9316,0,0,0,4-1.9873,5.0192,5.0192,0,0,0,8,0A4.9316,4.9316,0,0,0,24,30a4.9965,4.9965,0,0,0,4.8423-3.751Z"
+  })), _path142 || (_path142 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M23.75,10h-1.5V6h1.5ZM23,11a1,1,0,1,0,1,1A1,1,0,0,0,23,11Z"
+  })), _path143 || (_path143 = /*#__PURE__*/React.createElement("path", {
+    d: "M29.9115,13.9355,23.6284,2.3706a.7181.7181,0,0,0-1.2568,0L16.0885,13.9355A.72.72,0,0,0,16.72,15H29.28A.72.72,0,0,0,29.9115,13.9355ZM22.25,6h1.5v4h-1.5ZM23,13a1,1,0,1,1,1-1A1,1,0,0,1,23,13Z"
+  })), children);
+})));
+if (false) {}
+const MathCurve = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MathCurve(_ref94, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref94;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path144 || (_path144 = /*#__PURE__*/React.createElement("path", {
+    d: "M10.3555,23.0581C12.77,24.5918,15.6208,26,17.9514,26a3.8729,3.8729,0,0,0,2.856-1.084c2.2859-2.29.14-6.3979-1.938-10.3721L24.67,8.7427c1.07.686,2.1038,1.4253,3.0117,2.124L29,9.3486c-.7783-.6064-1.772-1.3383-2.8721-2.0634L30,3.4131,28.5859,2,24.3794,6.2061c-3.3164-1.91-7.1079-3.2461-9.2288-1.1216-2.0388,2.0425-.5512,5.5317,1.2683,9.082l-6.3071,6.3066c-1.0322-.7133-1.9985-1.4448-2.8-2.101L6,19.8848c.6145.5058,1.5513,1.2451,2.6653,2.0351L4,26.585V2H2V28a2,2,0,0,0,2,2H30V28H5.4133ZM16.5647,6.501c1.1357-1.1377,3.6931-.2862,6.3372,1.1831l-4.9947,4.9941C16.5942,10.0591,15.5562,7.5112,16.5647,6.501Zm.8215,9.5259c1.58,3.0317,3.1822,6.2959,2.0071,7.4726-1.3125,1.3145-4.5227-.0254-7.572-1.9077Z"
+  })), children);
+})));
+if (false) {}
+const QMatrix = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function QMatrix(_ref95, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref95;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path145 || (_path145 = /*#__PURE__*/React.createElement("path", {
+    d: "M18 13L18 4 16 4 16 6 13 6 13 8 16 8 16 13 13 13 13 15 21 15 21 13 18 13zM16.5 20A3.5 3.5 0 1113 23.5 3.5 3.5 0 0116.5 20m0-2A5.5 5.5 0 1022 23.5 5.5 5.5 0 0016.5 18zM8 30L2 30 2 2 8 2 8 4 4 4 4 28 8 28 8 30zM30 30L24 30 24 28 28 28 28 4 24 4 24 2 30 2 30 30z"
+  })), children);
+})));
+if (false) {}
+const Maximize = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Maximize(_ref96, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref96;
+  if (size === 16 || size === "16" || size === "16px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 16 16",
+      fill: "currentColor",
+      ...rest
+    }, _path146 || (_path146 = /*#__PURE__*/React.createElement("path", {
+      d: "M6 15L6 14 2.7 14 7 9.7 6.3 9 2 13.3 2 10 1 10 1 15zM10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"
+    })), children);
+  }
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path147 || (_path147 = /*#__PURE__*/React.createElement("path", {
+    d: "M20 2L20 4 26.586 4 18 12.582 19.414 14 28 5.414 28 12 30 12 30 2 20 2zM14 19.416L12.592 18 4 26.586 4 20 2 20 2 30 12 30 12 28 5.414 28 14 19.416z"
+  })), children);
+})));
+if (false) {}
+const MediaLibrary = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MediaLibrary(_ref97, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref97;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path148 || (_path148 = /*#__PURE__*/React.createElement("path", {
+    d: "M13 15L13 23 13 23 20 19 13 15z"
+  })), _path149 || (_path149 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 28H6a2.0021 2.0021 0 01-2-2V12a2.0021 2.0021 0 012-2H26a2.0021 2.0021 0 012 2V26A2.0021 2.0021 0 0126 28zM6 12V26H26V12zM6 6H26V8H6zM8 2H24V4H8z"
+  })), children);
+})));
+if (false) {}
+const MediaLibraryFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MediaLibraryFilled(_ref98, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref98;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path150 || (_path150 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M13 15L13 23 13 23 20 19 13 15z",
+    "data-icon-path": "inner-path"
+  })), _path151 || (_path151 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 10H6a2.0023 2.0023 0 00-2 2V26a2.0023 2.0023 0 002 2H26a2.0023 2.0023 0 002-2V12A2.0023 2.0023 0 0026 10zM13 23h0V15l7 4zM6 6H26V8H6zM8 2H24V4H8z"
+  })), children);
+})));
+if (false) {}
+const MediaCast = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MediaCast(_ref99, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref99;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path152 || (_path152 = /*#__PURE__*/React.createElement("path", {
+    d: "M2 26H5a3 3 0 00-3-3zM9 26H7a5.0057 5.0057 0 00-5-5V19A7.0078 7.0078 0 019 26z"
+  })), _path153 || (_path153 = /*#__PURE__*/React.createElement("path", {
+    d: "M13,26H11a9.01,9.01,0,0,0-9-9V15A11.0125,11.0125,0,0,1,13,26Z"
+  })), _path154 || (_path154 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,26H15V24H28V8H4v5H2V8A2.0021,2.0021,0,0,1,4,6H28a2.0021,2.0021,0,0,1,2,2V24A2.0021,2.0021,0,0,1,28,26Z"
+  })), children);
+})));
+if (false) {}
+const Medication = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Medication(_ref100, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref100;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path155 || (_path155 = /*#__PURE__*/React.createElement("path", {
+    d: "M24,2H8A2,2,0,0,0,6,4V8a2,2,0,0,0,2,2V28a2,2,0,0,0,2,2H22a2,2,0,0,0,2-2V10a2,2,0,0,0,2-2V4A2,2,0,0,0,24,2ZM10,14h3V24H10ZM22,28H10V26h5V12H10V10H22ZM8,8V4H24V8Z"
+  })), children);
+})));
+if (false) {}
+const MedicationAlert = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MedicationAlert(_ref101, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref101;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path156 || (_path156 = /*#__PURE__*/React.createElement("path", {
+    d: "M22 19H24V24H22z"
+  })), _path157 || (_path157 = /*#__PURE__*/React.createElement("path", {
+    d: "M23,31a8,8,0,1,1,8-8A8,8,0,0,1,23,31Zm0-14a6,6,0,1,0,6,6A6,6,0,0,0,23,17Z"
+  })), _circle9 || (_circle9 = /*#__PURE__*/React.createElement("circle", {
+    cx: "23",
+    cy: "26",
+    r: "1"
+  })), _path158 || (_path158 = /*#__PURE__*/React.createElement("path", {
+    d: "M20,2H4A2,2,0,0,0,2,4V8a2,2,0,0,0,2,2V28a2,2,0,0,0,2,2h8V28H6V26h5V12H6V10H18v3h2V10a2,2,0,0,0,2-2V4A2,2,0,0,0,20,2ZM9,14V24H6V14ZM4,8V4H20V8Z"
+  })), children);
+})));
+if (false) {}
+const MedicationReminder = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MedicationReminder(_ref102, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref102;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path159 || (_path159 = /*#__PURE__*/React.createElement("path", {
+    d: "M20,2H4A2,2,0,0,0,2,4V8a2,2,0,0,0,2,2V28a2,2,0,0,0,2,2H18a2,2,0,0,0,2-2V10a2,2,0,0,0,2-2V4A2,2,0,0,0,20,2ZM6,14H9V24H6ZM18,28H6V26h5V12H6V10H18ZM4,8V4H20V8Z"
+  })), _circle10 || (_circle10 = /*#__PURE__*/React.createElement("circle", {
+    cx: "26",
+    cy: "16",
+    r: "4"
+  })), children);
+})));
+if (false) {}
+const Menu = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Menu(_ref103, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref103;
+  if (size === 16 || size === "16" || size === "16px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 16 16",
+      fill: "currentColor",
+      ...rest
+    }, _path160 || (_path160 = /*#__PURE__*/React.createElement("path", {
+      d: "M2 12H14V13H2zM2 9H14V10H2zM2 6H14V7H2zM2 3H14V4H2z"
+    })), children);
+  }
+  if (size === 20 || size === "20" || size === "20px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 20 20",
+      fill: "currentColor",
+      ...rest
+    }, _path161 || (_path161 = /*#__PURE__*/React.createElement("path", {
+      d: "M2 14.8H18V16H2zM2 11.2H18V12.399999999999999H2zM2 7.6H18V8.799999999999999H2zM2 4H18V5.2H2z"
+    })), children);
+  }
+  if (size === 24 || size === "24" || size === "24px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 24 24",
+      fill: "currentColor",
+      ...rest
+    }, _path162 || (_path162 = /*#__PURE__*/React.createElement("path", {
+      d: "M3 18H21V19.5H3zM3 13.5H21V15H3zM3 9H21V10.5H3zM3 4.5H21V6H3z"
+    })), children);
+  }
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path163 || (_path163 = /*#__PURE__*/React.createElement("path", {
+    d: "M4 6H28V8H4zM4 24H28V26H4zM4 12H28V14H4zM4 18H28V20H4z"
+  })), children);
+})));
+if (false) {}
+const Merge = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Merge(_ref104, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref104;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path164 || (_path164 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m24,13c-1.8584,0-3.4106,1.2798-3.8579,3h-6.1421c-2.7571,0-5-2.2432-5-5v-1.1421c1.7202-.4473,3-1.9995,3-3.8579,0-2.2056-1.7944-4-4-4s-4,1.7944-4,4c0,1.8584,1.2798,3.4106,3,3.8579v12.2842c-1.7202.4468-3,1.9995-3,3.8579,0,2.2061,1.7944,4,4,4s4-1.7939,4-4c0-1.8584-1.2798-3.4111-3-3.8579v-6.2524c1.2717,1.3003,3.042,2.1104,5,2.1104h6.1421c.4473,1.7202,1.9995,3,3.8579,3,2.2056,0,4-1.7944,4-4s-1.7944-4-4-4Zm-14,13c0,1.1025-.897,2-2,2s-2-.8975-2-2,.897-2,2-2,2,.8975,2,2ZM6,6c0-1.103.897-2,2-2s2,.897,2,2-.897,2-2,2-2-.897-2-2Zm18,13c-1.1028,0-2-.8975-2-2s.8972-2,2-2,2,.8975,2,2-.8972,2-2,2Z"
+  })), children);
+})));
+if (false) {}
+const MergeNode = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MergeNode(_ref105, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref105;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path165 || (_path165 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "M28 20h-4l-8-8-8 8h-4c-1.1028 0-2 .8975-2 2v8h2v-8h4l8 8 8-8h4v8h2v-8c0-1.1025-.8972-2-2-2zm-12 7.1714l-6.1714-6.1714 6.1714-6.1716 6.1714 6.1716-6.1714 6.1714zM11 7L16 12 21 7 19.5859 5.5859 17 8.1719 17 2 15 2 15 8.1719 12.4141 5.5859 11 7z"
+  })), children);
+})));
+if (false) {}
+const MessageQueue = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MessageQueue(_ref106, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref106;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path166 || (_path166 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,28H4a2.0021,2.0021,0,0,1-2-2V21H4v5H28V21h2v5A2.0021,2.0021,0,0,1,28,28Z"
+  })), _path167 || (_path167 = /*#__PURE__*/React.createElement("path", {
+    d: "M7 21H25V23H7zM7 16H25V18H7zM7 11H25V13H7zM7 6H25V8H7z"
+  })), children);
+})));
+if (false) {}
+const Meter = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Meter(_ref107, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref107;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path168 || (_path168 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 16a9.9283 9.9283 0 00-1.1392-4.6182l-1.4961 1.4961A7.9483 7.9483 0 0124 16zM23.4141 10L22 8.5859l-4.7147 4.7147A2.9659 2.9659 0 0016 13a3 3 0 103 3 2.9659 2.9659 0 00-.3006-1.2853zM16 17a1 1 0 111-1A1.0013 1.0013 0 0116 17zM16 8a7.9515 7.9515 0 013.1223.6353l1.4961-1.4961A9.9864 9.9864 0 006 16H8A8.0092 8.0092 0 0116 8z"
+  })), _path169 || (_path169 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,30A14,14,0,1,1,30,16,14.0158,14.0158,0,0,1,16,30ZM16,4A12,12,0,1,0,28,16,12.0137,12.0137,0,0,0,16,4Z"
+  })), children);
+})));
+if (false) {}
+const MeterAlt = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MeterAlt(_ref108, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref108;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path170 || (_path170 = /*#__PURE__*/React.createElement("path", {
+    d: "M30 20a13.8535 13.8535 0 00-2.2291-7.5288l-1.4452 1.4453A11.8917 11.8917 0 0128 20zM28 9.414L26.5859 8 18.019 16.5669A3.9521 3.9521 0 0016 16a4 4 0 104 4 3.9533 3.9533 0 00-.5669-2.0191zM16 22a2 2 0 112-2A2.0023 2.0023 0 0116 22zM16 8a11.9086 11.9086 0 016.0833 1.6743l1.4536-1.4536A13.9773 13.9773 0 002 20H4A12.0137 12.0137 0 0116 8z"
+  })), children);
+})));
+if (false) {}
+const Microphone = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Microphone(_ref109, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref109;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path171 || (_path171 = /*#__PURE__*/React.createElement("path", {
+    d: "M23,14v3A7,7,0,0,1,9,17V14H7v3a9,9,0,0,0,8,8.94V28H11v2H21V28H17V25.94A9,9,0,0,0,25,17V14Z"
+  })), _path172 || (_path172 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,22a5,5,0,0,0,5-5V7A5,5,0,0,0,11,7V17A5,5,0,0,0,16,22ZM13,7a3,3,0,0,1,6,0V17a3,3,0,0,1-6,0Z"
+  })), children);
+})));
+if (false) {}
+const MicrophoneFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MicrophoneFilled(_ref110, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref110;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path173 || (_path173 = /*#__PURE__*/React.createElement("path", {
+    d: "M23,14v3A7,7,0,0,1,9,17V14H7v3a9,9,0,0,0,8,8.94V28H11v2H21V28H17V25.94A9,9,0,0,0,25,17V14Z"
+  })), _path174 || (_path174 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,22a5,5,0,0,0,5-5V7A5,5,0,0,0,11,7V17A5,5,0,0,0,16,22Z"
+  })), children);
+})));
+if (false) {}
+const MicrophoneOff = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MicrophoneOff(_ref111, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref111;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path175 || (_path175 = /*#__PURE__*/React.createElement("path", {
+    d: "M9.18 18.57A7.41 7.41 0 019 17V14H7v3a8.84 8.84 0 00.58 3.18zM13 15V7a3 3 0 016 0V8.75l2-2A5 5 0 0011 7v8zM23 17a7 7 0 01-11.73 5.14l1.42-1.41A5 5 0 0021 17V12.42l9-9L28.59 2 2 28.59 3.41 30l6.44-6.44A8.91 8.91 0 0015 25.94V28H11v2H21V28H17V25.94A9 9 0 0025 17V14H23zm-4 0a3 3 0 01-4.9 2.31L19 14.42z"
+  })), children);
+})));
+if (false) {}
+const MicrophoneOffFilled = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MicrophoneOffFilled(_ref112, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref112;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path176 || (_path176 = /*#__PURE__*/React.createElement("path", {
+    d: "M23 17a7 7 0 01-11.73 5.14l1.42-1.41A5 5 0 0021 17V12.42l9-9L28.59 2 2 28.59 3.41 30l6.44-6.44A8.91 8.91 0 0015 25.94V28H11v2H21V28H17V25.94A9 9 0 0025 17V14H23zM9 17.32c0-.11 0-.21 0-.32V14H7v3a9 9 0 00.25 2.09zM20.76 5.58A5 5 0 0011 7v8.34z"
+  })), children);
+})));
+if (false) {}
+const Microscope = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Microscope(_ref113, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref113;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path177 || (_path177 = /*#__PURE__*/React.createElement("path", {
+    d: "M25.3943,24a7.8772,7.8772,0,0,0-1.6707-8.5684,3.918,3.918,0,0,0-1.0844-4.414l2.7759-2.7759a2.0025,2.0025,0,0,0,0-2.8286L22.5869,2.5849a2.0021,2.0021,0,0,0-2.8286,0L6.5859,15.7573a2.0027,2.0027,0,0,0,0,2.8286l2.8282,2.8282a2.0024,2.0024,0,0,0,2.8286,0l4.7749-4.7754a3.9329,3.9329,0,0,0,5.5139.4326A5.9442,5.9442,0,0,1,23.1775,24H16v4H4v2H28V24ZM10.8281,20,8,17.1714,9.8787,15.293l2.8283,2.8281ZM16,14a3.9811,3.9811,0,0,0,.0762.7524L14.1211,16.707l-2.8284-2.8281,9.88-9.88L24.001,6.8271l-3.2488,3.2491A3.9771,3.9771,0,0,0,16,14Zm4,2a2,2,0,1,1,2-2A2.0023,2.0023,0,0,1,20,16Zm6,12H18V26h8Z"
+  })), children);
+})));
+if (false) {}
+const Microservices_1 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Microservices_1(_ref114, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref114;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _switch || (_switch = /*#__PURE__*/React.createElement("switch", null, /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("path", {
+    d: "m11 21-4-2.2v-4.5l4-2.2 4 2.2v4.5L11 21zm-2-3.4 2 1.1 2-1.1v-2.2l-2-1.1-2 1.1v2.2zM6 30l-4-2.2v-4.5L6 21l4 2.2v4.5L6 30zm-2-3.4 2 1.1 2-1.1v-2.2l-2-1.1-2 1.1v2.2zM16 30l-4-2.2v-4.5l4-2.2 4 2.2v4.5L16 30zm-2-3.4 2 1.1 2-1.1v-2.2l-2-1.1-2 1.1v2.2zM26 30l-4-2.2v-4.5l4-2.2 4 2.2v4.5L26 30zm-2-3.4 2 1.1 2-1.1v-2.2l-2-1.1-2 1.1v2.2zM24.6 11.6 22 14.2V9.4l3-1.7V3.2L21 1l-4 2.2v4.5l3 1.7v4.7l-2.6-2.6L16 13l5 5 5-5-1.4-1.4zM19 4.4l2-1.1 2 1.1v2.2l-2 1.1-2-1.1V4.4z"
+  }), /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M0 0h32v32H0z"
+  })))), children);
+})));
+if (false) {}
+const Microservices_2 = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Microservices_2(_ref115, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref115;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _switch2 || (_switch2 = /*#__PURE__*/React.createElement("switch", null, /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("path", {
+    d: "M16 22v-6h-6v-6H2v20h20v-8h-6zm-2-4v4h-4v-4h4zM4 12h4v4H4v-4zm4 6v4H4v-4h4zM4 28v-4h4v4H4zm10 0h-4v-4h4v4zm6 0h-4v-4h4v4zM29.6 13.6 27 16.2V10h3V2h-8v8h3v6.2l-2.6-2.6L21 15l5 5 5-5-1.4-1.4zM24 4h4v4h-4V4z"
+  }), /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M0 0h32v32H0z"
+  })))), children);
+})));
+if (false) {}
+const Migrate = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Migrate(_ref116, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref116;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path178 || (_path178 = /*#__PURE__*/React.createElement("path", {
+    d: "M26 2H6A2 2 0 004 4V8a2 2 0 002 2h9v6.17l-2.59-2.58L11 15l5 5 5-5-1.41-1.41L17 16.17V10h9a2 2 0 002-2V4A2 2 0 0026 2zM6 4h4V8H6zM26 8H12V4H26zM26 22H6a2 2 0 00-2 2v4a2 2 0 002 2H26a2 2 0 002-2V24A2 2 0 0026 22zM6 24H20v4H6zm20 4H22V24h4z"
+  })), children);
+})));
+if (false) {}
+const MigrateAlt = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MigrateAlt(_ref117, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref117;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path179 || (_path179 = /*#__PURE__*/React.createElement("path", {
+    d: "M28,4H4A2,2,0,0,0,2,6V26a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4Zm0,22H12V20H10v6H4V17H20.1719l-3.586,3.5859L18,22l6-6-6-6-1.4141,1.4141L20.1719,15H4V6h6v6h2V6H28Z"
+  })), children);
+})));
+if (false) {}
+const Milestone = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Milestone(_ref118, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref118;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path180 || (_path180 = /*#__PURE__*/React.createElement("path", {
+    d: "M24.5857,6.5859A1.9865,1.9865,0,0,0,23.1714,6H16V2H14V6H6A2.0025,2.0025,0,0,0,4,8v6a2.0025,2.0025,0,0,0,2,2h8V30h2V16h7.1714a1.9865,1.9865,0,0,0,1.4143-.5859L29,11ZM23.1714,14H6V8H23.1716l3,3Z"
+  })), children);
+})));
+if (false) {}
+const MilitaryCamp = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MilitaryCamp(_ref119, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref119;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path181 || (_path181 = /*#__PURE__*/React.createElement("path", {
+    d: "M27,28v-10.48a2.0035,2.0035,0,0,0-.853-1.6387L17,9.48V8h6V2H15V9.48L5.8528,15.8823A2.0023,2.0023,0,0,0,5,17.5205V28H2v2H30V28ZM17,4h4V6H17ZM7,17.5205l9-6.3,9,6.3V28H17V20H15v8H7Z"
+  })), children);
+})));
+if (false) {}
+const Minimize = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Minimize(_ref120, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref120;
+  if (size === 16 || size === "16" || size === "16px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 16 16",
+      fill: "currentColor",
+      ...rest
+    }, _path182 || (_path182 = /*#__PURE__*/React.createElement("path", {
+      d: "M2 9L2 10 5.3 10 1 14.3 1.7 15 6 10.7 6 14 7 14 7 9zM14 7L14 6 10.7 6 15 1.7 14.3 1 10 5.3 10 2 9 2 9 7z"
+    })), children);
+  }
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path183 || (_path183 = /*#__PURE__*/React.createElement("path", {
+    d: "M4 18L4 20 10.586 20 2 28.582 3.414 30 12 21.414 12 28 14 28 14 18 4 18zM30 3.416L28.592 2 20 10.586 20 4 18 4 18 14 28 14 28 12 21.414 12 30 3.416z"
+  })), children);
+})));
+if (false) {}
+const Misuse = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Misuse(_ref121, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref121;
+  if (size === 16 || size === "16" || size === "16px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 16 16",
+      fill: "currentColor",
+      ...rest
+    }, _path184 || (_path184 = /*#__PURE__*/React.createElement("path", {
+      d: "M8,1C4.1,1,1,4.1,1,8s3.1,7,7,7s7-3.1,7-7S11.9,1,8,1z M10.7,11.5L8,8.8l-2.7,2.7l-0.8-0.8L7.2,8L4.5,5.3l0.8-0.8L8,7.2 l2.7-2.7l0.8,0.8L8.8,8l2.7,2.7L10.7,11.5z"
+    })), _path185 || (_path185 = /*#__PURE__*/React.createElement("path", {
+      d: "M10.7,11.5L8,8.8l-2.7,2.7l-0.8-0.8L7.2,8L4.5,5.3l0.8-0.8L8,7.2l2.7-2.7l0.8,0.8L8.8,8 l2.7,2.7L10.7,11.5z",
+      "data-icon-path": "inner-path",
+      opacity: "0"
+    })), children);
+  }
+  if (size === 20 || size === "20" || size === "20px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 20 20",
+      fill: "currentColor",
+      ...rest
+    }, _path186 || (_path186 = /*#__PURE__*/React.createElement("path", {
+      d: "M10,1c-4.9,0-9,4.1-9,9s4.1,9,9,9s9-4,9-9S15,1,10,1z M13.5,14.5L10,11l-3.5,3.5l-1-1L9,10L5.5,6.5l1-1L10,9l3.5-3.5l1,1 L11,10l3.5,3.5L13.5,14.5z"
+    })), _path187 || (_path187 = /*#__PURE__*/React.createElement("path", {
+      fill: "none",
+      d: "M13.5,14.5L10,11l-3.5,3.5l-1-1L9,10L5.5,6.5l1-1L10,9l3.5-3.5l1,1L11,10l3.5,3.5L13.5,14.5z",
+      "data-icon-path": "inner-path",
+      opacity: "0"
+    })), children);
+  }
+  if (size === 24 || size === "24" || size === "24px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 24 24",
+      fill: "currentColor",
+      ...rest
+    }, _path188 || (_path188 = /*#__PURE__*/React.createElement("path", {
+      d: "M12,1C6,1,1,6,1,12s5,11,11,11s11-4.9,11-11S18.1,1,12,1z M16.2,17.5L12,13.3l-4.2,4.2l-1.3-1.3l4.2-4.2L6.5,7.8l1.3-1.3 l4.2,4.2l4.2-4.2l1.3,1.3L13.3,12l4.2,4.2L16.2,17.5z"
+    })), _path189 || (_path189 = /*#__PURE__*/React.createElement("path", {
+      fill: "none",
+      d: "M16.2,17.5L12,13.3l-4.2,4.2l-1.3-1.3l4.2-4.2L6.5,7.8l1.3-1.3l4.2,4.2l4.2-4.2l1.3,1.3 L13.3,12l4.2,4.2L16.2,17.5z",
+      "data-icon-path": "inner-path",
+      opacity: "0"
+    })), children);
+  }
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path190 || (_path190 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2C8.3,2,2,8.3,2,16s6.3,14,14,14s14-6.3,14-14S23.7,2,16,2z M21.4,23L16,17.6L10.6,23L9,21.4l5.4-5.4L9,10.6L10.6,9 l5.4,5.4L21.4,9l1.6,1.6L17.6,16l5.4,5.4L21.4,23z"
+  })), _path191 || (_path191 = /*#__PURE__*/React.createElement("path", {
+    fill: "none",
+    d: "M21.4,23L16,17.6L10.6,23L9,21.4l5.4-5.4L9,10.6L10.6,9l5.4,5.4L21.4,9l1.6,1.6L17.6,16 l5.4,5.4L21.4,23z",
+    "data-icon-path": "inner-path",
+    opacity: "0"
+  })), children);
+})));
+if (false) {}
+const MisuseOutline = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MisuseOutline(_ref122, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref122;
+  if (size === 16 || size === "16" || size === "16px") {
+    return /*#__PURE__*/React.createElement(Icon, {
+      width: size,
+      height: size,
+      ref: ref,
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 16 16",
+      fill: "currentColor",
+      ...rest
+    }, _path192 || (_path192 = /*#__PURE__*/React.createElement("path", {
+      d: "M8,1C4.1,1,1,4.1,1,8s3.1,7,7,7s7-3.1,7-7S11.9,1,8,1z M8,14c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S11.3,14,8,14z"
+    })), _path193 || (_path193 = /*#__PURE__*/React.createElement("path", {
+      d: "M10.7 11.5L8 8.8 5.3 11.5 4.5 10.7 7.2 8 4.5 5.3 5.3 4.5 8 7.2 10.7 4.5 11.5 5.3 8.8 8 11.5 10.7z"
+    })), children);
+  }
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path194 || (_path194 = /*#__PURE__*/React.createElement("path", {
+    d: "M16,2C8.2,2,2,8.2,2,16s6.2,14,14,14s14-6.2,14-14S23.8,2,16,2z M16,28C9.4,28,4,22.6,4,16S9.4,4,16,4s12,5.4,12,12 S22.6,28,16,28z"
+  })), _path195 || (_path195 = /*#__PURE__*/React.createElement("path", {
+    d: "M21.4 23L16 17.6 10.6 23 9 21.4 14.4 16 9 10.6 10.6 9 16 14.4 21.4 9 23 10.6 17.6 16 23 21.4z"
+  })), children);
+})));
+if (false) {}
+const MixedRainHail = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MixedRainHail(_ref123, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref123;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _circle11 || (_circle11 = /*#__PURE__*/React.createElement("circle", {
+    cx: "24.5",
+    cy: "25.5",
+    r: "1.5"
+  })), _circle12 || (_circle12 = /*#__PURE__*/React.createElement("circle", {
+    cx: "21.5",
+    cy: "29.5",
+    r: "1.5"
+  })), _path196 || (_path196 = /*#__PURE__*/React.createElement("path", {
+    d: "M15.868 30.496L14.132 29.504 17.276 24 11.277 24 16.132 15.504 17.868 16.496 14.723 22 20.724 22 15.868 30.496z"
+  })), _path197 || (_path197 = /*#__PURE__*/React.createElement("path", {
+    d: "M9 32a1 1 0 01-.8944-1.4474l2-4.0005a1 1 0 111.7888.8947l-2 4A.9981.9981 0 019 32zM24.8008 9.1362a8.9943 8.9943 0 00-17.6006 0 6.4929 6.4929 0 00.23 12.7681L6.106 24.5527a1 1 0 101.7885.8946l2-4a1 1 0 00-.447-1.3418A.9786.9786 0 009 20.01V20H8.5a4.4975 4.4975 0 01-.356-8.981l.8155-.0639.0991-.812a6.9938 6.9938 0 0113.8838 0l.0986.812.8154.0639A4.4975 4.4975 0 0123.5 20H23v2h.5A6.4974 6.4974 0 0024.8008 9.1362z"
+  })), children);
+})));
+if (false) {}
+const MlModelReference = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function MlModelReference(_ref124, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref124;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path198 || (_path198 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "M4 19L4 21 8.5859 21 2 27.5859 3.4141 29 10 22.4141 10 27 12 27 12 19 4 19z"
+  })), _path199 || (_path199 = /*#__PURE__*/React.createElement("path", {
+    strokeWidth: "0",
+    d: "m27,19c1.6543,0,3-1.3457,3-3s-1.3457-3-3-3c-1.302,0-2.4016.8384-2.8157,2h-5.7703l7.3008-7.3008c.3911.1875.8235.3008,1.2852.3008,1.6543,0,3-1.3457,3-3s-1.3457-3-3-3-3,1.3457-3,3c0,.4619.1135.894.3005,1.2852l-8.3005,8.3008v-6.5859c0-1.1025.897-2,2-2h2v-2h-2c-1.2002,0-2.2661.5425-3,1.3823-.7339-.8398-1.7998-1.3823-3-1.3823h-1c-4.9624,0-9,4.0371-9,9v4h2v-3h3c1.6543,0,3-1.3457,3-3v-2h-2v2c0,.5518-.4487,1-1,1h-2.9202c.4878-3.3867,3.4006-6,6.9202-6h1c1.103,0,2,.8975,2,2v4h-2v2h2v10c0,2.2056,1.7944,4,4,4h2v-2h-2c-1.1028,0-2-.8975-2-2v-6.5859l8.3005,8.3008c-.187.3911-.3005.8232-.3005,1.2852,0,1.6543,1.3457,3,3,3s3-1.3457,3-3-1.3457-3-3-3c-.4617,0-.894.1133-1.2852.3008l-7.3008-7.3008h5.7703c.4141,1.1616,1.5137,2,2.8157,2Zm0-4c.5513,0,1,.4482,1,1s-.4487,1-1,1-1-.4482-1-1,.4487-1,1-1Zm0-11c.5515,0,1,.4487,1,1s-.4485,1-1,1-1-.4487-1-1,.4485-1,1-1Zm0,22c.5515,0,1,.4487,1,1s-.4485,1-1,1-1-.4487-1-1,.4485-1,1-1Z"
+  })), children);
+})));
+if (false) {}
+const Mobile = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function Mobile(_ref125, ref) {
+  let {
+    children,
+    size = 16,
+    ...rest
+  } = _ref125;
+  return /*#__PURE__*/React.createElement(Icon, {
+    width: size,
+    height: size,
+    ref: ref,
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    fill: "currentColor",
+    ...rest
+  }, _path200 || (_path200 = /*#__PURE__*/React.createElement("path", {
+    d: "M22,4H10A2.002,2.002,0,0,0,8,6V28a2.0023,2.0023,0,0,0,2,2H22a2.0027,2.0027,0,0,0,2-2V6A2.0023,2.0023,0,0,0,22,4Zm0,2,0,2H10V6ZM10,28V10H22l0,18Z"
+  })), children);
+})));
+if (false) {}
+
+
+
+
+/***/ })
+
+};
+;
+//# sourceMappingURL=794.js.map
