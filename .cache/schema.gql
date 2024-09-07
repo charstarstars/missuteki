@@ -1,4 +1,4 @@
-### Type definitions saved at 2024-09-07T19:57:44.217Z ###
+### Type definitions saved at 2024-09-07T20:15:02.206Z ###
 
 enum RemoteFileFit {
   COVER
@@ -328,11 +328,6 @@ enum GatsbyImagePlaceholder {
   TRACED_SVG
   BLURRED
   NONE
-}
-
-type Mdx implements Node @dontInfer {
-  excerpt(pruneLength: Int = 140): String
-  tableOfContents(maxDepth: Int): JSON
 }
 
 enum ImageFormat {
