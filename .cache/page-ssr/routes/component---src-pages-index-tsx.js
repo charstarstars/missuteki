@@ -104,7 +104,7 @@ const IndexPage = () => {
     className: " flex space-x-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "https://www.instagram.com/missuteki/",
-    className: "flex items-center",
+    className: "flex items-center p-2",
     target: "_blank",
     style: {
       color: colors[Math.floor(Math.random() * colors.length)]
@@ -113,7 +113,7 @@ const IndexPage = () => {
     className: "mr-2"
   }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Instagram")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "https://missuteki.substack.com/",
-    className: "flex items-center",
+    className: "flex items-center p-2",
     target: "_blank",
     style: {
       color: colors[Math.floor(Math.random() * colors.length)]

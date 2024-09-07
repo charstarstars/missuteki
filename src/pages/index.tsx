@@ -89,11 +89,11 @@ const IndexPage: React.FC<PageProps> = () => {
       Ariel Liu makes art and makes art about art.
     </div>
     <div className=" flex space-x-4">
-        <a href="https://www.instagram.com/missuteki/" className="flex items-center" target="_blank" 
+        <a href="https://www.instagram.com/missuteki/" className="flex items-center p-2" target="_blank" 
           style={{color: colors[Math.floor(Math.random() * colors.length)]}}>
           <LogoInstagram className="mr-2" /> <span >Instagram</span>
         </a>
-        <a href="https://missuteki.substack.com/" className="flex items-center" target="_blank"
+        <a href="https://missuteki.substack.com/" className="flex items-center p-2" target="_blank"
           style={{color: colors[Math.floor(Math.random() * colors.length)]}}>
           <Blog className="mr-2" /> Newsletter
         </a>
